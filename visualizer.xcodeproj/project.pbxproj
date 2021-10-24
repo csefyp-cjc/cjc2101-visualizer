@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6827253D3700B6E8E7 /* ContentView.swift */; };
+		8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */; };
+		8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */; };
 		8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */; };
-		8EEFAF8F27130F7E00E3651D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8E27130F7E00E3651D /* ContentView.swift */; };
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
+		8EEFAFA3271316D200E3651D /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAFA2271316D200E3651D /* AudioModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EC8CD6827253D3700B6E8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBarComponent.swift; sourceTree = "<group>"; };
+		8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyComponent.swift; sourceTree = "<group>"; };
 		8EEFAF8927130F7E00E3651D /* visualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerApp.swift; sourceTree = "<group>"; };
-		8EEFAF8E27130F7E00E3651D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EEFAF9027130F8000E3651D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8EEFAFA12713146200E3651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8EEFAFA2271316D200E3651D /* AudioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E16835127259D29004E3CF9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */,
+				8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		8EEFAF8027130F7E00E3651D = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +67,11 @@
 		8EEFAF8B27130F7E00E3651D /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
+				8E16835127259D29004E3CF9 /* Components */,
+				8EEFAFA12713146200E3651D /* Info.plist */,
+				8EEFAF9C27130FD300E3651D /* Models */,
+				8EEFAF9A27130F8E00E3651D /* Views */,
 				8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */,
-				8EEFAF8E27130F7E00E3651D /* ContentView.swift */,
 				8EEFAF9027130F8000E3651D /* Assets.xcassets */,
 				8EEFAF9227130F8000E3651D /* Preview Content */,
 			);
@@ -65,6 +84,22 @@
 				8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8EEFAF9A27130F8E00E3651D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8EC8CD6827253D3700B6E8E7 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8EEFAF9C27130FD300E3651D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8EEFAFA2271316D200E3651D /* AudioModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +118,8 @@
 			dependencies = (
 			);
 			name = visualizer;
+			packageProductDependencies = (
+			);
 			productName = visualizer;
 			productReference = 8EEFAF8927130F7E00E3651D /* visualizer.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +148,8 @@
 				Base,
 			);
 			mainGroup = 8EEFAF8027130F7E00E3651D;
+			packageReferences = (
+			);
 			productRefGroup = 8EEFAF8A27130F7E00E3651D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +176,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EEFAF8F27130F7E00E3651D /* ContentView.swift in Sources */,
+				8EEFAFA3271316D200E3651D /* AudioModel.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
+				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
+				8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */,
+				8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +311,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4FFSUTM3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = visualizer/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -298,8 +343,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4FFSUTM3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = visualizer/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
