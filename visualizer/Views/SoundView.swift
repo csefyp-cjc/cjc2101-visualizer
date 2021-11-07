@@ -9,7 +9,16 @@ import SwiftUI
 
 struct SoundView: View {
     var body: some View {
-        Text("Sound").font(.title)
+        VStack{
+            HStack(alignment: .top){
+                HelpBtn().padding(15)
+                Spacer()
+                DrawerBtn().padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
+                LiveBtn().padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
+            }.frame(maxWidth: .infinity, alignment: .trailing)
+            
+        }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+        
     }
 }
 

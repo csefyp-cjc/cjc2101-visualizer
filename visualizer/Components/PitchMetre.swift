@@ -36,6 +36,6 @@ struct PitchMetre: View {
 
 struct PitchMetre_Previews: PreviewProvider {
     static var previews: some View {
-        PitchMetre(position: 4)
+        PitchMetre(position: 1)
     }
 }

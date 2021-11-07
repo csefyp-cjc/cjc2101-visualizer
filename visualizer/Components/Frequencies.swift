@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct Frequencies: View {
+    @GestureState private var isPressed = false
+    
+    let drag = DragGesture(minimumDistance: 0)
+    
+
     var body: some View {
         HStack(spacing: 5){
             ForEach(0...48, id: \.self){ i in
-                VBar(x: Int.random(in: 0..<48))
+                VBar(x: Int.random(in: 10..<48))
             }
         }
     }

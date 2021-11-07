@@ -11,7 +11,11 @@ struct VBar: View {
     let x: Int
     
     var body: some View {
-        Rectangle().fill(Color("secondary")).frame(width: 4, height: CGFloat(5 * x)).frame(maxHeight: 350, alignment: .bottom)
+        Rectangle()
+            .fill(Color("secondary"))
+            .frame(width: 4, height: CGFloat(5 * x))
+            .frame(maxHeight: 350, alignment: .bottom)
+            .animation(.easeOut(duration: 0.15))
     }
 }
 
