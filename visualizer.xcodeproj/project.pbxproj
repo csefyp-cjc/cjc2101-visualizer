@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB879273802FF0010FE7E /* PitchView.swift */; };
+		8E8DB87C273805830010FE7E /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87B273805830010FE7E /* SoundView.swift */; };
+		8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87D273807490010FE7E /* TimbreView.swift */; };
+		8E8DB88027380AD30010FE7E /* PitchMetre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87F27380AD30010FE7E /* PitchMetre.swift */; };
+		8E8DB88227380B630010FE7E /* PitchIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB88127380B630010FE7E /* PitchIndicator.swift */; };
+		8E8DB884273811120010FE7E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB883273811120010FE7E /* Color.swift */; };
+		8E8DB8862738161A0010FE7E /* FreezeBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB8852738161A0010FE7E /* FreezeBtn.swift */; };
 		8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6827253D3700B6E8E7 /* ContentView.swift */; };
 		8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */; };
 		8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */; };
+		8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA38E27382E800083FD02 /* Frequencies.swift */; };
+		8EECA39127382E8E0083FD02 /* VBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA39027382E8E0083FD02 /* VBar.swift */; };
 		8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */; };
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
@@ -17,9 +26,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E8DB879273802FF0010FE7E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
+		8E8DB87B273805830010FE7E /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
+		8E8DB87D273807490010FE7E /* TimbreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreView.swift; sourceTree = "<group>"; };
+		8E8DB87F27380AD30010FE7E /* PitchMetre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchMetre.swift; sourceTree = "<group>"; };
+		8E8DB88127380B630010FE7E /* PitchIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchIndicator.swift; sourceTree = "<group>"; };
+		8E8DB883273811120010FE7E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8E8DB8852738161A0010FE7E /* FreezeBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeBtn.swift; sourceTree = "<group>"; };
 		8EC8CD6827253D3700B6E8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBarComponent.swift; sourceTree = "<group>"; };
 		8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyComponent.swift; sourceTree = "<group>"; };
+		8EECA38E27382E800083FD02 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
+		8EECA39027382E8E0083FD02 /* VBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBar.swift; sourceTree = "<group>"; };
 		8EEFAF8927130F7E00E3651D /* visualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerApp.swift; sourceTree = "<group>"; };
 		8EEFAF9027130F8000E3651D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +62,11 @@
 			children = (
 				8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */,
 				8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */,
+				8E8DB87F27380AD30010FE7E /* PitchMetre.swift */,
+				8E8DB88127380B630010FE7E /* PitchIndicator.swift */,
+				8E8DB8852738161A0010FE7E /* FreezeBtn.swift */,
+				8EECA38E27382E800083FD02 /* Frequencies.swift */,
+				8EECA39027382E8E0083FD02 /* VBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -74,6 +97,7 @@
 				8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */,
 				8EEFAF9027130F8000E3651D /* Assets.xcassets */,
 				8EEFAF9227130F8000E3651D /* Preview Content */,
+				8E8DB883273811120010FE7E /* Color.swift */,
 			);
 			path = visualizer;
 			sourceTree = "<group>";
@@ -90,6 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				8EC8CD6827253D3700B6E8E7 /* ContentView.swift */,
+				8E8DB87D273807490010FE7E /* TimbreView.swift */,
+				8E8DB879273802FF0010FE7E /* PitchView.swift */,
+				8E8DB87B273805830010FE7E /* SoundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,11 +203,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				8EEFAFA3271316D200E3651D /* AudioModel.swift in Sources */,
+				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
+				8E8DB884273811120010FE7E /* Color.swift in Sources */,
+				8EECA39127382E8E0083FD02 /* VBar.swift in Sources */,
+				8E8DB88027380AD30010FE7E /* PitchMetre.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
+				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
+				8E8DB88227380B630010FE7E /* PitchIndicator.swift in Sources */,
 				8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */,
 				8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */,
+				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
+				8E8DB8862738161A0010FE7E /* FreezeBtn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

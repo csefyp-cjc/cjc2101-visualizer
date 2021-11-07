@@ -14,6 +14,7 @@ struct visualizerApp: App {
     
     var body: some Scene {
         WindowGroup {
+            
             ContentView().environmentObject(audio)
         }
     }

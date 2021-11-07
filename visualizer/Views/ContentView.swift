@@ -1,25 +1,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @EnvironmentObject var audio: AudioModel
-    @State var data = [CGFloat](repeating: CGFloat(0.5), count: 64)
+
+    @State private var selection = 2
     
     var body: some View {
-        VStack{
-            Button(action: {
-                self.audio.start()
-            }){
-                Text("START")
-            }
-            Frequency_view(amplitudes: $audio.timeDomainBuffer)
-        }
-        
+        TabView(selection: $selection){
+            SoundView().tabItem{
+                Label("Sound", systemImage: "waveform.and.magnifyingglass")
+            }.tag(1)
+            PitchView().tabItem{
+                Label("Pitch", systemImage: "music.note.list")
+            }.tag(2)
+            TimbreView().tabItem{
+                Label("Timbre", systemImage: "waveform.path.ecg")
+            }.tag(3)
+        }.accentColor(Color("primary"))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(AudioModel())
+        ContentView()
     }
 }
