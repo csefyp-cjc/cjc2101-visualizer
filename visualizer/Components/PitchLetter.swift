@@ -1,5 +1,5 @@
 //
-//  PitchIndicator.swift
+//  PitchLetter.swift
 //  visualizer
 //
 //  Created by Mark Cheng on 7/11/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PitchIndicator: View {
+struct PitchLetter: View {
     @State private var pitch = "C"
     
     
@@ -25,6 +25,6 @@ struct PitchIndicator: View {
 
 struct PitchIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        PitchIndicator()
+        PitchLetter()
     }
 }

@@ -1,13 +1,14 @@
 import SwiftUI
 
-struct LiveBtn: View {
+struct DrawerButton: View {
     
     
     var body: some View{
         Button{
             
         }label:{
-            Image(systemName: "waveform").frame(width: 38, height: 38)
+            Image(systemName: "square.stack.3d.down.right.fill")
+                .frame(width: 38, height: 38)
                 .foregroundColor(.foundation.onPrimary)
                 .background(Color.foundation.primary)
                 .clipShape(Circle())
@@ -16,8 +17,8 @@ struct LiveBtn: View {
     }
 }
 
-struct LiveBtn_Previews: PreviewProvider {
+struct DrawerBtn_Previews: PreviewProvider {
     static var previews: some View {
-        LiveBtn().previewLayout(.fixed(width: 38, height: 38))
+        DrawerButton().previewLayout(.fixed(width: 38, height: 38))
     }
 }

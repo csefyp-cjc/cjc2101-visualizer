@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PitchMetre: View {
+struct PitchIndicator: View {
     let position: Int // range: 0-8
     
     var body: some View {
@@ -52,6 +52,6 @@ struct PitchMetre: View {
 
 struct PitchMetre_Previews: PreviewProvider {
     static var previews: some View {
-        PitchMetre(position: 1)
+        PitchIndicator(position: 1)
     }
 }

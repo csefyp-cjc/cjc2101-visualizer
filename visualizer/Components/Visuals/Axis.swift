@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Axes: View {
+struct Axis: View {
     @State private var yValues = ["90", "70", "35", "0", "-40"]
     @State private var xValues = ["25", "100", "400", "1000", "2000", "4000"]
     
@@ -31,6 +31,6 @@ struct Axes: View {
 
 struct Axes_Previews: PreviewProvider {
     static var previews: some View {
-        Axes()
+        Axis()
     }
 }

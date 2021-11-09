@@ -1,14 +1,13 @@
 import SwiftUI
 
-struct HelpBtn: View {
+struct LiveButton: View {
     
     
     var body: some View{
         Button{
             
         }label:{
-            Image(systemName: "questionmark")
-                .frame(width: 38, height: 38)
+            Image(systemName: "waveform").frame(width: 38, height: 38)
                 .foregroundColor(.foundation.onPrimary)
                 .background(Color.foundation.primary)
                 .clipShape(Circle())
@@ -17,8 +16,8 @@ struct HelpBtn: View {
     }
 }
 
-struct HelpBtn_Previews: PreviewProvider {
+struct LiveBtn_Previews: PreviewProvider {
     static var previews: some View {
-        HelpBtn().previewLayout(.fixed(width: 38, height: 38))
+        LiveButton().previewLayout(.fixed(width: 38, height: 38))
     }
 }
