@@ -10,14 +10,19 @@ struct Axes: View {
                 HStack{
                     //TODO: align text above line
                     Rectangle()
-                        .fill(Color("axis"))
+                        .fill(Color.neutral.axis)
                         .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 2, alignment: .bottom)
-                    Text(value).foregroundColor(Color("onAxis")).font(.system(size: 14))
+                    Text(value)
+                        .foregroundColor(.neutral.onAxis)
+                        .font(.label.xsmall)
                 }.padding(18)
             }
             HStack{
                 ForEach(xValues, id: \.self){value in
-                    Text(value).foregroundColor(Color("onAxis")).font(.system(size: 14)).frame(maxWidth: .infinity)
+                    Text(value)
+                        .foregroundColor(.neutral.onAxis)
+                        .font(.label.xsmall)
+                        .frame(maxWidth: .infinity)
                 }
             }.frame(minWidth: 0, maxWidth: .infinity)
         }

@@ -7,7 +7,12 @@ struct DrawerBtn: View {
         Button{
             
         }label:{
-            Image(systemName: "square.stack.3d.down.right.fill").frame(width: 38, height: 38).foregroundColor(.white).background(Color("primary")).clipShape(Circle()).font(.system(size: 23))
+            Image(systemName: "square.stack.3d.down.right.fill")
+                .frame(width: 38, height: 38)
+                .foregroundColor(.foundation.onPrimary)
+                .background(Color.foundation.primary)
+                .clipShape(Circle())
+                .font(.system(size: 18))
         }
     }
 }

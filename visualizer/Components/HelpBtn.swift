@@ -7,7 +7,12 @@ struct HelpBtn: View {
         Button{
             
         }label:{
-            Image(systemName: "questionmark").frame(width: 38, height: 38).foregroundColor(.white).background(Color("primary")).clipShape(Circle()).font(.system(size: 21))
+            Image(systemName: "questionmark")
+                .frame(width: 38, height: 38)
+                .foregroundColor(.foundation.onPrimary)
+                .background(Color.foundation.primary)
+                .clipShape(Circle())
+                .font(.system(size: 18))
         }
     }
 }

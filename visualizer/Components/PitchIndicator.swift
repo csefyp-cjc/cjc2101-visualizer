@@ -13,8 +13,12 @@ struct PitchIndicator: View {
     
     var body: some View {
         VStack{
-            Text(pitch).font(.system(size: 64, weight:.heavy)).foregroundColor(Color("primary"))
-            Text("261hz").font(.system(size: 18)).foregroundColor(Color("primary"))
+            Text(pitch)
+                .font(.system(size: 64, weight:.heavy))
+                .foregroundColor(.foundation.primary)
+            Text("261hz")
+                .font(.label.large)
+                .foregroundColor(.foundation.primary)
         }
     }
 }

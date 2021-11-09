@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490E8B632739176B0047DE64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E8B622739176A0047DE64 /* Color.swift */; };
+		49DECB11273A730D00C992CE /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DECB10273A730D00C992CE /* Typography.swift */; };
 		8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB879273802FF0010FE7E /* PitchView.swift */; };
 		8E8DB87C273805830010FE7E /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87B273805830010FE7E /* SoundView.swift */; };
 		8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87D273807490010FE7E /* TimbreView.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		490E8B622739176A0047DE64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		49DECB10273A730D00C992CE /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		8E8DB879273802FF0010FE7E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
 		8E8DB87B273805830010FE7E /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		8E8DB87D273807490010FE7E /* TimbreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreView.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				8EEFAF9227130F8000E3651D /* Preview Content */,
 				8E8DB883273811120010FE7E /* TouchEventModifier.swift */,
 				8EECA394273852030083FD02 /* ViewExtension.swift */,
+				49DECB10273A730D00C992CE /* Typography.swift */,
+				490E8B622739176A0047DE64 /* Color.swift */,
 			);
 			path = visualizer;
 			sourceTree = "<group>";
@@ -225,8 +231,10 @@
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchMetre.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerBtn.swift in Sources */,
+				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
+				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
 				8E8DB88227380B630010FE7E /* PitchIndicator.swift in Sources */,
 				8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */,

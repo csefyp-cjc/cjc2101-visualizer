@@ -12,7 +12,7 @@ struct VBar: View {
     
     var body: some View {
         Rectangle()
-            .fill(Color("secondary"))
+            .fill(Color.foundation.secondary)
             .frame(width: 4, height: CGFloat(5 * x))
             .frame(maxHeight: 350, alignment: .bottom)
             .animation(.easeOut(duration: 0.15))
