@@ -15,7 +15,7 @@ struct ContentView: View {
             TimbreView().tabItem{
                 Label("Timbre", systemImage: "waveform.path.ecg")
             }.tag(3)
-        }.accentColor(Color("primary"))
+        }.accentColor(.foundation.primary)
             
     }
 }

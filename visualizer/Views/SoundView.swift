@@ -11,10 +11,13 @@ struct SoundView: View {
     var body: some View {
         VStack{
             HStack(alignment: .top){
-                HelpBtn().padding(15)
+                HelpButton()
+                    .padding(15)
                 Spacer()
-                DrawerBtn().padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
-                LiveBtn().padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
+                DrawerButton()
+                    .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
+                LiveButton()
+                    .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
             }.frame(maxWidth: .infinity, alignment: .trailing)
             
         }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)

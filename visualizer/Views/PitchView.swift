@@ -7,13 +7,15 @@ struct PitchView: View {
     var body: some View {
         VStack{
             HStack(alignment: .top){
-                HelpBtn().padding(15)
+                HelpButton()
+                    .padding(15)
                 Spacer()
-                LiveBtn().padding(15)
+                LiveButton()
+                    .padding(15)
             }.frame(maxWidth: .infinity, alignment: .trailing)
-            PitchIndicator()
+            PitchLetter()
             if(!touching){
-                PitchMetre(position: 1).transition(.opacity)
+                PitchIndicator(position: 1).transition(.opacity)
             }
             Spacer()
             Frequencies().frame(
@@ -33,7 +35,7 @@ struct PitchView: View {
                 }
             }))
                 .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-                .overlay(Axes().if(!touching){$0.hidden()})
+                .overlay(Axis().if(!touching){$0.hidden()})
         }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
     }
 }
