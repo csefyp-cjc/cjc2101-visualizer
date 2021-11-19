@@ -10,8 +10,6 @@ import AudioKit
 
 class Conductor: ObservableObject{
     
-//    static let shared = Conductor()
-    
     let engine = AudioEngine()
     
     var mic: AudioEngine.InputNode
@@ -31,6 +29,7 @@ class Conductor: ObservableObject{
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     
     init(){
+        // TODO: test no microphone priviledge
         guard let input = engine.input else{
             fatalError()
         }
@@ -74,6 +73,7 @@ class Conductor: ObservableObject{
                 if(i/2 < self.amplitudes.count){
                     var mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
                     
+                    // restrict to [0,1]
                     if(mappedAmplitude < 0) {
                         mappedAmplitude = 0
                     }
@@ -85,11 +85,11 @@ class Conductor: ObservableObject{
                     self.amplitudes[i/2] = mappedAmplitude
                 }
             }
-            
         }
     }
     
     
+    // TODO: modify this mapping for our visualization
     func map(n: Double, start1: Double, stop1: Double, start2: Double, stop2: Double) -> Double {
         return ((n-start1)/(stop1-start1)) * (stop2-start2) + start2
     }

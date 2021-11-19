@@ -42,7 +42,6 @@ struct PitchView: View {
 
 struct PitchView_Previews: PreviewProvider {
     static var previews: some View {
-//        PitchView(conductor: Conductor())
         PitchView(amplitudes: Array(repeating: 0.2, count: 50))
     }
 }

@@ -19,8 +19,6 @@
 		8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB883273811120010FE7E /* TouchEventModifier.swift */; };
 		8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB8852738161A0010FE7E /* LiveButton.swift */; };
 		8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6827253D3700B6E8E7 /* ContentView.swift */; };
-		8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */; };
-		8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */; };
 		8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA38E27382E800083FD02 /* Frequencies.swift */; };
 		8EECA39127382E8E0083FD02 /* VBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA39027382E8E0083FD02 /* VBar.swift */; };
 		8EECA39327384BC30083FD02 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA39227384BC30083FD02 /* Axis.swift */; };
@@ -30,7 +28,6 @@
 		8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */; };
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
-		8EEFAFA3271316D200E3651D /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAFA2271316D200E3651D /* AudioModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +42,6 @@
 		8E8DB883273811120010FE7E /* TouchEventModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEventModifier.swift; sourceTree = "<group>"; };
 		8E8DB8852738161A0010FE7E /* LiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveButton.swift; sourceTree = "<group>"; };
 		8EC8CD6827253D3700B6E8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBarComponent.swift; sourceTree = "<group>"; };
-		8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyComponent.swift; sourceTree = "<group>"; };
 		8EECA38E27382E800083FD02 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
 		8EECA39027382E8E0083FD02 /* VBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBar.swift; sourceTree = "<group>"; };
 		8EECA39227384BC30083FD02 /* Axis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
@@ -58,7 +53,6 @@
 		8EEFAF9027130F8000E3651D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EEFAFA12713146200E3651D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8EEFAFA2271316D200E3651D /* AudioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +101,6 @@
 				49DECB14273A7B1A00C992CE /* Visuals */,
 				49DECB13273A7AE500C992CE /* Indicators */,
 				49DECB12273A7ACC00C992CE /* Buttons */,
-				8EC8CD6C27253F1F00B6E8E7 /* VBarComponent.swift */,
-				8EC8CD6E27253F3C00B6E8E7 /* FrequencyComponent.swift */,
 				8E8DB88127380B630010FE7E /* PitchLetter.swift */,
 			);
 			path = Components;
@@ -170,7 +162,6 @@
 		8EEFAF9C27130FD300E3651D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8EEFAFA2271316D200E3651D /* AudioModel.swift */,
 				8E68DC2E2747EE2600F418E6 /* Conductor.swift */,
 			);
 			path = Models;
@@ -253,7 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
-				8EEFAFA3271316D200E3651D /* AudioModel.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
 				8EECA3992738574E0083FD02 /* HelpButton.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
@@ -269,8 +259,6 @@
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
 				8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */,
-				8EC8CD6D27253F1F00B6E8E7 /* VBarComponent.swift in Sources */,
-				8EC8CD6F27253F3C00B6E8E7 /* FrequencyComponent.swift in Sources */,
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,
 			);

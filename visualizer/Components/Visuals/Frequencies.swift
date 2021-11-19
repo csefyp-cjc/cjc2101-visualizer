@@ -12,7 +12,6 @@ struct Frequencies: View {
     var amplitudes: [Double]
     
     let drag = DragGesture(minimumDistance: 0)
-    
 
     var body: some View {
         HStack(spacing: 5){
