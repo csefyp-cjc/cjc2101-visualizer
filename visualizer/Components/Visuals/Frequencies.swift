@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Frequencies: View {
     @GestureState private var isPressed = false
+    var amplitudes: [Double]
     
     let drag = DragGesture(minimumDistance: 0)
     
@@ -16,7 +17,7 @@ struct Frequencies: View {
     var body: some View {
         HStack(spacing: 5){
             ForEach(0...48, id: \.self){ i in
-                VBar(x: Int.random(in: 10..<48))
+                VBar(x: amplitudes[i]*10.0)
             }
         }
     }
@@ -24,6 +25,6 @@ struct Frequencies: View {
 
 struct Frequencies_Previews: PreviewProvider {
     static var previews: some View {
-        Frequencies()
+        Frequencies(amplitudes: Array(repeating: 2.0, count: 50))
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VBar: View {
-    let x: Int
+    let x: Double
     
     var body: some View {
         Rectangle()
