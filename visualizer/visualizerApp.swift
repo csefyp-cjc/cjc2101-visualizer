@@ -9,13 +9,11 @@ import SwiftUI
 
 @main
 struct visualizerApp: App {
-    
-    @StateObject var audio = AudioModel()
+    @StateObject var audioViewModel = AudioViewModel()
     
     var body: some Scene {
         WindowGroup {
-            
-            ContentView().environmentObject(audio)
+            ContentView().environmentObject(audioViewModel)
         }
     }
 }

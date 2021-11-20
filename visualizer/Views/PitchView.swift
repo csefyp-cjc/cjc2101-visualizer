@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PitchView: View {
     @State private var touching: Bool = false
-    
+    var amplitudes: [Double]
     
     var body: some View {
         VStack{
@@ -18,7 +18,7 @@ struct PitchView: View {
                 PitchIndicator(position: 1).transition(.opacity)
             }
             Spacer()
-            Frequencies().frame(
+            Frequencies(amplitudes: amplitudes).frame(
                 minWidth: 0,
                 maxWidth: .infinity
             ).modifier(TouchEventModifier(changeState: {
@@ -42,6 +42,6 @@ struct PitchView: View {
 
 struct PitchView_Previews: PreviewProvider {
     static var previews: some View {
-        PitchView()
+        PitchView(amplitudes: Array(repeating: 0.2, count: 50))
     }
 }

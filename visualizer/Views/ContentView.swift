@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    @EnvironmentObject var audioViewModel: AudioViewModel
+    
     @State private var selection = 2
     //TODO: tab view animation
     var body: some View {
@@ -9,7 +10,7 @@ struct ContentView: View {
             SoundView().tabItem{
                 Label("Sound", systemImage: "waveform.and.magnifyingglass")
             }.tag(1)
-            PitchView().tabItem{
+            PitchView(amplitudes: audioViewModel.amplitudes).tabItem{
                 Label("Pitch", systemImage: "music.note.list")
             }.tag(2)
             TimbreView().tabItem{
@@ -23,6 +24,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 //        ContentView().previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
-        ContentView()
+        ContentView().environmentObject(AudioViewModel())
     }
 }
