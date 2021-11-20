@@ -39,9 +39,8 @@ class AudioViewModel: ObservableObject{
 
     // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
-    @Published var peakFrequency: Float = 0.0
     
-    @Published var pitchNotation: String = ""
+    @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
  
     init(){
@@ -78,8 +77,14 @@ class AudioViewModel: ObservableObject{
     
 
     func updatePitch( pitchFrequency: [Float], amplitude: [Float]) {
-        self.pitchFrequency = pitchFrequency[0]
-        self.pitchNotation = pitchFromFrequency(frequency: pitchFrequency[0])
+        // TODO: May consider for headphone input (L/R channel)
+        if (amplitude[0] > 0.1) {
+            self.pitchFrequency = pitchFrequency[0]
+            self.pitchNotation = pitchFromFrequency(frequency: pitchFrequency[0])
+        } else {
+            self.pitchFrequency = -1.0
+            self.pitchNotation = "-"
+        }
     }
     
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){

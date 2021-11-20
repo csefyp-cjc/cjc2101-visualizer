@@ -10,6 +10,7 @@ import Foundation
 let A4: Float = 440
 let C0 = A4 * pow(2, -4.75)
 
+// TODO: Notation for different Key
 let notation = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 func pitchFromFrequency(frequency: Float) -> String{
