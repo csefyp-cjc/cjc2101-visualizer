@@ -41,6 +41,9 @@ class AudioViewModel: ObservableObject{
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     @Published var peakFrequency: Float = 0.0
     
+    @Published var pitchNotation: String = ""
+    @Published var pitchFrequency: Float = 0.0
+ 
     init(){
         // TODO: test no microphone priviledge
         guard let input = engine.input else{
@@ -48,21 +51,22 @@ class AudioViewModel: ObservableObject{
         }
         
         mic = input
+
         fftMixer = Mixer(mic)
         pitchMixer = Mixer(fftMixer)
         silentMixer = Mixer(pitchMixer)
         outputLimiter = PeakLimiter(silentMixer)
         
         engine.output = outputLimiter
-        
+                    
         taps.append(FFTTap(fftMixer){ fftData in
             DispatchQueue.main.async{
-                self.updateAmplitudes(fftData, mode: .average)
+                self.updateAmplitudes(fftData, mode: .limited)
             }
         })
-        taps.append(PitchTap(pitchMixer){ peakFrequencies, _ in
+        taps.append(PitchTap(pitchMixer){ pitchFrequency, amplitude in
             DispatchQueue.main.async{
-                self.updatePitch(peakFrequencies)
+                self.updatePitch(pitchFrequency: pitchFrequency, amplitude: amplitude)
             }
         })
         
@@ -72,10 +76,16 @@ class AudioViewModel: ObservableObject{
         
     }
     
+
+    func updatePitch( pitchFrequency: [Float], amplitude: [Float]) {
+        self.pitchFrequency = pitchFrequency[0]
+        self.pitchNotation = pitchFromFrequency(frequency: pitchFrequency[0])
+    }
+    
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.amplitudes.count) // stores amplitude sum
-        
+    
         for i in stride(from : 0, to: self.FFT_SIZE - 1, by: 2){
             let real = fftData[i]
             let imaginary = fftData[i+1]
@@ -105,9 +115,6 @@ class AudioViewModel: ObservableObject{
         }
     }
     
-    func updatePitch(_ peakFrequencies: [Float]){
-        self.peakFrequency = peakFrequencies[0]
-    }
     
     // TODO: modify this mapping for our visualization
     func map(n: Double, start1: Double, stop1: Double, start2: Double, stop2: Double) -> Double {

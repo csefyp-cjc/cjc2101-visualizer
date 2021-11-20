@@ -14,7 +14,7 @@ struct PitchView: View {
                     .padding(15)
             }.frame(maxWidth: .infinity, alignment: .trailing)
             
-            PitchLetter(peakFrequency: audioViewModel.peakFrequency)
+            PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
             
             if(!touching){
                 PitchIndicator(position: 1).transition(.opacity)
@@ -40,7 +40,6 @@ struct PitchView: View {
             }))
                 .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
                 .overlay(Axis().if(!touching){$0.hidden()})
-            
         }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
     }
 }

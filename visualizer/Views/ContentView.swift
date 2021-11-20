@@ -13,7 +13,8 @@ struct ContentView: View {
                     .environmentObject(audioViewModel)
             }.tag(1)
             PitchView().tabItem{
-                Label("Pitch", systemImage: "music.note.list").environmentObject(audioViewModel)
+                Label("Pitch", systemImage: "music.note.list")
+                    .environmentObject(audioViewModel)
             }.tag(2)
             TimbreView().tabItem{
                 Label("Timbre", systemImage: "waveform.path.ecg")
