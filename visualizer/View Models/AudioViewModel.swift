@@ -1,5 +1,5 @@
 //
-//  Conductor.swift
+//  AudioViewModel.swift
 //  visualizer
 //
 //  Created by Mark Cheng on 19/11/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import AudioKit
 
-class Conductor: ObservableObject{
+class AudioViewModel: ObservableObject{
     
     let engine = AudioEngine()
     
@@ -26,6 +26,7 @@ class Conductor: ObservableObject{
     
     let outputLimiter: PeakLimiter
     
+    // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     
     init(){

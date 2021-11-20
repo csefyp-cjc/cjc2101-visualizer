@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct visualizerApp: App {
-    @StateObject var conductor = Conductor()
+    @StateObject var audioViewModel = AudioViewModel()
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(conductor)
+            ContentView().environmentObject(audioViewModel)
         }
     }
 }
