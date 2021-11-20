@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SoundView: View {
+    @EnvironmentObject var audioViewModel: AudioViewModel
+    
     var body: some View {
         VStack{
             HStack(alignment: .top){
@@ -16,7 +18,7 @@ struct SoundView: View {
                 Spacer()
                 DrawerButton()
                     .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
-                LiveButton()
+                LiveButton(action: audioViewModel.toggle)
                     .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
             }.frame(maxWidth: .infinity, alignment: .trailing)
             
