@@ -7,6 +7,7 @@
 // ref: https://github.com/Matt54/AudioVisualizerAK5
 import Foundation
 import AudioKit
+import SoundpipeAudioKit
 
 class AudioViewModel: ObservableObject{
     
@@ -26,9 +27,17 @@ class AudioViewModel: ObservableObject{
     
     let outputLimiter: PeakLimiter
     
+    // Pitch Detection
+    let micMixerPitch: Mixer
+    
+    var pitch: PitchTap!
+    
     // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     
+    @Published var pitchNotation: String = ""
+    @Published var pitchFrequency: Float = 0.0
+ 
     init(){
         // TODO: test no microphone priviledge
         guard let input = engine.input else{
@@ -37,11 +46,13 @@ class AudioViewModel: ObservableObject{
         
         mic = input
         micMixer = Mixer(mic)
-        silentMixer = Mixer(micMixer)
+        micMixerPitch = Mixer(micMixer)
+        silentMixer = Mixer(micMixerPitch)
         
         outputLimiter = PeakLimiter(silentMixer)
         
         engine.output = outputLimiter
+                
         
         fft = FFTTap(micMixer){fftData in
             DispatchQueue.main.async {
@@ -49,15 +60,27 @@ class AudioViewModel: ObservableObject{
             }
         }
         
+        pitch = PitchTap(micMixerPitch){pitchFrequency, amplitude in
+            DispatchQueue.main.async {
+                self.pitchDetection(pitchFrequency: pitchFrequency, amplitude: amplitude)
+            }
+        }
+        
         do{
             try engine.start()
             fft.start()
+            pitch.start()
         }catch{
             assert(false, error.localizedDescription)
         }
         
         silentMixer.volume = 0.0
         
+    }
+    
+    func pitchDetection( pitchFrequency: [Float], amplitude: [Float]) {
+        self.pitchFrequency = pitchFrequency[0]
+        self.pitchNotation = pitchFromFrequency(frequency: pitchFrequency[0])
     }
     
     func updateAmplitudes(_ fftData: [Float]){

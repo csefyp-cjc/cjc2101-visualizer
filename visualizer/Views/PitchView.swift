@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PitchView: View {
+    @EnvironmentObject var audioViewModel: AudioViewModel
     @State private var touching: Bool = false
     var amplitudes: [Double]
     
@@ -13,11 +14,15 @@ struct PitchView: View {
                 LiveButton()
                     .padding(15)
             }.frame(maxWidth: .infinity, alignment: .trailing)
-            PitchLetter()
+            
+            PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
+            
             if(!touching){
                 PitchIndicator(position: 1).transition(.opacity)
             }
+            
             Spacer()
+            
             Frequencies(amplitudes: amplitudes).frame(
                 minWidth: 0,
                 maxWidth: .infinity
@@ -36,12 +41,13 @@ struct PitchView: View {
             }))
                 .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
                 .overlay(Axis().if(!touching){$0.hidden()})
-        }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+        }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)            
     }
 }
 
 struct PitchView_Previews: PreviewProvider {
     static var previews: some View {
         PitchView(amplitudes: Array(repeating: 0.2, count: 50))
+            .environmentObject(AudioViewModel())
     }
 }

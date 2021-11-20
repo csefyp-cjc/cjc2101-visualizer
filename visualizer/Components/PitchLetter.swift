@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct PitchLetter: View {
-    @State private var pitch = "C"
-    
+    var pitchNotation: String
+    var pitchFrequency: Float
     
     var body: some View {
         VStack{
-            Text(pitch)
+            Text(pitchNotation)
                 .font(.system(size: 64, weight:.heavy))
                 .foregroundColor(.foundation.primary)
-            Text("261hz")
+            Text("\(pitchFrequency) Hz")
                 .font(.label.large)
                 .foregroundColor(.foundation.primary)
         }
@@ -25,6 +25,6 @@ struct PitchLetter: View {
 
 struct PitchIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        PitchLetter()
+        PitchLetter(pitchNotation: "A4", pitchFrequency: 440)
     }
 }
