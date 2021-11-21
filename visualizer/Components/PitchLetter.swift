@@ -27,7 +27,7 @@ struct PitchLetter: View {
                 .foregroundColor(.foundation.primary)
             Text(format(pitchFrequency))
                 .font(.label.large)
-                .foregroundColor(.foundation.primary)
+                .foregroundColor(.foundation.primary)            
         }
     }
 }
@@ -35,5 +35,6 @@ struct PitchLetter: View {
 struct PitchIndicator_Previews: PreviewProvider {
     static var previews: some View {
         PitchLetter(pitchNotation: "A4", pitchFrequency: 440)
+            .environmentObject(AudioViewModel())
     }
 }

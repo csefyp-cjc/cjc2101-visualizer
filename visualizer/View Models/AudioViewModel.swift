@@ -42,6 +42,7 @@ class AudioViewModel: ObservableObject{
     
     @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
+    @Published var pitchDetune: Float = 0.0
  
     init(){
         // TODO: test no microphone priviledge
@@ -80,10 +81,10 @@ class AudioViewModel: ObservableObject{
         // TODO: May consider for headphone input (L/R channel)
         if (amplitude[0] > 0.1) {
             self.pitchFrequency = pitchFrequency[0]
-            self.pitchNotation = pitchFromFrequency(frequency: pitchFrequency[0])
-        } else {
-            self.pitchFrequency = -1.0
-            self.pitchNotation = "-"
+            self.pitchNotation = pitchFromFrequency(pitchFrequency[0])
+            self.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
+            
+            print("🔖 Pitch Detune (Cent)   \(pitchDetune)")
         }
     }
     

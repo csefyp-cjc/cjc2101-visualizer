@@ -1,7 +1,20 @@
 import SwiftUI
 
 struct PitchIndicator: View {
-    let position: Int // range: 0-8
+    var pitchDetune: Float
+    
+    var position: Int {
+        switch pitchDetune {
+        case let cent where cent < 0:
+            return 4 - Int(abs(pitchDetune) / 12.5)
+        case let cent where cent > 0:
+            return Int(pitchDetune / 12.5) + 4
+        case let cent where cent == 0:
+            return 4
+        default:
+            return 4
+        }
+    }  // range: 0-8
     
     var body: some View {
         Rectangle()
@@ -52,6 +65,6 @@ struct PitchIndicator: View {
 
 struct PitchMetre_Previews: PreviewProvider {
     static var previews: some View {
-        PitchIndicator(position: 1)
+        PitchIndicator(pitchDetune: 0.0)
     }
 }

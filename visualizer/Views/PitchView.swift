@@ -17,7 +17,8 @@ struct PitchView: View {
             PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
             
             if(!touching){
-                PitchIndicator(position: 1).transition(.opacity)
+                PitchIndicator(pitchDetune: audioViewModel.pitchDetune)
+                    .transition(.opacity)
             }
             
             Spacer()
