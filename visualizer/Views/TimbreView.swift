@@ -15,6 +15,6 @@ struct TimbreView: View {
 
 struct TimbreView_Previews: PreviewProvider {
     static var previews: some View {
-        TimbreView()
+        TimbreView().environmentObject(AudioViewModel())
     }
 }

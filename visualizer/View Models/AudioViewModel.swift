@@ -51,14 +51,12 @@ class AudioViewModel: ObservableObject{
         }
         
         mic = input
-
         fftMixer = Mixer(mic)
         pitchMixer = Mixer(fftMixer)
         silentMixer = Mixer(pitchMixer)
         outputLimiter = PeakLimiter(silentMixer)
         
         engine.output = outputLimiter
-                    
         taps.append(FFTTap(fftMixer){ fftData in
             DispatchQueue.main.async{
                 self.updateAmplitudes(fftData, mode: .limited)
@@ -75,7 +73,6 @@ class AudioViewModel: ObservableObject{
         silentMixer.volume = 0.0
         
     }
-    
 
     func updatePitch( pitchFrequency: [Float], amplitude: [Float]) {
         // TODO: May consider for headphone input (L/R channel)
@@ -102,6 +99,8 @@ class AudioViewModel: ObservableObject{
             let scaledAmplitude = (amplitude + 250) / 229.80
 
             if(mode == .average){
+                // simple explaination
+                // bin[0] = sum(fftData[0:n-1])/n
                 if(i/binSize < self.amplitudes.count){
                     bin[i/binSize] = bin[i/binSize] + restrict(value: scaledAmplitude)
                 }
