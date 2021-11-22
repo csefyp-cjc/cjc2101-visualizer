@@ -24,6 +24,6 @@ struct Frequencies: View {
 
 struct Frequencies_Previews: PreviewProvider {
     static var previews: some View {
-        Frequencies(amplitudes: Array(repeating: 2.0, count: 50))
+        Frequencies(amplitudes: Array(repeating: 0.5, count: 50))
     }
 }

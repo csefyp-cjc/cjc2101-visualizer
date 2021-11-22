@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct PitchView: View {
+    @EnvironmentObject var audioViewModel: AudioViewModel
     @State private var touching: Bool = false
-    var amplitudes: [Double]
     
     var body: some View {
         VStack{
@@ -10,20 +10,23 @@ struct PitchView: View {
                 HelpButton()
                     .padding(15)
                 Spacer()
-                LiveButton()
+                LiveButton(action:audioViewModel.toggle)
                     .padding(15)
             }.frame(maxWidth: .infinity, alignment: .trailing)
-            PitchLetter()
+            
+            PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
+            
             if(!touching){
-                PitchIndicator(position: 1).transition(.opacity)
+                PitchIndicator(pitchDetune: audioViewModel.pitchDetune)
+                    .transition(.opacity)
             }
+            
             Spacer()
-            Frequencies(amplitudes: amplitudes).frame(
+            
+            Frequencies(amplitudes: audioViewModel.amplitudes).frame(
                 minWidth: 0,
                 maxWidth: .infinity
-            ).modifier(TouchEventModifier(changeState: {
-                //TODO: simplify the usage of this modifier
-                (touchState) in
+            ).onTouch{ touchState in
                 if(touchState == .down){
                     withAnimation(.easeOut(duration: 0.1)){
                         self.touching = true
@@ -33,15 +36,15 @@ struct PitchView: View {
                         self.touching = false
                     }
                 }
-            }))
-                .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-                .overlay(Axis().if(!touching){$0.hidden()})
+            }
+            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
+            .overlay(Axis().if(!touching){$0.hidden()})
         }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
     }
 }
 
 struct PitchView_Previews: PreviewProvider {
     static var previews: some View {
-        PitchView(amplitudes: Array(repeating: 0.2, count: 50))
+        PitchView().environmentObject(AudioViewModel())
     }
 }
