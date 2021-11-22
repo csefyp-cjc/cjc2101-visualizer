@@ -28,7 +28,7 @@ struct PitchIndicator: View {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(.accent.error)
-                                .padding(10)
+                                .padding(5)
                         }else{
                             Circle()
                                 .frame(width: 5, height: 5)
@@ -50,7 +50,7 @@ struct PitchIndicator: View {
                             Circle()
                                 .frame(width: 10, height: 10)
                                 .foregroundColor(.accent.error)
-                                .padding(10)
+                                .padding(5)
                         }else{
                             Circle()
                                 .frame(width: 5, height: 5)
@@ -58,7 +58,8 @@ struct PitchIndicator: View {
                                 .padding(10)
                         }
                     }
-                }
+                }.transition(.scale)
+                    .animation(.easeInOut)
             )
     }
 }
