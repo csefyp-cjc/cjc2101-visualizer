@@ -20,7 +20,6 @@ struct ContentView: View {
                 Label("Timbre", systemImage: "waveform.path.ecg")
             }.tag(3)
         }.accentColor(.foundation.primary)
-            
     }
 }
 

@@ -26,9 +26,7 @@ struct PitchView: View {
             Frequencies(amplitudes: audioViewModel.amplitudes).frame(
                 minWidth: 0,
                 maxWidth: .infinity
-            ).modifier(TouchEventModifier(changeState: {
-                //TODO: simplify the usage of this modifier
-                (touchState) in
+            ).onTouch{ touchState in
                 if(touchState == .down){
                     withAnimation(.easeOut(duration: 0.1)){
                         self.touching = true
@@ -38,9 +36,9 @@ struct PitchView: View {
                         self.touching = false
                     }
                 }
-            }))
-                .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-                .overlay(Axis().if(!touching){$0.hidden()})
+            }
+            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
+            .overlay(Axis().if(!touching){$0.hidden()})
         }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
     }
 }
