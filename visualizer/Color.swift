@@ -32,6 +32,7 @@ extension Color {
     
     struct Background {
         let bgPrimary = Color("bgPrimary")
+        let onBgPrimary = Color("onBgPrimary")
         let bgSecondary = Color("bgSecondary")
         let bgSuccess = Color("bgSuccess")
     }

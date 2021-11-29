@@ -11,7 +11,7 @@ struct LiveButton: View {
                 .foregroundColor(.foundation.onPrimary)
                 .background(Color.foundation.primary)
                 .clipShape(Circle())
-                .font(.system(size: 24))
+                .font(.system(size: 18))
         }
     }
 }

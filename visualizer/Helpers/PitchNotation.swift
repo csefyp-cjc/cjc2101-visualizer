@@ -11,15 +11,16 @@ let A4: Float = 440
 let C0: Float = A4 * pow(2, -4.75)
 
 // TODO: Notation for different Key
-let notation = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+let notationSharp = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
+let notationFlat = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
-func pitchFromFrequency(_ frequency: Float) -> String{
+func pitchFromFrequency(_ frequency: Float, _ noteRepresentation: Setting.NoteRepresentation) -> String{
     if (frequency > C0) {
         let steps: Int = Int(round(12 * log2(frequency / C0)))   // Number of semitone from C0 to frequency
         let octave = steps / 12
         let n = steps % 12
         
-        return notation[n] + String(octave)
+        return noteRepresentation == Setting.NoteRepresentation.sharp ? notationSharp[n] + String(octave) : notationFlat[n] + String(octave)
     } else {
         return "-"
     }

@@ -3,11 +3,12 @@ import SwiftUI
 struct PitchView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     @State private var touching: Bool = false
+    @State private var showSheet: Bool = false
     
     var body: some View {
         VStack{
             HStack(alignment: .top){
-                HelpButton()
+                MoreButton(action: {showSheet.toggle()})
                     .padding(15)
                 Spacer()
                 LiveButton(action:audioViewModel.toggle)
@@ -17,7 +18,7 @@ struct PitchView: View {
             PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
             
             if(!touching){
-                PitchIndicator(pitchDetune: audioViewModel.pitchDetune)
+                PitchIndicator(pitchDetune: audioViewModel.pitchDetune, accuracyLevel: audioViewModel.settings.accuracyLevel)
                     .transition(.opacity)
             }
             
@@ -39,9 +40,14 @@ struct PitchView: View {
             }
             .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
             .overlay(Axis().if(!touching){$0.hidden()})
-        }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+        }
+        .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+        .sheet(isPresented: $showSheet, content: {
+            SettingSheet()
+        })
     }
 }
+
 
 struct PitchView_Previews: PreviewProvider {
     static var previews: some View {

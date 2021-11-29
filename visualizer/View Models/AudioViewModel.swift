@@ -16,6 +16,21 @@ enum UpdateMode{
 }
 
 class AudioViewModel: ObservableObject{
+    // Should be inside audio view model but i don't know how to access in this viewmodel
+    @Published var settings: Setting = Setting.default
+    
+    func changeNoteRepresentationSetting(value: Setting.NoteRepresentation) {
+        settings.noteRepresentation = value
+    }
+    
+    func changeNoiseLevelSetting(value: Setting.NoiseLevel) {
+        settings.noiseLevel = value
+    }
+    
+    func changeAccuracyLevelSetting(value: Setting.AccuracyLevel) {
+        settings.accuracyLevel = value
+    }
+    // End
     
     var isStarted: Bool = false
     
@@ -36,14 +51,14 @@ class AudioViewModel: ObservableObject{
     let sampleRate: double_t = 44100
     
     let outputLimiter: PeakLimiter
-
+    
     // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     
     @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
     @Published var pitchDetune: Float = 0.0
- 
+    
     init(){
         // TODO: test no microphone priviledge
         guard let input = engine.input else{
@@ -73,12 +88,23 @@ class AudioViewModel: ObservableObject{
         silentMixer.volume = 0.0
         
     }
-
+    
     func updatePitch( pitchFrequency: [Float], amplitude: [Float]) {
+        var noiseThreshold: Float = 0.1
+        
+        switch settings.noiseLevel {
+        case .low:
+            noiseThreshold = 0.1
+        case .medium:
+            noiseThreshold = 0.3
+        case .high:
+            noiseThreshold = 0.5
+        }
+        
         // TODO: May consider for headphone input (L/R channel)
-        if (amplitude[0] > 0.1) {
+        if (amplitude[0] > noiseThreshold) {
             self.pitchFrequency = pitchFrequency[0]
-            self.pitchNotation = pitchFromFrequency(pitchFrequency[0])
+            self.pitchNotation = pitchFromFrequency(pitchFrequency[0], settings.noteRepresentation)
             self.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
             
             print("🔖 Pitch Detune (Cent)   \(pitchDetune)")
@@ -88,7 +114,7 @@ class AudioViewModel: ObservableObject{
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.amplitudes.count) // stores amplitude sum
-    
+        
         for i in stride(from : 0, to: self.FFT_SIZE - 1, by: 2){
             let real = fftData[i]
             let imaginary = fftData[i+1]
@@ -97,7 +123,7 @@ class AudioViewModel: ObservableObject{
             let amplitude = Double(20.0 * log10(normalizedMagnitude))
             
             let scaledAmplitude = (amplitude + 250) / 229.80
-
+            
             if(mode == .average){
                 // simple explaination
                 // bin[0] = sum(fftData[0:n-1])/n
