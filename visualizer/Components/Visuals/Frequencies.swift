@@ -20,7 +20,7 @@ struct Frequencies: View {
                 HStack(spacing: 5){
                     ForEach(0...amplitudes.count-1, id: \.self){ i in
                         if(match){
-                            VBar(x: amplitudes[i]*10.0, color: .accent.success)
+                            VBar(x: amplitudes[i]*10.0, color: .accent.successVariant)
                         }else{
                             VBar(x: amplitudes[i]*10.0, color: .foundation.secondary)
                         }

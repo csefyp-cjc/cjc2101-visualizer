@@ -17,7 +17,7 @@ struct PitchIndicator: View {
     
     var body: some View {
         Rectangle()
-            .fill(accuracyPoint.contains(position) ? Color.background.bgSuccess : Color.background.bgSecondary)
+            .fill(accuracyPoint.contains(position) ? Color.accent.successContainer : Color.neutral.surface)
             .frame(maxWidth: 328, maxHeight: 55)
             .cornerRadius(15)
             .overlay(

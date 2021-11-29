@@ -58,7 +58,7 @@ struct SettingSheet: View {
                     
                     Text(audioViewModel.settings.noiseLevel.getDescription())
                         .font(.label.xsmall)
-                        .foregroundColor(.foundation.secondary)
+                        .foregroundColor(.neutral.onBackgroundVariant)
                     
                     Spacer()
                         .frame(height: 24)
@@ -77,7 +77,7 @@ struct SettingSheet: View {
                     
                     Text(audioViewModel.settings.accuracyLevel.getDescription())
                         .font(.label.xsmall)
-                        .foregroundColor(.foundation.secondary)
+                        .foregroundColor(.neutral.onBackgroundVariant)
                     
                     Spacer()
                         .frame(height: 24)
@@ -93,13 +93,13 @@ struct SettingSheet: View {
                         
                         Text("New to scentific music? ")
                             .font(.label.small)
-                            .foregroundColor(.foundation.primary)
+                            .foregroundColor(.neutral.onSurface)
                         
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
                     .padding(16)
-                    .background(Color.background.bgSecondary)
+                    .background(Color.neutral.surface)
                     .cornerRadius(8)
                 }
                 
@@ -108,7 +108,7 @@ struct SettingSheet: View {
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
             .padding(EdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24))
-            .foregroundColor(.background.onBgPrimary)
+            .foregroundColor(.neutral.onBackground)
         }
     }
     

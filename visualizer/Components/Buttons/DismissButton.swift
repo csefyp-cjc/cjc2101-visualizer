@@ -17,8 +17,8 @@ struct DismissButton: View {
         } label: {
             Image(systemName: "xmark")
                 .frame(width: 32, height: 32)
-                .foregroundColor(.foundation.secondary)
-                .background(Color.background.bgSecondary)
+                .foregroundColor(.neutral.onSurface)
+                .background(Color.neutral.surface)
                 .clipShape(Circle())
                 .font(.system(size: 18))
         }

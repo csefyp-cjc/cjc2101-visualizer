@@ -31,10 +31,10 @@ struct SettingButton: View {
         } label: {
             Text(label)
                 .font(type == "noteRepresentation" ? .label.medium : .label.xsmall)
-                .foregroundColor(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label) ? .foundation.onPrimary : .foundation.primary)
+                .foregroundColor(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label) ? .foundation.onPrimary : .neutral.onSurface)
         }
         .padding(type == "noteRepresentation" ? EdgeInsets(top: 8, leading: 36, bottom: 8, trailing: 36) : EdgeInsets(top: 12, leading: 28, bottom: 12, trailing: 28))
-        .background(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label)  ? Color.foundation.primary : Color.background.bgSecondary)
+        .background(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label)  ? Color.foundation.primary : Color.neutral.surface)
         .cornerRadius(8)
     }
 }
