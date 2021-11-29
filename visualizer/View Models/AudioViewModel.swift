@@ -11,7 +11,7 @@ import AudioKit
 import SoundpipeAudioKit
 
 enum UpdateMode{
-    case limited
+    case scroll
     case average
 }
 
@@ -52,9 +52,11 @@ class AudioViewModel: ObservableObject{
     
     let outputLimiter: PeakLimiter
     
-    // TODO: May change this with array model when our audio model not only containing amplitude arrayM
-    @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
     
+    
+    // TODO: May change this with array model when our audio model not only containing amplitude arrayM
+    @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 256)
+    @Published var peakBarIndex: Int = -1
     @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
     @Published var pitchDetune: Float = 0.0
@@ -74,7 +76,7 @@ class AudioViewModel: ObservableObject{
         engine.output = outputLimiter
         taps.append(FFTTap(fftMixer){ fftData in
             DispatchQueue.main.async{
-                self.updateAmplitudes(fftData, mode: .limited)
+                self.updateAmplitudes(fftData, mode: .scroll)
             }
         })
         taps.append(PitchTap(pitchMixer){ pitchFrequency, amplitude in
@@ -114,7 +116,18 @@ class AudioViewModel: ObservableObject{
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.amplitudes.count) // stores amplitude sum
+        var peakFreq = 0.0
+        var peakIndex = -1
+        var noiseThreshold: Double = 0.1
         
+        switch settings.noiseLevel {
+        case .low:
+            noiseThreshold = 0.1
+        case .medium:
+            noiseThreshold = 0.3
+        case .high:
+            noiseThreshold = 0.5
+        }
         for i in stride(from : 0, to: self.FFT_SIZE - 1, by: 2){
             let real = fftData[i]
             let imaginary = fftData[i+1]
@@ -137,19 +150,30 @@ class AudioViewModel: ObservableObject{
                     }
                 }
             }else{
+                if(scaledAmplitude > peakFreq){
+                    peakFreq = scaledAmplitude
+                    peakIndex = i
+                }
                 DispatchQueue.main.async {
                     if(i/2 < self.amplitudes.count){
-                        self.amplitudes[i/2] = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
+                        var mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
+                        if(mappedAmplitude < noiseThreshold){
+                            mappedAmplitude = 0
+                        }
+                        self.amplitudes[i/2] = self.restrict(value: mappedAmplitude)
                     }
                 }
             }
+        }
+        if(abs(self.peakBarIndex - peakIndex) > 32){
+            self.peakBarIndex = peakIndex
         }
     }
     
     
     // TODO: modify this mapping for our visualization
     func map(n: Double, start1: Double, stop1: Double, start2: Double, stop2: Double) -> Double {
-        return restrict(value: ((n-start1)/(stop1-start1)) * (stop2-start2) + start2)
+        return ((n-start1)/(stop1-start1)) * (stop2-start2) + start2
     }
     
     func restrict(value: Double) -> Double {
