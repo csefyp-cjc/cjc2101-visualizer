@@ -8,10 +8,10 @@ struct LiveButton: View {
             self.action()
         }label:{
             Image(systemName: "waveform").frame(width: 38, height: 38)
-                .foregroundColor(.foundation.onPrimary)
-                .background(Color.foundation.primary)
+                .foregroundColor(.neutral.onSurface)
+                .background(Color.neutral.surface)
                 .clipShape(Circle())
-                .font(.system(size: 24))
+                .font(.system(size: 18))
         }
     }
 }

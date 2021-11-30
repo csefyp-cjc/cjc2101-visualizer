@@ -11,7 +11,6 @@ extension Color {
     static let foundation = Foundation()
     static let accent = Accent()
     static let neutral = Neutral()
-    static let background = Background()
     
     struct Foundation {
         let primary: Color = Color("primary")
@@ -22,18 +21,20 @@ extension Color {
     struct Accent {
         let error: Color = Color("error")
         let success: Color = Color("success")
+        let successVariant: Color = Color("successVariant")
+        let successContainer = Color("successContainer")
         let highlight: Color = Color("highlight")
+        let disabled: Color = Color("disabled")
     }
     
     struct Neutral {
+        let background = Color("background")
+        let onBackground = Color("onBackground")
+        let onBackgroundVariant = Color("onBackgroundVariant")
+        let surface = Color("surface")
+        let onSurface = Color("onSurface")
         let axis = Color("axis")
         let onAxis = Color("onAxis")
-    }
-    
-    struct Background {
-        let bgPrimary = Color("bgPrimary")
-        let bgSecondary = Color("bgSecondary")
-        let bgSuccess = Color("bgSuccess")
     }
 }
 

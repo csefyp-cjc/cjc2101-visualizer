@@ -9,18 +9,20 @@ import SwiftUI
 
 struct VBar: View {
     let x: Double
+    let color: Color
     
     var body: some View {
         Rectangle()
-            .fill(Color.foundation.secondary)
+            .fill(color)
             .frame(width: 4, height: CGFloat(50 * x))
-            .frame(maxHeight: 350, alignment: .bottom)
+            .cornerRadius(4)
+            .frame(maxHeight: 450, alignment: .bottom)
             .animation(.easeOut(duration: 0.15))
     }
 }
 
 struct VBar_Previews: PreviewProvider {
     static var previews: some View {
-        VBar(x: 20).previewLayout(.fixed(width: 4, height: 300))
+        VBar(x: 20, color: .accent.success).previewLayout(.sizeThatFits)
     }
 }

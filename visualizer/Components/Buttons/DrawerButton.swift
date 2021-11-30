@@ -9,8 +9,8 @@ struct DrawerButton: View {
         }label:{
             Image(systemName: "square.stack.3d.down.right.fill")
                 .frame(width: 38, height: 38)
-                .foregroundColor(.foundation.onPrimary)
-                .background(Color.foundation.primary)
+                .foregroundColor(.neutral.onSurface)
+                .background(Color.neutral.surface)
                 .clipShape(Circle())
                 .font(.system(size: 18))
         }

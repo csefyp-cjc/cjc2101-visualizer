@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AA27537570001C52BC /* SettingViewModel.swift */; };
+		4906C6AD2753760D001C52BC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AC2753760D001C52BC /* Setting.swift */; };
 		490E8B632739176B0047DE64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E8B622739176A0047DE64 /* Color.swift */; };
+		498F0BED274F808B00A46486 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEC274F808B00A46486 /* MoreButton.swift */; };
+		498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingSheet.swift */; };
+		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
+		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
 		49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */; };
 		49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D6F7F0274939D000CDCCE4 /* PitchNotation.swift */; };
 		49DECB11273A730D00C992CE /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DECB10273A730D00C992CE /* Typography.swift */; };
@@ -33,7 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4906C6AA27537570001C52BC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		4906C6AC2753760D001C52BC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = visualizer/Models/Setting.swift; sourceTree = SOURCE_ROOT; };
 		490E8B622739176A0047DE64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		498F0BEC274F808B00A46486 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
+		498F0BEE274F8FC500A46486 /* SettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSheet.swift; sourceTree = "<group>"; };
+		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		49D6F7F0274939D000CDCCE4 /* PitchNotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNotation.swift; sourceTree = "<group>"; };
 		49DECB10273A730D00C992CE /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
@@ -71,9 +83,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49D6F7EB2748BE6300CDCCE4 /* Models */ = {
+		4941432A27551C75009667A6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4906C6AC2753760D001C52BC /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -92,6 +105,9 @@
 				8E8DB8852738161A0010FE7E /* LiveButton.swift */,
 				8EECA396273856200083FD02 /* DrawerButton.swift */,
 				8EECA3982738574E0083FD02 /* HelpButton.swift */,
+				498F0BEC274F808B00A46486 /* MoreButton.swift */,
+				498F0BF0274F909600A46486 /* DismissButton.swift */,
+				498F0BF2274FC11700A46486 /* SettingButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -144,8 +160,8 @@
 		8EEFAF8B27130F7E00E3651D /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
+				4941432A27551C75009667A6 /* Models */,
 				49D6F7EF274939A200CDCCE4 /* Helpers */,
-				49D6F7EB2748BE6300CDCCE4 /* Models */,
 				8E16835127259D29004E3CF9 /* Components */,
 				8EEFAFA12713146200E3651D /* Info.plist */,
 				8EEFAF9C27130FD300E3651D /* View Models */,
@@ -176,6 +192,7 @@
 				8E8DB87D273807490010FE7E /* TimbreView.swift */,
 				8E8DB879273802FF0010FE7E /* PitchView.swift */,
 				8E8DB87B273805830010FE7E /* SoundView.swift */,
+				498F0BEE274F8FC500A46486 /* SettingSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */,
+				4906C6AA27537570001C52BC /* SettingViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -269,21 +287,27 @@
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
+				498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */,
 				8EECA3992738574E0083FD02 /* HelpButton.swift in Sources */,
+				4906C6AD2753760D001C52BC /* Setting.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
 				8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */,
 				8EECA39127382E8E0083FD02 /* VBar.swift in Sources */,
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
+				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
+				4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */,
 				8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */,
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
+				498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,12 +437,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Visivo;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -430,8 +455,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cjc2101.visualizer;
+				MARKETING_VERSION = 0.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -445,12 +470,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Visivo;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -462,8 +488,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cjc2101.visualizer;
+				MARKETING_VERSION = 0.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
