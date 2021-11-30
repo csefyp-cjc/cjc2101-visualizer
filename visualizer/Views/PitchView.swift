@@ -19,48 +19,53 @@ struct PitchView: View {
     }
     
     var body: some View {
-        VStack{
-            HStack(alignment: .top){
-                MoreButton(action: {showSheet.toggle()})
-                    .padding(15)
+        ZStack {
+            Color.neutral.background
+                .ignoresSafeArea(.all)
+            
+            VStack{
+                HStack(alignment: .top){
+                    MoreButton(action: {showSheet.toggle()})
+                        .padding(15)
+                    Spacer()
+                    LiveButton(action:audioViewModel.toggle)
+                        .padding(15)
+                }.frame(maxWidth: .infinity, alignment: .trailing)
+                
+                PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
+                
+                if(!touching){
+                    PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, accuracyLevel: audioViewModel.settings.accuracyLevel)
+                        .transition(.opacity)
+                }
+                
                 Spacer()
-                LiveButton(action:audioViewModel.toggle)
-                    .padding(15)
-            }.frame(maxWidth: .infinity, alignment: .trailing)
-            
-            PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
-            
-            if(!touching){
-                PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, accuracyLevel: audioViewModel.settings.accuracyLevel)
-                    .transition(.opacity)
+                
+                Frequencies(amplitudes: audioViewModel.amplitudes, peakBarIndex: audioViewModel.peakBarIndex,
+                            match: position == 4
+                ).frame(
+                    minWidth: 0,
+                    maxWidth: .infinity
+                )
+    //            .onTouch{ touchState in
+    //                if(touchState == .down){
+    //                    withAnimation(.easeOut(duration: 0.1)){
+    //                        self.touching = true
+    //                    }
+    //                }else{
+    //                    withAnimation(.easeOut(duration: 0.1)){
+    //                        self.touching = false
+    //                    }
+    //                }
+    //            }
+    //            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
+    //            .overlay(Axis().if(!touching){$0.hidden()})
             }
-            
-            Spacer()
-            
-            Frequencies(amplitudes: audioViewModel.amplitudes, peakBarIndex: audioViewModel.peakBarIndex,
-                        match: position == 4
-            ).frame(
-                minWidth: 0,
-                maxWidth: .infinity
-            )
-//            .onTouch{ touchState in
-//                if(touchState == .down){
-//                    withAnimation(.easeOut(duration: 0.1)){
-//                        self.touching = true
-//                    }
-//                }else{
-//                    withAnimation(.easeOut(duration: 0.1)){
-//                        self.touching = false
-//                    }
-//                }
-//            }
-//            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-//            .overlay(Axis().if(!touching){$0.hidden()})
-        }
-        .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
-        .sheet(isPresented: $showSheet, content: {
-            SettingSheet()
+            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+            .sheet(isPresented: $showSheet, content: {
+                SettingSheet()
         })
+        }
     }
 }
 

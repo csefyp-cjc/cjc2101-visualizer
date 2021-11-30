@@ -15,6 +15,7 @@ struct VBar: View {
         Rectangle()
             .fill(color)
             .frame(width: 4, height: CGFloat(50 * x))
+            .cornerRadius(4)
             .frame(maxHeight: 450, alignment: .bottom)
             .animation(.easeOut(duration: 0.15))
     }
@@ -22,6 +23,6 @@ struct VBar: View {
 
 struct VBar_Previews: PreviewProvider {
     static var previews: some View {
-        VBar(x: 20, color: .accent.success).previewLayout(.fixed(width: 4, height: 450))
+        VBar(x: 20, color: .accent.success).previewLayout(.sizeThatFits)
     }
 }

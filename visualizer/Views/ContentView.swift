@@ -3,7 +3,13 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     
-    @State private var selection = 2
+    @State private var selection: Tab = .pitch
+    
+    enum Tab {
+        case sound
+        case pitch
+        case timbre
+    }
     
     //TODO: tab view animation
     var body: some View {
@@ -11,15 +17,21 @@ struct ContentView: View {
             SoundView().tabItem{
                 Label("Sound", systemImage: "waveform.and.magnifyingglass")
                     .environmentObject(audioViewModel)
-            }.tag(1)
+            }
+            .tag(Tab.sound)
+            
             PitchView().tabItem{
                 Label("Pitch", systemImage: "music.note.list")
                     .environmentObject(audioViewModel)
-            }.tag(2)
+            }
+            .tag(Tab.pitch)
+            
             TimbreView().tabItem{
                 Label("Timbre", systemImage: "waveform.path.ecg")
-            }.tag(3)
-        }.accentColor(.foundation.primary)
+            }
+            .tag(Tab.timbre)
+        }
+        .accentColor(.foundation.primary)
     }
 }
 

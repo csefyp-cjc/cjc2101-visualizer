@@ -9,7 +9,12 @@ import SwiftUI
 
 struct TimbreView: View {
     var body: some View {
-        Text("Timbre")
+        ZStack {
+            Color.neutral.background
+                .ignoresSafeArea(.all)
+            
+            Text("Timbre")
+        }
     }
 }
 

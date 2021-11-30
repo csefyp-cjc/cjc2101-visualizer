@@ -31,7 +31,7 @@ struct Setting {
         func getDescription () -> String {
             switch self {
             case .low:
-                return "A quite place, like your bedroom or a practice room"
+                return "A quiet place, like your bedroom or a practice room"
             case .medium:
                 return "A place with a higher background noise"
             case .high:

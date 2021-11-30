@@ -12,7 +12,10 @@ struct SettingButton: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     let label: String
     let type: String
-//    let selected: Bool
+
+    var selected: Bool {
+        return audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label)
+    }
         
     var body: some View {
         Button {
@@ -23,7 +26,7 @@ struct SettingButton: View {
             case "noiseLevel":
                 audioViewModel.changeNoiseLevelSetting(value: Setting.NoiseLevel(rawValue: label) ?? Setting.NoiseLevel.low)
             case "accuracyLevel":
-                audioViewModel.changeAccuracyLevelSetting(value: Setting.AccuracyLevel(rawValue: label) ?? Setting.AccuracyLevel.practice)
+                audioViewModel.changeAccuracyLevelSetting(value: Setting.AccuracyLevel(rawValue: label) ?? Setting.AccuracyLevel.tuning)
             default:
                 print("error")
             }
@@ -31,11 +34,12 @@ struct SettingButton: View {
         } label: {
             Text(label)
                 .font(type == "noteRepresentation" ? .label.medium : .label.xsmall)
-                .foregroundColor(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label) ? .foundation.onPrimary : .neutral.onSurface)
+                .foregroundColor(selected ? .foundation.onPrimary : .neutral.onSurface)
+                .padding(type == "noteRepresentation" ? EdgeInsets(top: 8, leading: 36, bottom: 8, trailing: 36) : EdgeInsets(top: 12, leading: 28, bottom: 12, trailing: 28))
+                .background(selected ? Color.foundation.primary : Color.neutral.surface)
+                .cornerRadius(8)
         }
-        .padding(type == "noteRepresentation" ? EdgeInsets(top: 8, leading: 36, bottom: 8, trailing: 36) : EdgeInsets(top: 12, leading: 28, bottom: 12, trailing: 28))
-        .background(audioViewModel.settings.noteRepresentation == Setting.NoteRepresentation(rawValue: label) || audioViewModel.settings.noiseLevel == Setting.NoiseLevel(rawValue: label) || audioViewModel.settings.accuracyLevel == Setting.AccuracyLevel(rawValue: label)  ? Color.foundation.primary : Color.neutral.surface)
-        .cornerRadius(8)
+
     }
 }
 
