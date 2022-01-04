@@ -132,7 +132,6 @@ class AudioViewModel: ObservableObject{
             
             let normalizedMagnitude = 2.0 * sqrt(pow(real, 2) + pow(imaginary, 2)) / Float(self.FFT_SIZE)
             let amplitude = Double(20.0 * log10(normalizedMagnitude))
-            print(amplitude)
             let scaledAmplitude = (amplitude + 250) / 229.80
             
             if(mode == .average){

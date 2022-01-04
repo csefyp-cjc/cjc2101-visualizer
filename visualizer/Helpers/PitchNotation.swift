@@ -51,3 +51,11 @@ func pitchDetuneFromFrequency(_ frequency: Float) -> Float {
     }
         
 }
+
+func getLabeling(_ interval: Int)->[Int]{
+    var l:[Int] = []
+    for i in 0..<25{
+        l.append(i*interval)
+    }
+    return l
+}

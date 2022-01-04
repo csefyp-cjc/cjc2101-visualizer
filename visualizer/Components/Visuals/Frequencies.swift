@@ -14,7 +14,7 @@ struct Frequencies: View {
     var peakBarIndex: Int
     var match: Bool
     let drag = DragGesture(minimumDistance: 0)
-    let labels = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240]
+    let labels = getLabeling(10)
 
     var body: some View {
         ScrollView(.horizontal){
