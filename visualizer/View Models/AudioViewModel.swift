@@ -108,7 +108,7 @@ class AudioViewModel: ObservableObject{
             self.pitchFrequency = pitchFrequency[0]
             self.pitchNotation = pitchFromFrequency(pitchFrequency[0], settings.noteRepresentation)
             self.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
-            
+            self.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
             print("🔖 Pitch Detune (Cent)   \(pitchDetune)")
         }
     }
@@ -116,8 +116,6 @@ class AudioViewModel: ObservableObject{
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.amplitudes.count) // stores amplitude sum
-        var peakFreq = 0.0
-        var peakIndex = -1
         var noiseThreshold: Double = 0.1
         
         switch settings.noiseLevel {
@@ -134,7 +132,6 @@ class AudioViewModel: ObservableObject{
             
             let normalizedMagnitude = 2.0 * sqrt(pow(real, 2) + pow(imaginary, 2)) / Float(self.FFT_SIZE)
             let amplitude = Double(20.0 * log10(normalizedMagnitude))
-            
             let scaledAmplitude = (amplitude + 250) / 229.80
             
             if(mode == .average){
@@ -150,10 +147,6 @@ class AudioViewModel: ObservableObject{
                     }
                 }
             }else{
-                if(scaledAmplitude > peakFreq){
-                    peakFreq = scaledAmplitude
-                    peakIndex = i
-                }
                 DispatchQueue.main.async {
                     if(i/2 < self.amplitudes.count){
                         var mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
@@ -164,9 +157,6 @@ class AudioViewModel: ObservableObject{
                     }
                 }
             }
-        }
-        if(abs(self.peakBarIndex - peakIndex) > 32){
-            self.peakBarIndex = peakIndex
         }
     }
     
