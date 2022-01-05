@@ -47,7 +47,9 @@ struct PitchView: View {
                 Frequencies(amplitudes: audioViewModel.amplitudes,
                             noteRepresentation: audioViewModel.settings.noteRepresentation,
                             peakBarIndex: audioViewModel.peakBarIndex,
-                            match: position == 4
+                            match: position == 4,
+                            peakFrequency: audioViewModel.pitchFrequency
+                            
                 ).frame(
                     minWidth: 0,
                     maxWidth: .infinity

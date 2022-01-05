@@ -34,10 +34,7 @@ struct PitchLetter: View {
                 Text(pitchNotation)
                     .font(.system(size: 64, weight:.heavy))
                     .foregroundColor(.foundation.primary)
-            }
-            Text(format(pitchFrequency))
-                .font(.label.large)
-                .foregroundColor(.foundation.primary)            
+            }        
         }
     }
 }
