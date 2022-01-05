@@ -7,11 +7,11 @@ struct LiveButton: View {
         Button{
             self.action()
         }label:{
-            Image(systemName: "waveform").frame(width: 38, height: 38)
+            Image(systemName: "waveform").frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)
                 .background(Color.neutral.surface)
                 .clipShape(Circle())
-                .font(.system(size: 18))
+                .font(.system(size: 22))
         }
     }
 }
