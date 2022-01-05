@@ -8,18 +8,35 @@
 import SwiftUI
 
 struct TimbreView: View {
+    @State private var showSheet: Bool = false
+    
     var body: some View {
         ZStack {
             Color.neutral.background
                 .ignoresSafeArea(.all)
             
-            Text("Timbre")
+            VStack {
+                HStack(alignment: .top){
+                    MoreButton(action: {showSheet.toggle()})
+                        .padding(15)
+                    
+                    Spacer()                                        
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                
+                Text("Timbre")
+            }
+            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+            .sheet(isPresented: $showSheet, content: {
+                SettingSheet()
+            })
         }
     }
 }
 
 struct TimbreView_Previews: PreviewProvider {
     static var previews: some View {
-        TimbreView().environmentObject(AudioViewModel())
+        TimbreView()
+            .environmentObject(AudioViewModel())
     }
 }

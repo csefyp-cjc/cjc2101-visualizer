@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PitchLetter: View {
+    @EnvironmentObject var audioViewModel: AudioViewModel
+    
     //    @State private var pitch = "C"
     var pitchNotation: String
     var pitchFrequency: Float
@@ -22,9 +24,17 @@ struct PitchLetter: View {
     
     var body: some View {
         VStack{
-            Text(pitchNotation)
-                .font(.system(size: 64, weight:.heavy))
-                .foregroundColor(.foundation.primary)
+            Button {
+                // Change pitch notation setting
+                audioViewModel.changeNoteRepresentationSetting(value: audioViewModel.settings.noteRepresentation.next())
+                
+                // Update pitch notation of pitch letter
+                audioViewModel.pitchNotation = changePitchNotation(pitchNotation)
+            } label: {
+                Text(pitchNotation)
+                    .font(.system(size: 64, weight:.heavy))
+                    .foregroundColor(.foundation.primary)
+            }
             Text(format(pitchFrequency))
                 .font(.label.large)
                 .foregroundColor(.foundation.primary)            

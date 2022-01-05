@@ -27,10 +27,13 @@ struct PitchView: View {
                 HStack(alignment: .top){
                     MoreButton(action: {showSheet.toggle()})
                         .padding(15)
+                    
                     Spacer()
+                    
                     LiveButton(action:audioViewModel.toggle)
                         .padding(15)
-                }.frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
                 
@@ -49,24 +52,24 @@ struct PitchView: View {
                     minWidth: 0,
                     maxWidth: .infinity
                 )
-    //            .onTouch{ touchState in
-    //                if(touchState == .down){
-    //                    withAnimation(.easeOut(duration: 0.1)){
-    //                        self.touching = true
-    //                    }
-    //                }else{
-    //                    withAnimation(.easeOut(duration: 0.1)){
-    //                        self.touching = false
-    //                    }
-    //                }
-    //            }
-    //            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-    //            .overlay(Axis().if(!touching){$0.hidden()})
+                //            .onTouch{ touchState in
+                //                if(touchState == .down){
+                //                    withAnimation(.easeOut(duration: 0.1)){
+                //                        self.touching = true
+                //                    }
+                //                }else{
+                //                    withAnimation(.easeOut(duration: 0.1)){
+                //                        self.touching = false
+                //                    }
+                //                }
+                //            }
+                //            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
+                //            .overlay(Axis().if(!touching){$0.hidden()})
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
             .sheet(isPresented: $showSheet, content: {
                 SettingSheet()
-        })
+            })
         }
     }
 }
