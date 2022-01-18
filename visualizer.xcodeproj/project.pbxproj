@@ -14,9 +14,11 @@
 		498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingSheet.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
 		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
+		49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */; };
 		49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */; };
 		49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D6F7F0274939D000CDCCE4 /* PitchNotation.swift */; };
 		49DECB11273A730D00C992CE /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DECB10273A730D00C992CE /* Typography.swift */; };
+		49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */; };
 		8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */; };
 		8E68DC322747EE8800F418E6 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68DC312747EE8800F418E6 /* AudioKit */; };
 		8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB879273802FF0010FE7E /* PitchView.swift */; };
@@ -46,8 +48,10 @@
 		498F0BEE274F8FC500A46486 /* SettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSheet.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialView.swift; sourceTree = "<group>"; };
 		49D6F7F0274939D000CDCCE4 /* PitchNotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchNotation.swift; sourceTree = "<group>"; };
 		49DECB10273A730D00C992CE /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorial.swift; sourceTree = "<group>"; };
 		8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		8E8DB879273802FF0010FE7E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
 		8E8DB87B273805830010FE7E /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				4906C6AC2753760D001C52BC /* Setting.swift */,
+				49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				8E8DB879273802FF0010FE7E /* PitchView.swift */,
 				8E8DB87B273805830010FE7E /* SoundView.swift */,
 				498F0BEE274F8FC500A46486 /* SettingSheet.swift */,
+				49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */,
 				8EECA3992738574E0083FD02 /* HelpButton.swift in Sources */,
 				4906C6AD2753760D001C52BC /* Setting.swift in Sources */,
+				49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
 				8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */,
 				8EECA39127382E8E0083FD02 /* VBar.swift in Sources */,
@@ -308,6 +315,7 @@
 				8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */,
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
 				498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */,
+				49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

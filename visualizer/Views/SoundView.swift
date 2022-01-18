@@ -10,6 +10,7 @@ import SwiftUI
 struct SoundView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     @State private var showSheet: Bool = false
+    @State private var showTutorial: Bool = false
     
     var body: some View {
         ZStack {
@@ -33,7 +34,7 @@ struct SoundView: View {
                 
             }
             .sheet(isPresented: $showSheet, content: {
-                SettingSheet()
+                SettingSheet(showTutorial: $showTutorial)
             })
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
         }

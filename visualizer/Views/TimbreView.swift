@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimbreView: View {
     @State private var showSheet: Bool = false
+    @State private var showTutorial: Bool = false
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct TimbreView: View {
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
             .sheet(isPresented: $showSheet, content: {
-                SettingSheet()
+                SettingSheet(showTutorial: $showTutorial)
             })
         }
     }

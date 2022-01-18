@@ -4,6 +4,8 @@ struct PitchView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     @State private var touching: Bool = false
     @State private var showSheet: Bool = false
+    @State private var showTutorial: Bool = false
+    @State private var currentPage: Int = 0
     
     var position: Int {
         switch audioViewModel.pitchDetune {
@@ -70,8 +72,27 @@ struct PitchView: View {
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
             .sheet(isPresented: $showSheet, content: {
-                SettingSheet()
+                SettingSheet(showTutorial: $showTutorial)
             })
+            
+            if (showTutorial) {
+                GeometryReader{ geometry in
+                    InteractiveTutorialView(
+                        tutorials: [
+                            InteractiveTutorial(text: "Pitch and frequencies are correlated. The x-axis here is the letter name of musical notes.",
+                                                textPosition: CGSize(width: (geometry.size.width - 32) / 2, height: geometry.size.height - 100),
+                                                size: CGSize(width: geometry.size.width - 16, height: 28),
+                                                offset: CGSize(width: 0, height: geometry.size.height / 2 - 30)),
+                            InteractiveTutorial(text: "The bars indicidates the distribution of the frequencies.",
+                                                textPosition: CGSize(width: (geometry.size.width - 32) / 2, height: geometry.size.height / 2),
+                                                size: CGSize(width: geometry.size.width, height: 250),
+                                                offset: CGSize(width: 0, height: 200))],
+                        currentPage: $currentPage,
+                        showTutorial: $showTutorial
+                    )
+                        .animation(.default)
+                }
+            }
         }
     }
 }
