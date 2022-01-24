@@ -28,6 +28,7 @@
 		8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB88127380B630010FE7E /* PitchLetter.swift */; };
 		8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB883273811120010FE7E /* TouchEventModifier.swift */; };
 		8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB8852738161A0010FE7E /* LiveButton.swift */; };
+		8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC438BD279ED706009B24E1 /* LiveDropdown.swift */; };
 		8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6827253D3700B6E8E7 /* ContentView.swift */; };
 		8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA38E27382E800083FD02 /* Frequencies.swift */; };
 		8EECA39127382E8E0083FD02 /* VBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA39027382E8E0083FD02 /* VBar.swift */; };
@@ -60,6 +61,7 @@
 		8E8DB88127380B630010FE7E /* PitchLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchLetter.swift; sourceTree = "<group>"; };
 		8E8DB883273811120010FE7E /* TouchEventModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEventModifier.swift; sourceTree = "<group>"; };
 		8E8DB8852738161A0010FE7E /* LiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveButton.swift; sourceTree = "<group>"; };
+		8EC438BD279ED706009B24E1 /* LiveDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDropdown.swift; sourceTree = "<group>"; };
 		8EC8CD6827253D3700B6E8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EECA38E27382E800083FD02 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
 		8EECA39027382E8E0083FD02 /* VBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VBar.swift; sourceTree = "<group>"; };
@@ -138,12 +140,21 @@
 		8E16835127259D29004E3CF9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8EC438BC279ED6E1009B24E1 /* Dropdowns */,
 				49DECB14273A7B1A00C992CE /* Visuals */,
 				49DECB13273A7AE500C992CE /* Indicators */,
 				49DECB12273A7ACC00C992CE /* Buttons */,
 				8E8DB88127380B630010FE7E /* PitchLetter.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8EC438BC279ED6E1009B24E1 /* Dropdowns */ = {
+			isa = PBXGroup;
+			children = (
+				8EC438BD279ED706009B24E1 /* LiveDropdown.swift */,
+			);
+			path = Dropdowns;
 			sourceTree = "<group>";
 		};
 		8EEFAF8027130F7E00E3651D = {
@@ -307,6 +318,7 @@
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
+				8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
@@ -447,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = QQS593TJVN;
+				DEVELOPMENT_TEAM = Q4FFSUTM3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
@@ -480,7 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = QQS593TJVN;
+				DEVELOPMENT_TEAM = Q4FFSUTM3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;

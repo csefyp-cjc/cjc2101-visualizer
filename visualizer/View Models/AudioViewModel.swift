@@ -53,7 +53,6 @@ class AudioViewModel: ObservableObject{
     let outputLimiter: PeakLimiter
     
     
-    
     // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 256)
     @Published var peakBarIndex: Int = -1
@@ -176,22 +175,31 @@ class AudioViewModel: ObservableObject{
         return value
     }
     
+    func start(){
+        do{
+            try engine.start()
+            taps.forEach{ tap in
+                tap.start()
+            }
+        }catch{
+            assert(false, error.localizedDescription)
+        }
+        self.isStarted = true
+    }
+    
+    func stop(){
+        engine.stop()
+        taps.forEach{ tap in
+            tap.stop()
+        }
+        self.isStarted = false
+    }
+    
     func toggle() {
         if(self.isStarted){
-            engine.stop()
-            taps.forEach{ tap in
-                tap.stop()
-            }
+            self.stop()
         }else{
-            do{
-                try engine.start()
-                taps.forEach{ tap in
-                    tap.start()
-                }
-            }catch{
-                assert(false, error.localizedDescription)
-            }
+            self.start()
         }
-        self.isStarted.toggle()
     }
 }

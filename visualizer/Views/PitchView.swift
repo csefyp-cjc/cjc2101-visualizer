@@ -25,55 +25,46 @@ struct PitchView: View {
             Color.neutral.background
                 .ignoresSafeArea(.all)
             
-            VStack{
+            ZStack(alignment: .top){
+                VStack{
+                    PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
+                    
+                    if(!touching){
+                        PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, accuracyLevel: audioViewModel.settings.accuracyLevel)
+                            .transition(.opacity)
+                    }
+                    
+                    Spacer()
+                    
+                    Frequencies(amplitudes: audioViewModel.amplitudes,
+                                noteRepresentation: audioViewModel.settings.noteRepresentation,
+                                peakBarIndex: audioViewModel.peakBarIndex,
+                                match: position == 4,
+                                peakFrequency: audioViewModel.pitchFrequency
+                                
+                    ).frame(
+                        minWidth: 0,
+                        maxWidth: .infinity
+                    )
+                }
+                .padding(.top, 72)
+                .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+                .sheet(isPresented: $showSheet, content: {
+                    SettingSheet(showTutorial: $showTutorial)
+                })
+                
                 HStack(alignment: .top){
                     MoreButton(action: {showSheet.toggle()})
                         .padding(15)
                     
                     Spacer()
                     
-                    LiveButton(action:audioViewModel.toggle)
-                        .padding(15)
+//                    LiveButton(action:audioViewModel.toggle)
+//                        .padding(15)
+                    LiveDropdown(start: audioViewModel.start, stop: audioViewModel.stop, options: [3,5,10]).padding(15)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
-                
-                if(!touching){
-                    PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, accuracyLevel: audioViewModel.settings.accuracyLevel)
-                        .transition(.opacity)
-                }
-                
-                Spacer()
-                
-                Frequencies(amplitudes: audioViewModel.amplitudes,
-                            noteRepresentation: audioViewModel.settings.noteRepresentation,
-                            peakBarIndex: audioViewModel.peakBarIndex,
-                            match: position == 4,
-                            peakFrequency: audioViewModel.pitchFrequency
-                            
-                ).frame(
-                    minWidth: 0,
-                    maxWidth: .infinity
-                )
-                //            .onTouch{ touchState in
-                //                if(touchState == .down){
-                //                    withAnimation(.easeOut(duration: 0.1)){
-                //                        self.touching = true
-                //                    }
-                //                }else{
-                //                    withAnimation(.easeOut(duration: 0.1)){
-                //                        self.touching = false
-                //                    }
-                //                }
-                //            }
-                //            .scaleEffect(touching ? 0.85 : 1, anchor: UnitPoint(x: 0, y: 0))
-                //            .overlay(Axis().if(!touching){$0.hidden()})
             }
-            .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
-            .sheet(isPresented: $showSheet, content: {
-                SettingSheet(showTutorial: $showTutorial)
-            })
             
             if (showTutorial) {
                 GeometryReader{ geometry in
