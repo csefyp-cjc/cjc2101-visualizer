@@ -12,7 +12,7 @@ struct Frequencies: View {
     var amplitudes: [Double]
     var noteRepresentation: Setting.NoteRepresentation
     var peakBarIndex: Int
-    var match: Bool
+    var isPitchAccurate: Bool
     var peakFrequency: Float
     let drag = DragGesture(minimumDistance: 0)
     let labels = getLabeling(10)
@@ -27,7 +27,7 @@ struct Frequencies: View {
                                 VBar(x: amplitudes[i]*7.0, color: .accent.highlight, showValue: true, peakFrequency: peakFrequency)
                                 
                             } else {
-                                if(match){
+                                if(isPitchAccurate){
                                     VBar(x: amplitudes[i]*7.0, color: .accent.successVariant, showValue: false)
                                 }else{
                                     VBar(x: amplitudes[i]*7.0, color: .foundation.secondary, showValue: false)
@@ -57,6 +57,6 @@ struct Frequencies: View {
 
 struct Frequencies_Previews: PreviewProvider {
     static var previews: some View {
-        Frequencies(amplitudes: Array(repeating: 0.5, count: 256), noteRepresentation:Setting.default.noteRepresentation, peakBarIndex: -1, match: true, peakFrequency: 440)
+        Frequencies(amplitudes: Array(repeating: 0.5, count: 256), noteRepresentation:Setting.default.noteRepresentation, peakBarIndex: -1, isPitchAccurate: true, peakFrequency: 440)
     }
 }

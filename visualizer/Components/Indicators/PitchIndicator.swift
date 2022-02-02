@@ -5,19 +5,11 @@ struct PitchIndicator: View {
     
     var position: Int
     
-    var accuracyLevel: Setting.AccuracyLevel
-    var accuracyPoint: Array<Int> {
-        switch accuracyLevel {
-        case .tuning:
-            return [4]
-        case .practice:
-            return [3, 4, 5]
-        }
-    }
+    var isPitchAccurate: Bool
     
     var body: some View {
         Rectangle()
-            .fill(accuracyPoint.contains(position) ? Color.accent.successContainer : Color.neutral.surface)
+            .fill(isPitchAccurate ? Color.accent.successContainer : Color.neutral.surface)
             .frame(maxWidth: 328, maxHeight: 55)
             .cornerRadius(15)
             .overlay(
@@ -26,7 +18,7 @@ struct PitchIndicator: View {
                         if(i == position){
                             Circle()
                                 .frame(width: 10, height: 10)
-                                .foregroundColor(accuracyPoint.contains(position) ? .accent.success : .accent.error)
+                                .foregroundColor(isPitchAccurate ? .accent.success : .accent.error)
                                 .padding(5)
                         }else{
                             Circle()
@@ -48,7 +40,7 @@ struct PitchIndicator: View {
                         if(j == position){
                             Circle()
                                 .frame(width: 10, height: 10)
-                                .foregroundColor(accuracyPoint.contains(position) ? .accent.success : .accent.error)
+                                .foregroundColor(isPitchAccurate ? .accent.success : .accent.error)
                                 .padding(5)
                         }else{
                             Circle()
@@ -65,8 +57,8 @@ struct PitchIndicator: View {
 
 struct PitchMetre_Previews: PreviewProvider {
     static var previews: some View {
-        PitchIndicator(pitchDetune: 0.0, position: 4, accuracyLevel: .tuning).previewDevice("iPhone 11")
+        PitchIndicator(pitchDetune: 0.0, position: 4, isPitchAccurate: true).previewDevice("iPhone 11")
         
-        PitchIndicator(pitchDetune: 10.0, position: 2, accuracyLevel: .practice).previewDevice("iPhone 11")
+        PitchIndicator(pitchDetune: 10.0, position: 2, isPitchAccurate: false).previewDevice("iPhone 11")
     }
 }

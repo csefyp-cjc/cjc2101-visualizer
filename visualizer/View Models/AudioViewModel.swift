@@ -59,6 +59,7 @@ class AudioViewModel: ObservableObject{
     @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
     @Published var pitchDetune: Float = 0.0
+    @Published var isPitchAccurate: Bool = false
     
     init(){
         // TODO: test no microphone priviledge
@@ -110,6 +111,8 @@ class AudioViewModel: ObservableObject{
             self.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
             print("🔖 Pitch Detune (Cent)   \(pitchDetune)")
         }
+        
+        updateIsPitchAccurate()        
     }
     
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
@@ -157,6 +160,33 @@ class AudioViewModel: ObservableObject{
                 }
             }
         }
+    }
+    
+    func getPitchIndicatorPosition() -> Int {
+        switch pitchDetune {
+        case let cent where cent < 0:
+            return 4 - Int(abs(pitchDetune) / 12.5)
+        case let cent where cent > 0:
+            return Int(pitchDetune / 12.5) + 4
+        case let cent where cent == 0:
+            return 4
+        default:
+            return 4
+        }
+    }
+    
+    func updateIsPitchAccurate() {
+        let position = getPitchIndicatorPosition()
+        var accuracyPoint: [Int] {
+            switch settings.accuracyLevel {
+            case .tuning:
+                return [4]
+            case .practice:
+                return [3, 4, 5]
+            }
+        }
+                
+        isPitchAccurate = accuracyPoint.contains(position)
     }
     
     

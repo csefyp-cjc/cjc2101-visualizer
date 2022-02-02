@@ -21,23 +21,16 @@ struct LiveDropdown: View {
     let start: ()->Void
     let stop: ()->Void
     let options: [Int]
+    @Binding var isPitchAccurate: Bool
     
     // timer related
-    @State var curTime: Int = 0 // in seconds
+    @State var curTime: Double = 0 // in seconds
     @State var timerIsPaused: Bool = true
     @State var timer: Timer? = nil
     @State var isLive: Bool = true
     
-    func stopAfter(seconds: Int){
-        timerIsPaused = false
-        start()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){tmpTimer in
-            self.curTime = self.curTime + 1
-            if(curTime == seconds){
-                stopTimer()
-            }
-            
-        }
+    func resetTimer() {
+        curTime = 0
     }
     
     func stopTimer(){
@@ -48,6 +41,22 @@ struct LiveDropdown: View {
         curTime = 0
         stop()
         isLive = false
+    }
+    
+    func stopAfter(seconds: Int){
+        timerIsPaused = false
+        start()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){tmpTimer in
+            self.curTime = self.curTime + 0.1
+            if (!isPitchAccurate) {
+                print("not accurate")
+                resetTimer()
+            }
+            if(curTime >= Double(seconds)){
+                stopTimer()
+            }
+            
+        }
     }
     
     var body: some View {
@@ -98,7 +107,7 @@ struct LiveDropdown: View {
                     self.stopTimer()
                     self.show.toggle()
                 }){
-                    Text("\(String(value - curTime))")
+                    Text("\(String(value - Int(floor(curTime))))")
                 }
                     .frame(width: 48, height: 48)
                     .font(.label.large)
@@ -106,7 +115,7 @@ struct LiveDropdown: View {
                 .foregroundColor(.neutral.onSurface)
             }
         }
-        .padding([.top, .bottom], 4)
+        .padding([.top, .bottom], timerIsPaused ? 4 : 0)
         .background(Color.neutral.surface)
         .cornerRadius(45)
         .animation(.spring(), value: show)
@@ -114,7 +123,13 @@ struct LiveDropdown: View {
 }
 
 struct LiveDropdown_Previews: PreviewProvider {
+    @State static var isPitchAccurate: Bool = AudioViewModel().isPitchAccurate
+    
     static var previews: some View {
-        LiveDropdown(start: AudioViewModel().start, stop: AudioViewModel().stop, options: [3, 5, 10]).previewLayout(.sizeThatFits)
+        LiveDropdown(start: AudioViewModel().start,
+                     stop: AudioViewModel().stop,
+                     options: [3, 5, 10],
+                     isPitchAccurate: $isPitchAccurate
+        ).previewLayout(.sizeThatFits)
     }
 }

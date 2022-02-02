@@ -8,16 +8,7 @@ struct PitchView: View {
     @State private var currentPage: Int = 0
     
     var position: Int {
-        switch audioViewModel.pitchDetune {
-        case let cent where cent < 0:
-            return 4 - Int(abs(audioViewModel.pitchDetune) / 12.5)
-        case let cent where cent > 0:
-            return Int(audioViewModel.pitchDetune / 12.5) + 4
-        case let cent where cent == 0:
-            return 4
-        default:
-            return 4
-        }
+        audioViewModel.getPitchIndicatorPosition()
     }
     
     var body: some View {
@@ -30,7 +21,7 @@ struct PitchView: View {
                     PitchLetter(pitchNotation: audioViewModel.pitchNotation, pitchFrequency: audioViewModel.pitchFrequency)
                     
                     if(!touching){
-                        PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, accuracyLevel: audioViewModel.settings.accuracyLevel)
+                        PitchIndicator(pitchDetune: audioViewModel.pitchDetune, position: position, isPitchAccurate: audioViewModel.isPitchAccurate)
                             .transition(.opacity)
                     }
                     
@@ -39,13 +30,10 @@ struct PitchView: View {
                     Frequencies(amplitudes: audioViewModel.amplitudes,
                                 noteRepresentation: audioViewModel.settings.noteRepresentation,
                                 peakBarIndex: audioViewModel.peakBarIndex,
-                                match: position == 4,
+                                isPitchAccurate: audioViewModel.isPitchAccurate,
                                 peakFrequency: audioViewModel.pitchFrequency
                                 
-                    ).frame(
-                        minWidth: 0,
-                        maxWidth: .infinity
-                    )
+                    ).frame(minWidth: 0, maxWidth: .infinity)
                 }
                 .padding(.top, 72)
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
@@ -61,7 +49,11 @@ struct PitchView: View {
                     
 //                    LiveButton(action:audioViewModel.toggle)
 //                        .padding(15)
-                    LiveDropdown(start: audioViewModel.start, stop: audioViewModel.stop, options: [3,5,10]).padding(15)
+                    LiveDropdown(start: audioViewModel.start,
+                                 stop: audioViewModel.stop,
+                                 options: [3,5,10],
+                                 isPitchAccurate: $audioViewModel.isPitchAccurate
+                    ).padding(15)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
