@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+    }
+}
+
 struct LiveDropdown: View {
     @State private var show = false
     @State var value = 3
@@ -44,17 +51,48 @@ struct LiveDropdown: View {
     }
     
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 0) {
             if (timerIsPaused){
-                Image(systemName: "waveform")
+                VStack(spacing: 0) {
+                    Button {
+                        isLive ? stop() : start()
+                        isLive.toggle()
+                    } label: {
+                        Image(systemName: isLive ? "waveform.circle.fill" : "waveform")
+                            .font(.system(size: isLive ? 28 : 22))
+                    }
                     .frame(width: 48, height: 48)
                     .foregroundColor(.neutral.onSurface)
-                    .background(Color.neutral.surface)
                     .clipShape(Circle())
-                    .font(.system(size: 22))
-                    .onTapGesture{
-                        self.show.toggle()
+                    .buttonStyle(ScaleButtonStyle())
+                                        
+                    if show {
+                        ForEach(options, id: \.self){option in
+                            Button(action: {
+                                self.value = option
+                                self.stopAfter(seconds: option)
+                                self.show.toggle()
+                            }){
+                                Text("\(String(option))s")
+                            }
+                            .frame(width: 48, height: 48)
+                            .font(.label.large)
+                            .foregroundColor(.neutral.onSurface)
+                        }
                     }
+                                        
+                    Button {
+                        show.toggle()
+                    } label: {
+                        Image(systemName: "chevron.down.circle")
+                            .frame(width: 48, height: 48)
+                            .foregroundColor(.neutral.onSurface)
+                            .clipShape(Circle())
+                            .font(.system(size: 22))
+                            .rotationEffect(Angle.degrees(show ? 180 : 0))
+                            .animation(.spring())
+                    }
+                }
             }else{
                 Button(action: {
                     self.stopTimer()
@@ -65,53 +103,13 @@ struct LiveDropdown: View {
                     .frame(width: 48, height: 48)
                     .font(.label.large)
                     .background(Color.neutral.surface)
-                    .foregroundColor(.neutral.onSurface)
-            }
-            
-            if show {
-                if(isLive){
-                    Button(action: {
-                        self.stop()
-                        self.show.toggle()
-                        self.isLive.toggle()
-                    }){
-                        Image(systemName: "pause.fill")
-                    }
-                    .offset(x: 0, y: -16)
-                    .font(.label.large)
-                    .background(Color.neutral.surface)
-                    .foregroundColor(.neutral.onSurface)
-                }else{
-                    Button(action: {
-                        self.start()
-                        self.show.toggle()
-                        self.isLive.toggle()
-                    }){
-                        Image(systemName: "play.fill")
-                    }
-                    .offset(x: 0, y: -16)
-                    .font(.label.large)
-                    .background(Color.neutral.surface)
-                    .foregroundColor(.neutral.onSurface)
-                }
-                ForEach(options, id: \.self){option in
-                    Button(action: {
-                        self.value = option
-                        self.stopAfter(seconds: option)
-                        self.show.toggle()
-                    }){
-                        Text("\(String(option))s")
-                    }
-                    .offset(x: 0, y: -16)
-                    .font(.label.large)
-                    .background(Color.neutral.surface)
-                    .foregroundColor(.neutral.onSurface)
-                }
+                .foregroundColor(.neutral.onSurface)
             }
         }
+        .padding([.top, .bottom], 4)
         .background(Color.neutral.surface)
         .cornerRadius(45)
-        .animation(.spring())
+        .animation(.spring(), value: show)
     }
 }
 
