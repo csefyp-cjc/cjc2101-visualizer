@@ -8,11 +8,11 @@ struct HelpButton: View {
             
         }label:{
             Image(systemName: "questionmark")
-                .frame(width: 38, height: 38)
+                .frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)
                 .background(Color.neutral.surface)
                 .clipShape(Circle())
-                .font(.system(size: 18))
+                .font(.system(size: 22))
         }
     }
 }

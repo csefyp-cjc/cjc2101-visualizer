@@ -35,6 +35,7 @@ extension Color {
         let onSurface = Color("onSurface")
         let axis = Color("axis")
         let onAxis = Color("onAxis")
+        let overlay = Color("overlay")
     }
 }
 

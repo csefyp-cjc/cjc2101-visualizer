@@ -53,13 +53,13 @@ class AudioViewModel: ObservableObject{
     let outputLimiter: PeakLimiter
     
     
-    
     // TODO: May change this with array model when our audio model not only containing amplitude arrayM
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 256)
     @Published var peakBarIndex: Int = -1
     @Published var pitchNotation: String = "-"
     @Published var pitchFrequency: Float = 0.0
     @Published var pitchDetune: Float = 0.0
+    @Published var isPitchAccurate: Bool = false
     
     init(){
         // TODO: test no microphone priviledge
@@ -111,6 +111,8 @@ class AudioViewModel: ObservableObject{
             self.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
             print("🔖 Pitch Detune (Cent)   \(pitchDetune)")
         }
+        
+        updateIsPitchAccurate()        
     }
     
     func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
@@ -160,6 +162,33 @@ class AudioViewModel: ObservableObject{
         }
     }
     
+    func getPitchIndicatorPosition() -> Int {
+        switch pitchDetune {
+        case let cent where cent < 0:
+            return 4 - Int(abs(pitchDetune) / 12.5)
+        case let cent where cent > 0:
+            return Int(pitchDetune / 12.5) + 4
+        case let cent where cent == 0:
+            return 4
+        default:
+            return 4
+        }
+    }
+    
+    func updateIsPitchAccurate() {
+        let position = getPitchIndicatorPosition()
+        var accuracyPoint: [Int] {
+            switch settings.accuracyLevel {
+            case .tuning:
+                return [4]
+            case .practice:
+                return [3, 4, 5]
+            }
+        }
+                
+        isPitchAccurate = accuracyPoint.contains(position)
+    }
+    
     
     // TODO: modify this mapping for our visualization
     func map(n: Double, start1: Double, stop1: Double, start2: Double, stop2: Double) -> Double {
@@ -176,22 +205,31 @@ class AudioViewModel: ObservableObject{
         return value
     }
     
+    func start(){
+        do{
+            try engine.start()
+            taps.forEach{ tap in
+                tap.start()
+            }
+        }catch{
+            assert(false, error.localizedDescription)
+        }
+        self.isStarted = true
+    }
+    
+    func stop(){
+        engine.stop()
+        taps.forEach{ tap in
+            tap.stop()
+        }
+        self.isStarted = false
+    }
+    
     func toggle() {
         if(self.isStarted){
-            engine.stop()
-            taps.forEach{ tap in
-                tap.stop()
-            }
+            self.stop()
         }else{
-            do{
-                try engine.start()
-                taps.forEach{ tap in
-                    tap.start()
-                }
-            }catch{
-                assert(false, error.localizedDescription)
-            }
+            self.start()
         }
-        self.isStarted.toggle()
     }
 }
