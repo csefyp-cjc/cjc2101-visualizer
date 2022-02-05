@@ -94,14 +94,11 @@
 		4910418027AC34D800196A2D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				49B8804C27AEDDFD004F985C /* Audio */,
 				8E16835127259D29004E3CF9 /* Components */,
-				4910418327AC35B900196A2D /* Sound */,
-				4910418227AC35AF00196A2D /* Timbre */,
-				4910418627AC35EC00196A2D /* Pitch */,
 				4910418B27AC365300196A2D /* Setting */,
 				4910418F27AC376700196A2D /* InteractiveTutorial */,
 				8EC8CD6827253D3700B6E8E7 /* ContentView.swift */,
-				8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -113,54 +110,6 @@
 				490E8B622739176A0047DE64 /* Color.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4910418227AC35AF00196A2D /* Timbre */ = {
-			isa = PBXGroup;
-			children = (
-				4910418527AC35DC00196A2D /* Views */,
-			);
-			path = Timbre;
-			sourceTree = "<group>";
-		};
-		4910418327AC35B900196A2D /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				4910418427AC35D200196A2D /* Views */,
-			);
-			path = Sound;
-			sourceTree = "<group>";
-		};
-		4910418427AC35D200196A2D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8E8DB87B273805830010FE7E /* SoundView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4910418527AC35DC00196A2D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8E8DB87D273807490010FE7E /* TimbreView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4910418627AC35EC00196A2D /* Pitch */ = {
-			isa = PBXGroup;
-			children = (
-				4910418727AC35F700196A2D /* Views */,
-			);
-			path = Pitch;
-			sourceTree = "<group>";
-		};
-		4910418727AC35F700196A2D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8E8DB879273802FF0010FE7E /* PitchView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		4910418B27AC365300196A2D /* Setting */ = {
@@ -221,6 +170,33 @@
 				491041D027ADB32100196A2D /* Audio.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		49B8804C27AEDDFD004F985C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				49B8804E27AEDE30004F985C /* ViewModels */,
+				49B8804D27AEDE20004F985C /* Views */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		49B8804D27AEDE20004F985C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DB879273802FF0010FE7E /* PitchView.swift */,
+				8E8DB87D273807490010FE7E /* TimbreView.swift */,
+				8E8DB87B273805830010FE7E /* SoundView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49B8804E27AEDE30004F985C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		49D6F7EF274939A200CDCCE4 /* Helpers */ = {
