@@ -76,7 +76,6 @@ class AudioViewModel: ObservableObject{
     // Add subscriptions from child ViewModels
     private func addSubscribers() {
         settingVM.$settings.sink { [weak self] (returnedSettings) in
-            print("hisahdiadsid")
             self?.settings = returnedSettings
         }
         .store(in: &cancellables)
@@ -157,7 +156,7 @@ class AudioViewModel: ObservableObject{
             self.audio.pitchNotation = pitchFromFrequency(pitchFrequency[0], self.settings.noteRepresentation)
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
             self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
-            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
+//            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
         }
         
         self.updateIsPitchAccurate()

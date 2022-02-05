@@ -60,12 +60,14 @@ struct PitchView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
-            if (showTutorial) {
-                GeometryReader{ geometry in
+            ZStack {
+                if (showTutorial) {
                     InteractiveTutorialView(showTutorial: $showTutorial)
                         .animation(.default)
                 }
             }
+            .transition(.opacity.animation(.easeIn(duration: 0.3)))
+            .animation(.default)
         }
     }
 }

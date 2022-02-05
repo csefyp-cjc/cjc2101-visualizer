@@ -22,10 +22,8 @@ struct Highlight: Shape {
 }
 
 struct InteractiveTutorialView: View {
-    @StateObject private var vm: InteractiveTutorialViewModel = InteractiveTutorialViewModel() // ?????
-            
+    @StateObject private var vm: InteractiveTutorialViewModel = InteractiveTutorialViewModel()
     @Binding var showTutorial: Bool;
-    
     
     var body: some View {
         ZStack {

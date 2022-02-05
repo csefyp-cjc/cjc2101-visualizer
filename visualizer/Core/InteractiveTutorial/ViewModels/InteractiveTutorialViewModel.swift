@@ -24,13 +24,12 @@ class InteractiveTutorialViewModel: ObservableObject {
     
     // Return true to dismiss tutorial
     func handleNextInstruction() -> Bool {
-        if (self.currentPage < self.tutorials.count - 1) {
-            self.currentPage += 1
-            return false
-        } else {
-            self.currentPage = 0
+        guard self.currentPage < self.tutorials.count - 1 else {
             return true
         }
+        
+        self.currentPage += 1
+        return false
     }
 
 }
