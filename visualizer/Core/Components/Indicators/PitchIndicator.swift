@@ -47,8 +47,8 @@ struct PitchIndicator: View {
                                 .padding(10)
                         }
                     }
-                }.transition(.scale)
-                    .animation(.easeInOut)
+                }
+                // TODO: A better animation
             )
     }
 }
