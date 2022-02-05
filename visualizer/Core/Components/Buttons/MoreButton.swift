@@ -25,11 +25,11 @@ struct MoreButton: View {
 }
 
 struct MoreButton_Previews: PreviewProvider {
-    static var previews: some View {
-        MoreButton(action: self.test)
-    }
-    
     static func test() -> Void {
         print("More Button Clicked")
     }
+    
+    static var previews: some View {
+        MoreButton(action: self.test)
+    }    
 }

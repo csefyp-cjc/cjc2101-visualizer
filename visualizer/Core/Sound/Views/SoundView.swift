@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SoundView: View {
-    @EnvironmentObject var audioViewModel: AudioViewModel
+    @EnvironmentObject var vm: AudioViewModel
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     
@@ -27,14 +27,14 @@ struct SoundView: View {
                     DrawerButton()
                         .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
                     
-                    LiveButton(action: audioViewModel.toggle)
+                    LiveButton(action: vm.toggle)
                         .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
             }
             .sheet(isPresented: $showSheet, content: {
-                SettingSheet(showTutorial: $showTutorial)
+                SettingView(showTutorial: $showTutorial)
             })
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
         }

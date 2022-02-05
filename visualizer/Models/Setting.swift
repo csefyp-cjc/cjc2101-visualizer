@@ -8,11 +8,15 @@
 import Foundation
 
 struct Setting {
-    var noteRepresentation: NoteRepresentation = NoteRepresentation.sharp
-    var noiseLevel: NoiseLevel = NoiseLevel.low
-    var accuracyLevel: AccuracyLevel = AccuracyLevel.tuning
+    var noteRepresentation: NoteRepresentation
+    var noiseLevel: NoiseLevel
+    var accuracyLevel: AccuracyLevel
     
-    static let `default` = Setting()
+    static let `default` = Setting(
+        noteRepresentation: NoteRepresentation.sharp,
+        noiseLevel: NoiseLevel.low,
+        accuracyLevel: AccuracyLevel.tuning
+    )
     
     enum NoteRepresentation: String, CaseIterable, Identifiable {
         case sharp = "♯"

@@ -1,0 +1,84 @@
+import SwiftUI
+
+struct PitchView: View {
+    @EnvironmentObject var vm: AudioViewModel
+    @State private var touching: Bool = false
+    @State private var showSheet: Bool = false
+    @State private var showTutorial: Bool = false            
+    
+    var body: some View {
+        ZStack {
+            Color.neutral.background
+                .ignoresSafeArea(.all)
+            
+            ZStack(alignment: .top) {
+                VStack {
+                    PitchLetter(pitchNotation: $vm.audio.pitchNotation,
+                                noteRepresentation: vm.settingVM.settings.noteRepresentation,
+                                changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
+                    )
+                    
+                    if(!touching){
+                        PitchIndicator(pitchDetune: vm.audio.pitchDetune,
+                                       position: vm.getPitchIndicatorPosition(),
+                                       isPitchAccurate: vm.audio.isPitchAccurate
+                        )
+                            .transition(.opacity)
+                    }
+                    
+                    Spacer()
+                    
+                    Frequencies(amplitudes: vm.audio.amplitudes,
+                                noteRepresentation: vm.settings.noteRepresentation,
+                                peakBarIndex: vm.audio.peakBarIndex,
+                                isPitchAccurate: vm.audio.isPitchAccurate,
+                                peakFrequency: vm.audio.pitchFrequency
+                                
+                    )
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                }
+                .padding(.top, 72)
+                .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+                .sheet(isPresented: $showSheet, content: {
+                    SettingView(showTutorial: $showTutorial)
+                        .environmentObject(vm.settingVM)
+                })
+                
+                HStack(alignment: .top){
+                    MoreButton(action: {showSheet.toggle()})
+                        .padding(15)
+                    
+                    Spacer()
+                    
+                    LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
+                                 start: vm.start,
+                                 stop: vm.stop,
+                                 options: [3,5,10]
+                    )
+                        .padding(15)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            
+            if (showTutorial) {
+                GeometryReader{ geometry in
+                    InteractiveTutorialView(showTutorial: $showTutorial)
+                        .animation(.default)
+                }
+            }
+        }
+    }
+}
+
+
+struct PitchView_Previews: PreviewProvider {
+    static var previews: some View {
+        PitchView()
+            .environmentObject(AudioViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
+        
+        PitchView()
+            .environmentObject(AudioViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone-13-Pro"))
+    }
+}

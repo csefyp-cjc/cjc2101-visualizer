@@ -10,8 +10,10 @@
 		4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AA27537570001C52BC /* SettingViewModel.swift */; };
 		4906C6AD2753760D001C52BC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AC2753760D001C52BC /* Setting.swift */; };
 		490E8B632739176B0047DE64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E8B622739176A0047DE64 /* Color.swift */; };
+		4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */; };
+		491041D127ADB32100196A2D /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491041D027ADB32100196A2D /* Audio.swift */; };
 		498F0BED274F808B00A46486 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEC274F808B00A46486 /* MoreButton.swift */; };
-		498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingSheet.swift */; };
+		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
 		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
 		49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */; };
@@ -35,7 +37,6 @@
 		8EECA39327384BC30083FD02 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA39227384BC30083FD02 /* Axis.swift */; };
 		8EECA395273852030083FD02 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA394273852030083FD02 /* ViewExtension.swift */; };
 		8EECA397273856200083FD02 /* DrawerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA396273856200083FD02 /* DrawerButton.swift */; };
-		8EECA3992738574E0083FD02 /* HelpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA3982738574E0083FD02 /* HelpButton.swift */; };
 		8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */; };
 		8EEFAF9127130F8000E3651D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		8EEFAF9427130F8000E3651D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */; };
@@ -45,8 +46,10 @@
 		4906C6AA27537570001C52BC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		4906C6AC2753760D001C52BC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = visualizer/Models/Setting.swift; sourceTree = SOURCE_ROOT; };
 		490E8B622739176A0047DE64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialViewModel.swift; sourceTree = "<group>"; };
+		491041D027ADB32100196A2D /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		498F0BEC274F808B00A46486 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
-		498F0BEE274F8FC500A46486 /* SettingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSheet.swift; sourceTree = "<group>"; };
+		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialView.swift; sourceTree = "<group>"; };
@@ -68,7 +71,6 @@
 		8EECA39227384BC30083FD02 /* Axis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
 		8EECA394273852030083FD02 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		8EECA396273856200083FD02 /* DrawerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerButton.swift; sourceTree = "<group>"; };
-		8EECA3982738574E0083FD02 /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
 		8EEFAF8927130F7E00E3651D /* visualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerApp.swift; sourceTree = "<group>"; };
 		8EEFAF9027130F8000E3651D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,11 +91,134 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4910418027AC34D800196A2D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8E16835127259D29004E3CF9 /* Components */,
+				4910418327AC35B900196A2D /* Sound */,
+				4910418227AC35AF00196A2D /* Timbre */,
+				4910418627AC35EC00196A2D /* Pitch */,
+				4910418B27AC365300196A2D /* Setting */,
+				4910418F27AC376700196A2D /* InteractiveTutorial */,
+				8EC8CD6827253D3700B6E8E7 /* ContentView.swift */,
+				8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4910418127AC355C00196A2D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				49DECB10273A730D00C992CE /* Typography.swift */,
+				490E8B622739176A0047DE64 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4910418227AC35AF00196A2D /* Timbre */ = {
+			isa = PBXGroup;
+			children = (
+				4910418527AC35DC00196A2D /* Views */,
+			);
+			path = Timbre;
+			sourceTree = "<group>";
+		};
+		4910418327AC35B900196A2D /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				4910418427AC35D200196A2D /* Views */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		4910418427AC35D200196A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DB87B273805830010FE7E /* SoundView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4910418527AC35DC00196A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DB87D273807490010FE7E /* TimbreView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4910418627AC35EC00196A2D /* Pitch */ = {
+			isa = PBXGroup;
+			children = (
+				4910418727AC35F700196A2D /* Views */,
+			);
+			path = Pitch;
+			sourceTree = "<group>";
+		};
+		4910418727AC35F700196A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E8DB879273802FF0010FE7E /* PitchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4910418B27AC365300196A2D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4910418D27AC372900196A2D /* ViewModels */,
+				4910418C27AC366000196A2D /* Views */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		4910418C27AC366000196A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				498F0BEE274F8FC500A46486 /* SettingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4910418D27AC372900196A2D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4906C6AA27537570001C52BC /* SettingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4910418F27AC376700196A2D /* InteractiveTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				4910419127AC378700196A2D /* ViewModels */,
+				4910419027AC377400196A2D /* Views */,
+			);
+			path = InteractiveTutorial;
+			sourceTree = "<group>";
+		};
+		4910419027AC377400196A2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4910419127AC378700196A2D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4941432A27551C75009667A6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4906C6AC2753760D001C52BC /* Setting.swift */,
 				49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */,
+				491041D027ADB32100196A2D /* Audio.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,7 +236,6 @@
 			children = (
 				8E8DB8852738161A0010FE7E /* LiveButton.swift */,
 				8EECA396273856200083FD02 /* DrawerButton.swift */,
-				8EECA3982738574E0083FD02 /* HelpButton.swift */,
 				498F0BEC274F808B00A46486 /* MoreButton.swift */,
 				498F0BF0274F909600A46486 /* DismissButton.swift */,
 				498F0BF2274FC11700A46486 /* SettingButton.swift */,
@@ -176,19 +300,16 @@
 		8EEFAF8B27130F7E00E3651D /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
-				4941432A27551C75009667A6 /* Models */,
+				4910418127AC355C00196A2D /* Extensions */,
 				49D6F7EF274939A200CDCCE4 /* Helpers */,
-				8E16835127259D29004E3CF9 /* Components */,
+				4910418027AC34D800196A2D /* Core */,
+				4941432A27551C75009667A6 /* Models */,
 				8EEFAFA12713146200E3651D /* Info.plist */,
-				8EEFAF9C27130FD300E3651D /* View Models */,
-				8EEFAF9A27130F8E00E3651D /* Views */,
 				8EEFAF8C27130F7E00E3651D /* visualizerApp.swift */,
 				8EEFAF9027130F8000E3651D /* Assets.xcassets */,
 				8EEFAF9227130F8000E3651D /* Preview Content */,
 				8E8DB883273811120010FE7E /* TouchEventModifier.swift */,
 				8EECA394273852030083FD02 /* ViewExtension.swift */,
-				49DECB10273A730D00C992CE /* Typography.swift */,
-				490E8B622739176A0047DE64 /* Color.swift */,
 			);
 			path = visualizer;
 			sourceTree = "<group>";
@@ -199,28 +320,6 @@
 				8EEFAF9327130F8000E3651D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		8EEFAF9A27130F8E00E3651D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8EC8CD6827253D3700B6E8E7 /* ContentView.swift */,
-				8E8DB87D273807490010FE7E /* TimbreView.swift */,
-				8E8DB879273802FF0010FE7E /* PitchView.swift */,
-				8E8DB87B273805830010FE7E /* SoundView.swift */,
-				498F0BEE274F8FC500A46486 /* SettingSheet.swift */,
-				49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		8EEFAF9C27130FD300E3651D /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */,
-				4906C6AA27537570001C52BC /* SettingViewModel.swift */,
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +403,7 @@
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
-				498F0BEF274F8FC600A46486 /* SettingSheet.swift in Sources */,
-				8EECA3992738574E0083FD02 /* HelpButton.swift in Sources */,
+				498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */,
 				4906C6AD2753760D001C52BC /* Setting.swift in Sources */,
 				49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
@@ -314,11 +412,13 @@
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */,
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
 				49DECB11273A730D00C992CE /* Typography.swift in Sources */,
 				8EEFAF8D27130F7E00E3651D /* visualizerApp.swift in Sources */,
 				8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */,
+				491041D127ADB32100196A2D /* Audio.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
@@ -492,7 +592,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;

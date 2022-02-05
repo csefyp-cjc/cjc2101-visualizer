@@ -2,9 +2,7 @@ import SwiftUI
 
 struct PitchIndicator: View {
     var pitchDetune: Float
-    
     var position: Int
-    
     var isPitchAccurate: Bool
     
     var body: some View {
@@ -57,8 +55,9 @@ struct PitchIndicator: View {
 
 struct PitchMetre_Previews: PreviewProvider {
     static var previews: some View {
-        PitchIndicator(pitchDetune: 0.0, position: 4, isPitchAccurate: true).previewDevice("iPhone 11")
-        
-        PitchIndicator(pitchDetune: 10.0, position: 2, isPitchAccurate: false).previewDevice("iPhone 11")
+        PitchIndicator(pitchDetune: 0.0, position: 4, isPitchAccurate: true)
+            .previewDevice("iPhone 11")
+        PitchIndicator(pitchDetune: 10.0, position: 2, isPitchAccurate: false)
+            .previewDevice("iPhone 11")
     }
 }
