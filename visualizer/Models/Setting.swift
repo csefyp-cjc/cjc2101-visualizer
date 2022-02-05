@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Setting {
+struct Setting: Codable {
     var noteRepresentation: NoteRepresentation
     var noiseLevel: NoiseLevel
     var accuracyLevel: AccuracyLevel
@@ -18,14 +18,14 @@ struct Setting {
         accuracyLevel: AccuracyLevel.tuning
     )
     
-    enum NoteRepresentation: String, CaseIterable, Identifiable {
+    enum NoteRepresentation: String, CaseIterable, Identifiable, Codable {
         case sharp = "♯"
         case flat = "♭"
         
         var id: String { rawValue }
     }
     
-    enum NoiseLevel: String, CaseIterable, Identifiable {
+    enum NoiseLevel: String, CaseIterable, Identifiable, Codable {
         case low = "Low"
         case medium = "Medium"
         case high = "High"
@@ -44,7 +44,7 @@ struct Setting {
         }
     }
     
-    enum AccuracyLevel: String, CaseIterable, Identifiable {
+    enum AccuracyLevel: String, CaseIterable, Identifiable, Codable {
         case tuning = "Tuning"
         case practice = "Practice"
         

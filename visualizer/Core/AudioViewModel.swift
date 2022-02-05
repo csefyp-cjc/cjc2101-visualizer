@@ -139,13 +139,13 @@ class AudioViewModel: ObservableObject{
     
     // PitchTap functions
     private func updatePitch( pitchFrequency: [Float], amplitude: [Float]) {
-        var noiseThreshold: Float = 0.1
+        var noiseThreshold: Float = 0.05
         
         switch self.settings.noiseLevel {
         case .low:
-            noiseThreshold = 0.1
+            noiseThreshold = 0.05
         case .medium:
-            noiseThreshold = 0.3
+            noiseThreshold = 0.1
         case .high:
             noiseThreshold = 0.5
         }
@@ -166,16 +166,17 @@ class AudioViewModel: ObservableObject{
     private func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.audio.amplitudes.count) // stores amplitude sum
-        var noiseThreshold: Double = 0.1
+        var noiseThreshold: Double = 0.05
         
         switch self.settings.noiseLevel {
         case .low:
-            noiseThreshold = 0.1
+            noiseThreshold = 0.05
         case .medium:
-            noiseThreshold = 0.3
+            noiseThreshold = 0.1
         case .high:
             noiseThreshold = 0.5
         }
+        
         for i in stride(from : 0, to: self.FFT_SIZE - 1, by: 2){
             let real = fftData[i]
             let imaginary = fftData[i+1]
