@@ -22,46 +22,35 @@ struct Highlight: Shape {
 }
 
 struct InteractiveTutorialView: View {
-    var tutorials: [InteractiveTutorial]
-    
-    @Binding var currentPage: Int;
+    @StateObject private var vm: InteractiveTutorialViewModel = InteractiveTutorialViewModel()
     @Binding var showTutorial: Bool;
-    
-    func handleNextInstruction() {
-        if (currentPage < tutorials.count - 1) {
-            currentPage += 1
-        } else {
-            currentPage = 0
-            showTutorial.toggle()
-        }
-    }
     
     var body: some View {
         ZStack {
             Color.neutral.overlay
                 .mask(
                     Highlight(
-                        size: tutorials[currentPage].size,
-                        offsetX: tutorials[currentPage].offset.width,
-                        offsetY: tutorials[currentPage].offset.height
+                        size: vm.tutorials[vm.currentPage].size,
+                        offsetX: vm.tutorials[vm.currentPage].offset.width,
+                        offsetY: vm.tutorials[vm.currentPage].offset.height
                     )
                         .fill(style: FillStyle(eoFill: true))
                 )
                 .ignoresSafeArea(.all)
                 .onTapGesture {
-                    handleNextInstruction()
+                    vm.handleNextInstruction() ? showTutorial.toggle() : nil
                 }
                 .animation(.default)
             
             VStack {
-                Text(tutorials[currentPage].text)
+                Text(vm.tutorials[vm.currentPage].text)
                     .padding(16)
                     .foregroundColor(.neutral.onBackground)
                     .background(Color.neutral.background)
                     .font(.text.paragraph)
                     .cornerRadius(14)
-                    .position(x: tutorials[currentPage].textPosition.width,
-                              y: tutorials[currentPage].textPosition.height)
+                    .position(x: vm.tutorials[vm.currentPage].textPosition.width,
+                              y: vm.tutorials[vm.currentPage].textPosition.height)
                 
             }
             .padding(.horizontal, 16)
@@ -72,18 +61,16 @@ struct InteractiveTutorialView: View {
 }
 
 struct InteractiveTutorial_Previews: PreviewProvider {
-    @State static private var currentPage = 0
+    @State static private var currentPage = 1
     @State static private var showTutorial = true
     
     static var previews: some View {
-        InteractiveTutorialView(
-            tutorials: [
-                InteractiveTutorial(text: "Pitch and frequencies are correlated. The x-axis here is the letter name of musical notes.",
-                                    textPosition: CGSize(width: 0, height: 0),
-                                    size: CGSize(width: 350, height: 28),
-                                    offset: CGSize(width: 0, height: 350))],
-            currentPage: $currentPage,
-            showTutorial: $showTutorial
-        )
+        InteractiveTutorialView(showTutorial: $showTutorial)
+            .environmentObject(InteractiveTutorialViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
+        
+        InteractiveTutorialView(showTutorial: $showTutorial)
+            .environmentObject(InteractiveTutorialViewModel())
+            .previewDevice(PreviewDevice(rawValue: "iPhone-13-Pro"))
     }
 }

@@ -15,25 +15,25 @@ struct ScaleButtonStyle: ButtonStyle {
 }
 
 struct LiveDropdown: View {
-    @State private var show = false
-    @State var value = 3
-    
-    let start: ()->Void
-    let stop: ()->Void
-    let options: [Int]
     @Binding var isPitchAccurate: Bool
+    let start: () -> Void
+    let stop: () -> Void
+    let options: [Int]
+    
+    @State private var show = false
+    @State private var value = 3
     
     // timer related
-    @State var curTime: Double = 0 // in seconds
-    @State var timerIsPaused: Bool = true
-    @State var timer: Timer? = nil
-    @State var isLive: Bool = true
+    @State private var curTime: Double = 0 // in seconds
+    @State private var timerIsPaused: Bool = true
+    @State private var timer: Timer? = nil
+    @State private var isLive: Bool = true
     
-    func resetTimer() {
+    private func resetTimer() {
         curTime = 0
     }
     
-    func stopTimer(){
+    private func stopTimer(){
         print("stop timer")
         timerIsPaused = true
         timer?.invalidate()
@@ -43,17 +43,17 @@ struct LiveDropdown: View {
         isLive = false
     }
     
-    func stopAfter(seconds: Int){
-        timerIsPaused = false
-        start()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){tmpTimer in
+    private func stopAfter(seconds: Int){
+        self.timerIsPaused = false
+        self.start()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ tmpTimer in
             self.curTime = self.curTime + 0.1
             if (!isPitchAccurate) {
                 print("not accurate")
-                resetTimer()
+                self.resetTimer()
             }
-            if(curTime >= Double(seconds)){
-                stopTimer()
+            if(self.curTime >= Double(seconds)){
+                self.stopTimer()
             }
             
         }
@@ -78,9 +78,9 @@ struct LiveDropdown: View {
                     if show {
                         ForEach(options, id: \.self){option in
                             Button(action: {
-                                self.value = option
-                                self.stopAfter(seconds: option)
-                                self.show.toggle()
+                                value = option
+                                stopAfter(seconds: option)
+                                show.toggle()
                             }){
                                 Text("\(String(option))s")
                             }
@@ -104,8 +104,8 @@ struct LiveDropdown: View {
                 }
             }else{
                 Button(action: {
-                    self.stopTimer()
-                    self.show.toggle()
+                    stopTimer()
+                    show.toggle()
                 }){
                     Text("\(String(value - Int(floor(curTime))))")
                 }
@@ -123,13 +123,14 @@ struct LiveDropdown: View {
 }
 
 struct LiveDropdown_Previews: PreviewProvider {
-    @State static var isPitchAccurate: Bool = AudioViewModel().isPitchAccurate
+    @State static var isPitchAccurate: Bool = AudioViewModel().audio.isPitchAccurate
     
     static var previews: some View {
-        LiveDropdown(start: AudioViewModel().start,
+        LiveDropdown(isPitchAccurate: $isPitchAccurate,
+                     start: AudioViewModel().start,
                      stop: AudioViewModel().stop,
-                     options: [3, 5, 10],
-                     isPitchAccurate: $isPitchAccurate
-        ).previewLayout(.sizeThatFits)
+                     options: [3, 5, 10]
+        )
+            .previewLayout(.sizeThatFits)
     }
 }

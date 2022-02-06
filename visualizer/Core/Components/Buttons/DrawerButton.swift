@@ -1,13 +1,12 @@
 import SwiftUI
 
-struct LiveButton: View {
-    let action: ()->Void
-    
+struct DrawerButton: View {
     var body: some View{
         Button{
-            self.action()
+            
         }label:{
-            Image(systemName: "waveform").frame(width: 48, height: 48)
+            Image(systemName: "square.stack.3d.down.right.fill")
+                .frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)
                 .background(Color.neutral.surface)
                 .clipShape(Circle())
@@ -16,8 +15,9 @@ struct LiveButton: View {
     }
 }
 
-struct LiveBtn_Previews: PreviewProvider {
+struct DrawerBtn_Previews: PreviewProvider {
     static var previews: some View {
-        LiveButton(action: AudioViewModel().toggle).previewLayout(.fixed(width: 38, height: 38))
+        DrawerButton()
+            .previewLayout(.fixed(width: 38, height: 38))
     }
 }

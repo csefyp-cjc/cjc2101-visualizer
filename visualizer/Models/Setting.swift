@@ -7,21 +7,25 @@
 
 import Foundation
 
-struct Setting {
-    var noteRepresentation: NoteRepresentation = NoteRepresentation.sharp
-    var noiseLevel: NoiseLevel = NoiseLevel.low
-    var accuracyLevel: AccuracyLevel = AccuracyLevel.tuning
+struct Setting: Codable {
+    var noteRepresentation: NoteRepresentation
+    var noiseLevel: NoiseLevel
+    var accuracyLevel: AccuracyLevel
     
-    static let `default` = Setting()
+    static let `default` = Setting(
+        noteRepresentation: NoteRepresentation.sharp,
+        noiseLevel: NoiseLevel.low,
+        accuracyLevel: AccuracyLevel.tuning
+    )
     
-    enum NoteRepresentation: String, CaseIterable, Identifiable {
+    enum NoteRepresentation: String, CaseIterable, Identifiable, Codable {
         case sharp = "♯"
         case flat = "♭"
         
         var id: String { rawValue }
     }
     
-    enum NoiseLevel: String, CaseIterable, Identifiable {
+    enum NoiseLevel: String, CaseIterable, Identifiable, Codable {
         case low = "Low"
         case medium = "Medium"
         case high = "High"
@@ -40,7 +44,7 @@ struct Setting {
         }
     }
     
-    enum AccuracyLevel: String, CaseIterable, Identifiable {
+    enum AccuracyLevel: String, CaseIterable, Identifiable, Codable {
         case tuning = "Tuning"
         case practice = "Practice"
         

@@ -29,7 +29,7 @@ struct TimbreView: View {
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
             .sheet(isPresented: $showSheet, content: {
-                SettingSheet(showTutorial: $showTutorial)
+                SettingView(showTutorial: $showTutorial)
             })
         }
     }
@@ -38,6 +38,5 @@ struct TimbreView: View {
 struct TimbreView_Previews: PreviewProvider {
     static var previews: some View {
         TimbreView()
-            .environmentObject(AudioViewModel())
     }
 }
