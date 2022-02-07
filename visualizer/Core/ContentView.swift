@@ -2,42 +2,99 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     @State private var selection: Tab = .pitch
+    @State private var selectionSidebar: Tab? = .pitch
     
-    enum Tab {
+    var isCompact: Bool { horizontalSizeClass == .compact}
+    
+    enum Tab: CaseIterable, Identifiable {
         case sound
         case pitch
         case timbre
+        
+        var id: String { title }
+        
+        var title: String {
+            switch self {
+            case .sound:
+                return "Sound"
+            case .pitch:
+                return "Pitch"
+            case .timbre:
+                return "Timbre"
+            }
+        }
+        
+        var systemImage: String {
+            switch self {
+            case .sound:
+                return "waveform.and.magnifyingglass"
+            case .pitch:
+                return "music.note.list"
+            case .timbre:
+                return "waveform.path.ecg"
+            }
+        }
     }
+    
+    init() {
+        UITableView.appearance().backgroundColor = UIColor(Color.neutral.background)
+      }
     
     //TODO: tab view animation
     var body: some View {
-        TabView(selection: $selection){
-            SoundView().tabItem{
-                Label("Sound", systemImage: "waveform.and.magnifyingglass")
-                    .environmentObject(audioViewModel)
+        if isCompact {
+            TabView(selection: $selection){
+                ForEach(Tab.allCases) { item in
+                views(item)
+                        .tabItem{
+                            Label(item.title, systemImage: item.systemImage)
+                        }
+                        .tag(item)
+                        
+                }
             }
-            .tag(Tab.sound)
-            
-            PitchView().tabItem{
-                Label("Pitch", systemImage: "music.note.list")
-                    .environmentObject(audioViewModel)
+            .accentColor(.foundation.primary)
+        } else {
+            NavigationView {
+                List(Tab.allCases, selection: $selectionSidebar) { item in
+                    NavigationLink(destination: views(item)
+                                    .navigationBarTitle("", displayMode: .inline),
+                                   tag: item,
+                                   selection: $selectionSidebar
+                    ) {
+                        Label(item.title, systemImage: item.systemImage)
+                            .tag(item)
+                    }                    
+                }
+                .listStyle(SidebarListStyle())
+                .navigationBarTitle(Text("Screens"))
             }
-            .tag(Tab.pitch)
-            
-            TimbreView().tabItem{
-                Label("Timbre", systemImage: "waveform.path.ecg")
-            }
-            .tag(Tab.timbre)
+            .accentColor(.foundation.primary)
         }
-        .accentColor(.foundation.primary)
+    }
+    
+    @ViewBuilder
+    func views(_ destination: Tab) -> some View {
+        switch destination {
+        case .sound:
+            SoundView()
+                .environmentObject(audioViewModel)
+        case .pitch:
+            PitchView()
+                .environmentObject(audioViewModel)
+        case .timbre:
+            TimbreView()
+        }
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-//        ContentView().previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
+        //        ContentView().previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
         ContentView().environmentObject(AudioViewModel())
     }
 }

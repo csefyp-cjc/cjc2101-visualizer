@@ -99,7 +99,7 @@ struct LiveDropdown: View {
                             .clipShape(Circle())
                             .font(.system(size: 22))
                             .rotationEffect(Angle.degrees(show ? 180 : 0))
-                            .animation(.spring())
+                            .animation(.spring(), value: show)
                     }
                 }
             }else{
