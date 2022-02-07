@@ -28,7 +28,7 @@
 		49D640C827B1333E00E776C3 /* visualizer_watchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640C727B1333E00E776C3 /* visualizer_watchTests.swift */; };
 		49D640D227B1333E00E776C3 /* visualizer_watchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640D127B1333E00E776C3 /* visualizer_watchUITests.swift */; };
 		49D640D427B1333E00E776C3 /* visualizer_watchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640D327B1333E00E776C3 /* visualizer_watchUITestsLaunchTests.swift */; };
-		49D640D727B1333E00E776C3 /* visualizer-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 49D640A127B1333900E776C3 /* visualizer-watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49D640D727B1333E00E776C3 /* SoundsGood.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 49D640A127B1333900E776C3 /* SoundsGood.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		49D640E827B13C4300E776C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EEFAF9027130F8000E3651D /* Assets.xcassets */; };
 		49D640F827B1621200E776C3 /* visualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D640F727B1621200E776C3 /* visualizerApp.swift */; };
 		49D6F7EE274926AA00CDCCE4 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49D6F7ED274926AA00CDCCE4 /* SoundpipeAudioKit */; };
@@ -98,7 +98,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				49D640D727B1333E00E776C3 /* visualizer-watch.app in Embed Watch Content */,
+				49D640D727B1333E00E776C3 /* SoundsGood.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,7 +127,7 @@
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialView.swift; sourceTree = "<group>"; };
-		49D640A127B1333900E776C3 /* visualizer-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "visualizer-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49D640A127B1333900E776C3 /* SoundsGood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundsGood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D640A327B1333C00E776C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49D640A927B1333C00E776C3 /* visualizer-watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "visualizer-watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D640B027B1333C00E776C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				8EEFAF8927130F7E00E3651D /* visualizer.app */,
-				49D640A127B1333900E776C3 /* visualizer-watch.app */,
+				49D640A127B1333900E776C3 /* SoundsGood.app */,
 				49D640A927B1333C00E776C3 /* visualizer-watch WatchKit Extension.appex */,
 				49D640C327B1333E00E776C3 /* visualizer-watchTests.xctest */,
 				49D640CD27B1333E00E776C3 /* visualizer-watchUITests.xctest */,
@@ -496,7 +496,7 @@
 			);
 			name = "visualizer-watch";
 			productName = "visualizer-watch";
-			productReference = 49D640A127B1333900E776C3 /* visualizer-watch.app */;
+			productReference = 49D640A127B1333900E776C3 /* SoundsGood.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		49D640A827B1333C00E776C3 /* visualizer-watch WatchKit Extension */ = {
@@ -779,16 +779,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "visualizer-watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.cjc2101.markc-visualizer";
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
+				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -805,16 +804,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = "visualizer-watch";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.cjc2101.markc-visualizer";
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
+				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -829,13 +827,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "visualizer-watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "visualizer-watch WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = SoundsGood;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = visualizer_watch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
@@ -844,8 +842,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.watchkitapp.watchkitextension";
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -861,13 +859,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "visualizer-watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "visualizer-watch WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = SoundsGood;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = visualizer_watch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
@@ -876,8 +874,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.watchkitapp.watchkitextension";
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -898,7 +896,7 @@
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.visualizer-watchTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -919,7 +917,7 @@
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.visualizer-watchTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -938,7 +936,7 @@
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.visualizer-watchUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -957,7 +955,7 @@
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer.visualizer-watchUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1090,13 +1088,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Visivo;
+				INFOPLIST_KEY_CFBundleDisplayName = SoundsGood;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1108,8 +1106,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer";
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1123,13 +1121,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
 				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Visivo;
+				INFOPLIST_KEY_CFBundleDisplayName = SoundsGood;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow mic usage";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1141,8 +1139,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.markc-visualizer";
+				MARKETING_VERSION = 0.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
