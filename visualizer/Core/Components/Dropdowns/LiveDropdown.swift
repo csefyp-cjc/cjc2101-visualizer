@@ -16,9 +16,11 @@ struct ScaleButtonStyle: ButtonStyle {
 
 struct LiveDropdown: View {
     @Binding var isPitchAccurate: Bool
+    @Binding var isWatchLive: Bool
     let start: () -> Void
     let stop: () -> Void
     let options: [Int]
+    var toggleWatchLive: () -> Void
     
     @State private var show = false
     @State private var value = 3
@@ -55,7 +57,6 @@ struct LiveDropdown: View {
             if(self.curTime >= Double(seconds)){
                 self.stopTimer()
             }
-            
         }
     }
     
@@ -66,6 +67,7 @@ struct LiveDropdown: View {
                     Button {
                         isLive ? stop() : start()
                         isLive.toggle()
+                        toggleWatchLive()                        
                     } label: {
                         Image(systemName: isLive ? "waveform.circle.fill" : "waveform")
                             .font(.system(size: isLive ? 28 : 22))
@@ -74,6 +76,14 @@ struct LiveDropdown: View {
                     .foregroundColor(.neutral.onSurface)
                     .clipShape(Circle())
                     .buttonStyle(ScaleButtonStyle())
+                    .onChange(of: isWatchLive) { value in
+                        if value {
+                            start()
+                            isLive = true
+                        } else {
+                            stopTimer()
+                        }
+                    }
                                         
                     if show {
                         ForEach(options, id: \.self){option in
@@ -125,11 +135,15 @@ struct LiveDropdown: View {
 struct LiveDropdown_Previews: PreviewProvider {
     @State static var isPitchAccurate: Bool = AudioViewModel().audio.isPitchAccurate
     
+    @State static var isWatchLive: Bool = WatchConnectivityViewModel().isWatchLive
+    
     static var previews: some View {
         LiveDropdown(isPitchAccurate: $isPitchAccurate,
+                     isWatchLive: $isWatchLive,
                      start: AudioViewModel().start,
                      stop: AudioViewModel().stop,
-                     options: [3, 5, 10]
+                     options: [3, 5, 10],
+                     toggleWatchLive: WatchConnectivityViewModel().toggleWatchLive
         )
             .previewLayout(.sizeThatFits)
     }

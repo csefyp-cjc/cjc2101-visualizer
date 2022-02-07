@@ -11,10 +11,12 @@ import SwiftUI
 struct visualizerApp: App {
     @StateObject var audioViewModel = AudioViewModel()
     
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(audioViewModel)                
+                .environmentObject(audioViewModel)
+                
         }
     }
 }

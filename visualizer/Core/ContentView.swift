@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
+    @StateObject var watchConnectivityViewModel = WatchConnectivityViewModel()
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     @State private var selection: Tab = .pitch
@@ -85,6 +86,7 @@ struct ContentView: View {
         case .pitch:
             PitchView()
                 .environmentObject(audioViewModel)
+                .environmentObject(watchConnectivityViewModel)
         case .timbre:
             TimbreView()
         }
@@ -94,7 +96,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        //        ContentView().previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
-        ContentView().environmentObject(AudioViewModel())
+        ContentView()
+            .environmentObject(AudioViewModel())
+            .environmentObject(WatchConnectivityViewModel())
     }
 }
