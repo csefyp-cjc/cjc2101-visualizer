@@ -157,6 +157,18 @@ class AudioViewModel: ObservableObject{
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
             self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
 //            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
+            
+            // TODO: maybe only compute these values when current view is timbre view
+            // update harmonicAmplitudes
+            let hamonics = getHarmonics(fundamental: pitchFrequency[0])
+            for (index, harmonic) in hamonics.enumerated() {
+                let harmonicIndex = Int(harmonic*2048/44100)
+                if(harmonicIndex > 255){
+                    self.audio.harmonicAmplitudes[index] = 0
+                }else{
+                    self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
+                }
+            }
         }
         
         self.updateIsPitchAccurate()
@@ -224,6 +236,14 @@ class AudioViewModel: ObservableObject{
             return 1.0
         }
         return value
+    }
+    
+    private func getHarmonics(fundamental: Float) -> [Float]{
+        var harmonics:[Float] = Array(repeating: 0.0, count:10)
+        for i in (0...9){
+            harmonics[i] = fundamental * Float(i)
+        }
+        return harmonics
     }
     
 

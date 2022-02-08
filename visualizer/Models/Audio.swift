@@ -14,6 +14,7 @@ struct Audio {
     var pitchFrequency: Float
     var pitchDetune: Float
     var isPitchAccurate: Bool
+    var harmonicAmplitudes: [Double]
     
     static let `default` = Audio(
         amplitudes: Array(repeating: 0.5, count: 256),
@@ -21,6 +22,7 @@ struct Audio {
         pitchNotation: "-",
         pitchFrequency: 0.0,
         pitchDetune: 0.0,
-        isPitchAccurate: false
+        isPitchAccurate: false,
+        harmonicAmplitudes: Array(repeating: 0.5, count: 10)
     )
 }
