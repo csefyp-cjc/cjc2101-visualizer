@@ -89,6 +89,8 @@ struct ContentView: View {
                 .environmentObject(watchConnectivityViewModel)
         case .timbre:
             TimbreView()
+                .environmentObject(audioViewModel)
+                .environmentObject(watchConnectivityViewModel)
         }
         
     }
