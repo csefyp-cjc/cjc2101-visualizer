@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PitchView: View {
     @EnvironmentObject var vm: AudioViewModel
+    @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
     @State private var touching: Bool = false
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false            
@@ -12,7 +13,7 @@ struct PitchView: View {
                 .ignoresSafeArea(.all)
             
             ZStack(alignment: .top) {
-                VStack {
+                VStack {                    
                     PitchLetter(pitchNotation: $vm.audio.pitchNotation,
                                 noteRepresentation: vm.settingVM.settings.noteRepresentation,
                                 changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
@@ -51,9 +52,11 @@ struct PitchView: View {
                     Spacer()
                     
                     LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
+                                 isWatchLive: $watchConnectVM.isWatchLive,
                                  start: vm.start,
                                  stop: vm.stop,
-                                 options: [3,5,10]
+                                 options: [3,5,10],
+                                 toggleWatchLive: watchConnectVM.toggleWatchLive
                     )
                         .padding(15)
                 }
