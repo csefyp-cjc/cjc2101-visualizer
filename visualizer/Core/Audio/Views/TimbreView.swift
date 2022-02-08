@@ -44,6 +44,7 @@ struct TimbreView: View {
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
                 .sheet(isPresented: $showSheet, content: {
                     SettingView(showTutorial: $showTutorial)
+                        .environmentObject(vm.settingVM)
                 })
                 
                 VStack{
