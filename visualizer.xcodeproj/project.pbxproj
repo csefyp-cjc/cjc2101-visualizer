@@ -16,6 +16,8 @@
 		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
 		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
+		49A8571727B429A200355ADB /* visualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571627B429A200355ADB /* visualizerTests.swift */; };
+		49A8571E27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */; };
 		49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */; };
 		49D640A427B1333C00E776C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D640A327B1333C00E776C3 /* Assets.xcassets */; };
 		49D640AA27B1333C00E776C3 /* visualizer-watch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49D640A927B1333C00E776C3 /* visualizer-watch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -61,6 +63,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		49A8571827B429A200355ADB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EEFAF8127130F7E00E3651D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EEFAF8827130F7E00E3651D;
+			remoteInfo = visualizer;
+		};
 		49D640AB27B1333C00E776C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8EEFAF8127130F7E00E3651D /* Project object */;
@@ -126,6 +135,9 @@
 		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		49A8571427B429A200355ADB /* visualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = visualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A8571627B429A200355ADB /* visualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerTests.swift; sourceTree = "<group>"; };
+		49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialViewModelTests.swift; sourceTree = "<group>"; };
 		49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialView.swift; sourceTree = "<group>"; };
 		49D640A127B1333900E776C3 /* SoundsGood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundsGood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D640A327B1333C00E776C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,6 +184,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		49A8571127B429A200355ADB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D640A627B1333C00E776C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +303,15 @@
 				491041D027ADB32100196A2D /* Audio.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		49A8571527B429A200355ADB /* visualizerTests */ = {
+			isa = PBXGroup;
+			children = (
+				49A8571627B429A200355ADB /* visualizerTests.swift */,
+				49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */,
+			);
+			path = visualizerTests;
 			sourceTree = "<group>";
 		};
 		49B8804C27AEDDFD004F985C /* Audio */ = {
@@ -432,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				8EEFAF8B27130F7E00E3651D /* visualizer */,
+				49A8571527B429A200355ADB /* visualizerTests */,
 				49D640A227B1333A00E776C3 /* visualizer-watch */,
 				49D640AD27B1333C00E776C3 /* visualizer-watch WatchKit Extension */,
 				49D640C627B1333E00E776C3 /* visualizer-watchTests */,
@@ -449,6 +478,7 @@
 				49D640A927B1333C00E776C3 /* visualizer-watch WatchKit Extension.appex */,
 				49D640C327B1333E00E776C3 /* visualizer-watchTests.xctest */,
 				49D640CD27B1333E00E776C3 /* visualizer-watchUITests.xctest */,
+				49A8571427B429A200355ADB /* visualizerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -482,6 +512,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		49A8571327B429A200355ADB /* visualizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A8571C27B429A200355ADB /* Build configuration list for PBXNativeTarget "visualizerTests" */;
+			buildPhases = (
+				49A8571027B429A200355ADB /* Sources */,
+				49A8571127B429A200355ADB /* Frameworks */,
+				49A8571227B429A200355ADB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49A8571927B429A200355ADB /* PBXTargetDependency */,
+			);
+			name = visualizerTests;
+			productName = visualizerTests;
+			productReference = 49A8571427B429A200355ADB /* visualizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		49D640A027B1333900E776C3 /* visualizer-watch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49D640E327B1333E00E776C3 /* Build configuration list for PBXNativeTarget "visualizer-watch" */;
@@ -587,6 +635,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					49A8571327B429A200355ADB = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 8EEFAF8827130F7E00E3651D;
+					};
 					49D640A027B1333900E776C3 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -624,6 +676,7 @@
 			projectRoot = "";
 			targets = (
 				8EEFAF8827130F7E00E3651D /* visualizer */,
+				49A8571327B429A200355ADB /* visualizerTests */,
 				49D640A027B1333900E776C3 /* visualizer-watch */,
 				49D640A827B1333C00E776C3 /* visualizer-watch WatchKit Extension */,
 				49D640C227B1333E00E776C3 /* visualizer-watchTests */,
@@ -633,6 +686,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		49A8571227B429A200355ADB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D6409F27B1333900E776C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,6 +737,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		49A8571027B429A200355ADB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49A8571727B429A200355ADB /* visualizerTests.swift in Sources */,
+				49A8571E27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49D640A527B1333C00E776C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -749,6 +818,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		49A8571927B429A200355ADB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EEFAF8827130F7E00E3651D /* visualizer */;
+			targetProxy = 49A8571827B429A200355ADB /* PBXContainerItemProxy */;
+		};
 		49D640AC27B1333C00E776C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 49D640A827B1333C00E776C3 /* visualizer-watch WatchKit Extension */;
@@ -772,6 +846,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		49A8571A27B429A200355ADB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQS593TJVN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.visualizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/visualizer.app/visualizer";
+			};
+			name = Debug;
+		};
+		49A8571B27B429A200355ADB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQS593TJVN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.visualizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/visualizer.app/visualizer";
+			};
+			name = Release;
+		};
 		49D640D927B1333E00E776C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1151,6 +1263,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49A8571C27B429A200355ADB /* Build configuration list for PBXNativeTarget "visualizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A8571A27B429A200355ADB /* Debug */,
+				49A8571B27B429A200355ADB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49D640E227B1333E00E776C3 /* Build configuration list for PBXNativeTarget "visualizer-watch WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
