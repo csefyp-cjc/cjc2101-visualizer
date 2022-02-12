@@ -51,6 +51,7 @@ struct InteractiveTutorialView: View {
                     .cornerRadius(14)
                     .position(x: vm.tutorials[vm.currentPage].textPosition.width,
                               y: vm.tutorials[vm.currentPage].textPosition.height)
+                    .accessibilityIdentifier("Tutorial Hints Text")
                 
             }
             .padding(.horizontal, 16)
