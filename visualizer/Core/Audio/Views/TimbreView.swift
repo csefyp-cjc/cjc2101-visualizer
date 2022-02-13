@@ -19,6 +19,14 @@ struct TimbreView: View {
             Color.neutral.background
                 .ignoresSafeArea(.all)
             ZStack(alignment: .top) {
+                VStack{
+                    PitchLetter(pitchNotation: $vm.audio.pitchNotation,
+                                noteRepresentation: vm.settingVM.settings.noteRepresentation,
+                                changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
+                    )
+                }
+                .padding(.top, 72)
+                .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
                 VStack {
                     HStack(alignment: .top){
                         MoreButton(action: {showSheet.toggle()})

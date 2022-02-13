@@ -160,7 +160,7 @@ class AudioViewModel: ObservableObject{
             
             // TODO: maybe only compute these values when current view is timbre view
             // update harmonicAmplitudes
-            let hamonics = getHarmonics(fundamental: pitchFrequency[0])
+            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: 10) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
                 if(harmonicIndex > 255){
@@ -238,9 +238,9 @@ class AudioViewModel: ObservableObject{
         return value
     }
     
-    private func getHarmonics(fundamental: Float) -> [Float]{
-        var harmonics:[Float] = Array(repeating: 0.0, count:10)
-        for i in (0...9){
+    private func getHarmonics(fundamental: Float, n: Int) -> [Float]{
+        var harmonics:[Float] = Array(repeating: 0.0, count:n)
+        for i in (0...n-1){
             harmonics[i] = fundamental * Float(i)
         }
         return harmonics
