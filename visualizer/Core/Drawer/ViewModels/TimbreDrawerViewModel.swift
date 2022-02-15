@@ -8,5 +8,13 @@
 import Foundation
 
 class TimbreDrawerViewModel: ObservableObject{
+    @Published var timbreDrawer: TimbreDrawer
     
+    init() {
+        self.timbreDrawer = TimbreDrawer.default
+    }
+    
+    func isSelected(_ type: TimbreDrawer.InstrumentTypes) -> Bool {
+        return type == self.timbreDrawer.selected
+    }
 }

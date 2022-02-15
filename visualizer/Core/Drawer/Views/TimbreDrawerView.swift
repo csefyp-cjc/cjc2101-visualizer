@@ -8,37 +8,38 @@
 import SwiftUI
 
 struct TimbreDrawerView: View {
+    @EnvironmentObject var vm: TimbreDrawerViewModel
+    @Binding var isShowing: Bool
     
-    func test() -> Void {
-        print("Instrument Button Clicked")
+    func choose(instrument: TimbreDrawer.InstrumentTypes) -> Void {
+        vm.timbreDrawer.selected = instrument
     }
     
     var body: some View {
-        VStack(alignment: .leading){
-            Text("Instruments")
-                .font(.heading.small)
+        DrawerView(isShowing: $isShowing){
             VStack(alignment: .leading){
-                HStack{
-                    InstrumentButton(action: self.test, type: TimbreDrawer.InstrumentTypes.piano)
-                    Spacer()
-                    InstrumentButton(action: self.test, type:TimbreDrawer.InstrumentTypes.violin)
-                    Spacer()
-                    InstrumentButton(action: self.test, type: TimbreDrawer.InstrumentTypes.cello)
-                }
-                HStack{
-                    InstrumentButton(action: self.test, type: TimbreDrawer.InstrumentTypes.guitar)
-                }
-            }.padding()
+                Text("Instruments")
+                    .font(.heading.small)
+                VStack(alignment: .leading){
+                    HStack{
+                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.piano, selected: vm.isSelected(TimbreDrawer.InstrumentTypes.piano))
+                        Spacer()
+                        InstrumentButton(action: self.choose, type:TimbreDrawer.InstrumentTypes.violin,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.violin))
+                        Spacer()
+                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.cello,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.cello))
+                    }
+                    HStack{
+                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.guitar,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.guitar))
+                    }
+                }.padding()
+            }
+            .padding(EdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24))
         }
-        .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
-        .padding(EdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24))
-        .foregroundColor(.neutral.onBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 25))
     }
 }
 
 struct TimbreDrawerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimbreDrawerView()
+        TimbreDrawerView(isShowing: .constant(true)).environmentObject(TimbreDrawerViewModel())
     }
 }

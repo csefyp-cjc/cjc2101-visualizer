@@ -41,9 +41,9 @@
 		49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */; };
 		8E09212327BA981900F540B6 /* TimbreDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09212227BA981900F540B6 /* TimbreDrawerView.swift */; };
 		8E09212527BA994900F540B6 /* InstrumentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09212427BA994900F540B6 /* InstrumentButton.swift */; };
-		8E09213427BAAD9C00F540B6 /* SheetWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09213327BAAD9C00F540B6 /* SheetWrapper.swift */; };
 		8E09213627BB7F4900F540B6 /* TimbreDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09213527BB7F4900F540B6 /* TimbreDrawerViewModel.swift */; };
 		8E09213827BB803A00F540B6 /* TimbreDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09213727BB803A00F540B6 /* TimbreDrawer.swift */; };
+		8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */; };
 		8E63BE2527B29DB6007735DF /* Harmonics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E63BE2427B29DB6007735DF /* Harmonics.swift */; };
 		8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */; };
 		8E68DC322747EE8800F418E6 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68DC312747EE8800F418E6 /* AudioKit */; };
@@ -157,9 +157,9 @@
 		49F9A501279BDF6600AC4A4A /* InteractiveTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorial.swift; sourceTree = "<group>"; };
 		8E09212227BA981900F540B6 /* TimbreDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreDrawerView.swift; sourceTree = "<group>"; };
 		8E09212427BA994900F540B6 /* InstrumentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentButton.swift; sourceTree = "<group>"; };
-		8E09213327BAAD9C00F540B6 /* SheetWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetWrapper.swift; sourceTree = "<group>"; };
 		8E09213527BB7F4900F540B6 /* TimbreDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreDrawerViewModel.swift; sourceTree = "<group>"; };
 		8E09213727BB803A00F540B6 /* TimbreDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreDrawer.swift; sourceTree = "<group>"; };
+		8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		8E63BE2427B29DB6007735DF /* Harmonics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harmonics.swift; sourceTree = "<group>"; };
 		8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		8E8DB879273802FF0010FE7E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
@@ -457,7 +457,7 @@
 				49DECB13273A7AE500C992CE /* Indicators */,
 				49DECB12273A7ACC00C992CE /* Buttons */,
 				8E8DB88127380B630010FE7E /* PitchLetter.swift */,
-				8E09213327BAAD9C00F540B6 /* SheetWrapper.swift */,
+				8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -779,6 +779,7 @@
 				8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */,
 				491041D127ADB32100196A2D /* Audio.swift in Sources */,
 				8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */,
+				8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */,
 				8E09212327BA981900F540B6 /* TimbreDrawerView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
@@ -787,7 +788,6 @@
 				8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */,
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
 				49EA05B727B168DA0036EED4 /* WatchConnectivityViewModel.swift in Sources */,
-				8E09213427BAAD9C00F540B6 /* SheetWrapper.swift in Sources */,
 				498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */,
 				49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,

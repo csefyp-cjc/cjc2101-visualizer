@@ -13,7 +13,6 @@ struct TimbreView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
-    @State private var sheetState: SheetState = .none
 
     var body: some View {
         ZStack {
@@ -38,7 +37,6 @@ struct TimbreView: View {
                         
                         DrawerButton(action: {
                             showDrawer.toggle()
-                            sheetState = .quarter
                         })
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
@@ -65,12 +63,9 @@ struct TimbreView: View {
                     Harmonics(harmonics: vm.audio.harmonicAmplitudes)
                 }
             }
-            SheetWrapper(sheetState: sheetState){
-                TimbreDrawerView()
-                    .zIndex(11)
-                    .background(Color.neutral.background)
-            } closeSheet: {
-                sheetState = .none
+            
+            ZStack{
+                TimbreDrawerView(isShowing: $showDrawer).environmentObject(vm.timbreDrawerVM)
             }
         }
     }
