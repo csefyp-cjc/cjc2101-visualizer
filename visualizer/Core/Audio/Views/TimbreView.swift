@@ -13,11 +13,13 @@ struct TimbreView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
-    
+    @State private var sheetState: SheetState = .none
+
     var body: some View {
         ZStack {
             Color.neutral.background
                 .ignoresSafeArea(.all)
+            
             ZStack(alignment: .top) {
                 VStack{
                     PitchLetter(pitchNotation: $vm.audio.pitchNotation,
@@ -34,7 +36,10 @@ struct TimbreView: View {
                         
                         Spacer()
                         
-                        DrawerButton(action: {showDrawer.toggle()})
+                        DrawerButton(action: {
+                            showDrawer.toggle()
+                            sheetState = .quarter
+                        })
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
                         LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
@@ -59,6 +64,13 @@ struct TimbreView: View {
                     Spacer()
                     Harmonics(harmonics: vm.audio.harmonicAmplitudes)
                 }
+            }
+            SheetWrapper(sheetState: sheetState){
+                TimbreDrawerView()
+                    .zIndex(11)
+                    .background(Color.neutral.background)
+            } closeSheet: {
+                sheetState = .none
             }
         }
     }

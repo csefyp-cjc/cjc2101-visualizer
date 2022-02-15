@@ -19,7 +19,7 @@ struct DrawerButton: View {
 
 struct DrawerBtn_Previews: PreviewProvider {
     static func test() -> Void {
-        print("More Button Clicked")
+        print("Drawer Button Clicked")
     }
     
     static var previews: some View {
