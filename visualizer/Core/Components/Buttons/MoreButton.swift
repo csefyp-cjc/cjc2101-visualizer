@@ -21,6 +21,7 @@ struct MoreButton: View {
                 .clipShape(Circle())
                 .font(.system(size: 22))
         }
+        .accessibilityIdentifier("More Button")
     }
 }
 

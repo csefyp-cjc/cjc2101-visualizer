@@ -153,6 +153,7 @@ struct SettingView: View {
                     .padding(16)
                     .background(Color.neutral.surface)
                     .cornerRadius(8)
+                    .accessibilityIdentifier("Interactive Tutorial Button")
                 }
                                      
             }
