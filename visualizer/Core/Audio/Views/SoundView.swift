@@ -24,9 +24,6 @@ struct SoundView: View {
                     
                     Spacer()
                     
-                    DrawerButton()
-                        .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 5))
-                    
                     LiveButton(action: vm.toggle)
                         .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 15))
                 }

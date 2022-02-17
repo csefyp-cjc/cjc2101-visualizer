@@ -80,10 +80,12 @@ struct PitchView_Previews: PreviewProvider {
     static var previews: some View {
         PitchView()
             .environmentObject(AudioViewModel())
+            .environmentObject(WatchConnectivityViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
         
         PitchView()
             .environmentObject(AudioViewModel())
+            .environmentObject(WatchConnectivityViewModel())
             .previewDevice(PreviewDevice(rawValue: "iPhone-13-Pro"))
     }
 }

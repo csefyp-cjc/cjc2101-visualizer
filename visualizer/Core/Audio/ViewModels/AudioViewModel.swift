@@ -21,10 +21,14 @@ class AudioViewModel: ObservableObject{
     
     // Subscribed from child ViewModels
     @Published var settings: Setting = Setting.default
+    
+    @Published var timbreDrawer: TimbreDrawer = TimbreDrawer.default
         
     // Child ViewModels
     private var cancellables = Set<AnyCancellable>()
     @Published var settingVM = SettingViewModel()
+    
+    @Published var timbreDrawerVM = TimbreDrawerViewModel()
         
         
     // AudioKit
@@ -157,6 +161,18 @@ class AudioViewModel: ObservableObject{
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
             self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
 //            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
+            
+            // TODO: maybe only compute these values when current view is timbre view
+            // update harmonicAmplitudes
+            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: 10) //TODO: adjustable n
+            for (index, harmonic) in hamonics.enumerated() {
+                let harmonicIndex = Int(harmonic*2048/44100)
+                if(harmonicIndex > 255){
+                    self.audio.harmonicAmplitudes[index] = 0
+                }else{
+                    self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
+                }
+            }
         }
         
         self.updateIsPitchAccurate()
@@ -224,6 +240,14 @@ class AudioViewModel: ObservableObject{
             return 1.0
         }
         return value
+    }
+    
+    private func getHarmonics(fundamental: Float, n: Int) -> [Float]{
+        var harmonics:[Float] = Array(repeating: 0.0, count:n)
+        for i in (0...n-1){
+            harmonics[i] = fundamental * Float(i)
+        }
+        return harmonics
     }
     
 

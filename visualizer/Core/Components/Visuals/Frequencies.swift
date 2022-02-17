@@ -24,13 +24,13 @@ struct Frequencies: View {
                     ForEach(0...amplitudes.count-1, id: \.self){ i in
                         VStack{
                             if (i == peakBarIndex) {
-                                VBar(x: amplitudes[i]*7.0, color: .accent.highlight, showValue: true, peakFrequency: peakFrequency)
+                                VBar(val: amplitudes[i]*7.0, width: 4, color: .accent.highlight, showValue: true, peakFrequency: peakFrequency)
                                 
                             } else {
                                 if(isPitchAccurate){
-                                    VBar(x: amplitudes[i]*7.0, color: .accent.successVariant, showValue: false)
+                                    VBar(val: amplitudes[i]*7.0, width: 4, color: .accent.successVariant, showValue: false)
                                 }else{
-                                    VBar(x: amplitudes[i]*7.0, color: .foundation.secondary, showValue: false)
+                                    VBar(val: amplitudes[i]*7.0, width: 4, color: .foundation.secondary, showValue: false)
                                 }
                             }
                         }

@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct DrawerButton: View {
+    let action: () -> Void
+    
     var body: some View{
         Button{
-            
+            self.action()
         }label:{
-            Image(systemName: "square.stack.3d.down.right.fill")
+            Image(systemName: "tray.fill")
                 .frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)
                 .background(Color.neutral.surface)
@@ -16,8 +18,12 @@ struct DrawerButton: View {
 }
 
 struct DrawerBtn_Previews: PreviewProvider {
+    static func test() -> Void {
+        print("Drawer Button Clicked")
+    }
+    
     static var previews: some View {
-        DrawerButton()
+        DrawerButton(action: self.test)
             .previewLayout(.fixed(width: 38, height: 38))
     }
 }
