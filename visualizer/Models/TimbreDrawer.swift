@@ -18,7 +18,7 @@ struct TimbreDrawer: Codable {
         case piano
         case violin
         case cello
-        case guitar
+        case flute
         
         var id: String { rawValue }
         
@@ -27,7 +27,7 @@ struct TimbreDrawer: Codable {
             case .piano: return "Piano"
             case .violin: return "Violin"
             case .cello: return "Cello"
-            case .guitar: return "Guitar"
+            case .flute: return "Flute"
             }
           }
         
@@ -36,7 +36,7 @@ struct TimbreDrawer: Codable {
             case .piano: return "pianokeys"
             case .violin: return "violin"
             case .cello: return "cello"
-            case .guitar: return "guitars"
+            case .flute: return "flute"
             }
         }
     }

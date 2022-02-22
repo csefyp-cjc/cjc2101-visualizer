@@ -26,6 +26,17 @@ func pitchFromFrequency(_ frequency: Float, _ noteRepresentation: Setting.NoteRe
     }
 }
 
+func mapNearestFrequency(_ frequency: Float) -> Float{
+    if (frequency > C0) {
+        let steps: Int = Int(round(12 * log2(frequency / C0)))   // Number of semitone from C0 to frequency
+        let nearestNoteFrequency =  pow(2, Float(steps) / 12) * C0
+        
+        return nearestNoteFrequency
+    } else {
+        return 0
+    }
+}
+
 func pitchDetuneFromFrequency(_ frequency: Float) -> Float {
     if (frequency > C0) {
         let steps: Int = Int(round(12 * log2(frequency / C0)))   // Number of semitone from C0 to frequency

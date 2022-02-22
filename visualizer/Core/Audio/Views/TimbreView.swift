@@ -60,7 +60,15 @@ struct TimbreView: View {
                 
                 VStack{
                     Spacer()
-                    Harmonics(harmonics: vm.audio.harmonicAmplitudes)
+                    ZStack {
+                        Harmonics(harmonics: vm.audio.harmonicAmplitudes,
+                                  isReference: false
+                        )
+
+                        Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
+                                  isReference: true
+                        )                        
+                    }
                 }
             }
             

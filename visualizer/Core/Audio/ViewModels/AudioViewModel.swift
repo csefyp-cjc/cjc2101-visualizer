@@ -18,6 +18,7 @@ enum UpdateMode{
 
 class AudioViewModel: ObservableObject{
     @Published var audio: Audio = Audio.default
+    @Published var referenceHarmonicAmplitudes: [Double] = Array(repeating: 0.5, count: 10)
     
     // Subscribed from child ViewModels
     @Published var settings: Setting = Setting.default
@@ -59,6 +60,8 @@ class AudioViewModel: ObservableObject{
         
         self.setupAudioEngine()
         self.addSubscribers()
+        
+        self.updateReferenceTimbre()
     }
     
     private func setupAudioEngine() {
@@ -81,6 +84,11 @@ class AudioViewModel: ObservableObject{
     private func addSubscribers() {
         settingVM.$settings.sink { [weak self] (returnedSettings) in
             self?.settings = returnedSettings
+        }
+        .store(in: &cancellables)
+        
+        timbreDrawerVM.$timbreDrawer.sink { [weak self] (returnedTimbreDrawer) in
+            self?.timbreDrawer = returnedTimbreDrawer
         }
         .store(in: &cancellables)
     }
@@ -173,8 +181,9 @@ class AudioViewModel: ObservableObject{
                     self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
                 }
             }
+            
         }
-        
+        self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
     }
     
@@ -222,6 +231,38 @@ class AudioViewModel: ObservableObject{
                         }
                         self.audio.amplitudes[i/2] = self.restrict(value: mappedAmplitude)
                     }
+                }
+            }
+        }
+    }
+    
+    func updateReferenceTimbre() {
+        var scaledCelloA2: [Double]
+        
+        switch self.timbreDrawer.selected {
+        case .cello:
+            scaledCelloA2 = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        case .flute:
+            scaledCelloA2 = flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        default:
+            scaledCelloA2 = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        }
+                
+        if (!scaledCelloA2.isEmpty) {
+            for (i, amplitude) in scaledCelloA2.enumerated() {
+                scaledCelloA2[i] = amplitude/10e1
+                scaledCelloA2[i] = Double(20.0 * log10(scaledCelloA2[i]))
+                scaledCelloA2[i] = (scaledCelloA2[i] + 50) / 29.80
+            }
+
+            let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: 10) //TODO: adjustable n
+            for (index, harmonic) in hamonics.enumerated() {
+                let harmonicIndex = Int(harmonic*2048/44100)
+                if(harmonicIndex > 255){
+                    self.referenceHarmonicAmplitudes[index] = 0
+                }else{
+                    self.referenceHarmonicAmplitudes[index] = scaledCelloA2[Int(harmonic*2048/44100)]
+
                 }
             }
         }

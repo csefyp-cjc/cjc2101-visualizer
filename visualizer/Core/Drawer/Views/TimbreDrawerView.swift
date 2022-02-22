@@ -29,7 +29,7 @@ struct TimbreDrawerView: View {
                         InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.cello,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.cello))
                     }
                     HStack{
-                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.guitar,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.guitar))
+                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.flute,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.flute))
                     }
                 }.padding()
             }
