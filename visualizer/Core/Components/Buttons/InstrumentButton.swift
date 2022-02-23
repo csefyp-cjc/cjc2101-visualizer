@@ -18,22 +18,22 @@ struct InstrumentButton: View {
                 self.action(type)
             }label:{
                 Image(systemName: type.icon)
-                    .frame(width: 48, height: 48)
+                    .font(.system(size: 24))
+                    .frame(width: 64, height: 64)
                     .foregroundColor(.neutral.onSurface)
                     .background(Color.neutral.surface)
-                    .cornerRadius(15)
+                    .cornerRadius(14)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.neutral.surface, lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.neutral.surface, lineWidth: 3)
                     )
                     .if(selected){
                         $0.overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.black, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(Color.foundation.primary, lineWidth: 3)
                         )
                     }
 //                    .clipShape(Rectangle())
-//                    .font(.system(size: 22))
 //                    .cornerRadius(15)
             }
             Text(type.label).font(.label.small)

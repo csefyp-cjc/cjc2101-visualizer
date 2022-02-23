@@ -8,6 +8,8 @@ struct ContentView: View {
     @State private var selection: Tab = .pitch
     @State private var selectionSidebar: Tab? = .pitch
     
+    @State private var isShowingModal: Bool = false    
+    
     var isCompact: Bool { horizontalSizeClass == .compact}
     
     enum Tab: CaseIterable, Identifiable {
@@ -47,17 +49,36 @@ struct ContentView: View {
     //TODO: tab view animation
     var body: some View {
         if isCompact {
-            TabView(selection: $selection){
-                ForEach(Tab.allCases) { item in
-                views(item)
-                        .tabItem{
-                            Label(item.title, systemImage: item.systemImage)
-                        }
-                        .tag(item)
-                        
+            ZStack {
+                TabView(selection: $selection){
+                    ForEach(Tab.allCases) { item in
+                    views(item)
+                            .tabItem{
+                                Label(item.title, systemImage: item.systemImage)
+                            }
+                            .tag(item)
+                            
+                    }
                 }
+                .accentColor(.foundation.primary)
+                
+                
+                if (isShowingModal) {
+                    HStack {
+                        Spacer()
+                        
+                        VStack {}
+                        .frame(maxWidth: .infinity,maxHeight: 80)
+                        .background(Color.neutral.background)
+                        
+                    }
+                    .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .bottom)
+                    .ignoresSafeArea(.all)
+                }
+                    
+                    
+               
             }
-            .accentColor(.foundation.primary)
         } else {
             NavigationView {
                 List(Tab.allCases, selection: $selectionSidebar) { item in
@@ -88,7 +109,7 @@ struct ContentView: View {
                 .environmentObject(audioViewModel)
                 .environmentObject(watchConnectivityViewModel)
         case .timbre:
-            TimbreView()
+            TimbreView(isShowingModal: $isShowingModal)
                 .environmentObject(audioViewModel)
                 .environmentObject(watchConnectivityViewModel)
         }

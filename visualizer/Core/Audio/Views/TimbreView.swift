@@ -13,6 +13,8 @@ struct TimbreView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
+    
+    @Binding var isShowingModal: Bool
 
     var body: some View {
         ZStack {
@@ -37,6 +39,7 @@ struct TimbreView: View {
                         
                         DrawerButton(action: {
                             showDrawer.toggle()
+                            isShowingModal.toggle()
                         })
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
@@ -73,15 +76,18 @@ struct TimbreView: View {
             }
             
             ZStack{
-                TimbreDrawerView(isShowing: $showDrawer).environmentObject(vm.timbreDrawerVM)
+                TimbreDrawerView(isShowing: $showDrawer,
+                                 isShowingModal: $isShowingModal
+                ).environmentObject(vm.timbreDrawerVM)
             }
         }
     }
 }
 
 struct TimbreView_Previews: PreviewProvider {
+    @State static var isShowingModal: Bool = false
     static var previews: some View {
-        TimbreView()
+        TimbreView(isShowingModal: $isShowingModal)
             .environmentObject(AudioViewModel())
             .environmentObject(WatchConnectivityViewModel())
     }
