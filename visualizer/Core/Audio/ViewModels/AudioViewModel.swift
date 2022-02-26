@@ -237,22 +237,25 @@ class AudioViewModel: ObservableObject{
     }
     
     func updateReferenceTimbre() {
-        var scaledCelloA2: [Double]
+        var soundSampleFFTData: [Double]
         
         switch self.timbreDrawer.selected {
         case .cello:
-            scaledCelloA2 = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            soundSampleFFTData = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         case .flute:
-            scaledCelloA2 = flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            soundSampleFFTData = flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         default:
-            scaledCelloA2 = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            soundSampleFFTData = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         }
                 
-        if (!scaledCelloA2.isEmpty) {
-            for (i, amplitude) in scaledCelloA2.enumerated() {
-                scaledCelloA2[i] = amplitude/10e1
-                scaledCelloA2[i] = Double(20.0 * log10(scaledCelloA2[i]))
-                scaledCelloA2[i] = (scaledCelloA2[i] + 50) / 29.80
+        if (!soundSampleFFTData.isEmpty) {
+//            Normalize by dividing the max so that it will cap to 1
+            let maxAmplitude: Double = soundSampleFFTData.max()!
+            for (i, amplitude) in soundSampleFFTData.enumerated() {
+                soundSampleFFTData[i] = amplitude / maxAmplitude
+//                soundSampleFFTData[i] = amplitude/10e1
+//                soundSampleFFTData[i] = Double(20.0 * log10(soundSampleFFTData[i]))
+//                soundSampleFFTData[i] = (soundSampleFFTData[i] + 50) / 29.80
             }
 
             let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: 10) //TODO: adjustable n
@@ -261,10 +264,12 @@ class AudioViewModel: ObservableObject{
                 if(harmonicIndex > 255){
                     self.referenceHarmonicAmplitudes[index] = 0
                 }else{
-                    self.referenceHarmonicAmplitudes[index] = scaledCelloA2[Int(harmonic*2048/44100)]
+                    self.referenceHarmonicAmplitudes[index] = soundSampleFFTData[Int(harmonic*2048/44100)]
 
                 }
             }
+            print("Ref\(self.referenceHarmonicAmplitudes)")
+            print("User\(self.audio.harmonicAmplitudes)")
         }
     }
     
@@ -285,9 +290,10 @@ class AudioViewModel: ObservableObject{
     
     private func getHarmonics(fundamental: Float, n: Int) -> [Float]{
         var harmonics:[Float] = Array(repeating: 0.0, count:n)
-        for i in (0...n-1){
-            harmonics[i] = fundamental * Float(i)
+        for i in (1...n){
+            harmonics[i-1] = fundamental * Float(i)
         }
+        print(harmonics)
         return harmonics
     }
     
