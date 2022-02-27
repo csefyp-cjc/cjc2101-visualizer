@@ -17,8 +17,9 @@ enum UpdateMode{
 }
 
 class AudioViewModel: ObservableObject{
+    
     @Published var audio: Audio = Audio.default
-    @Published var referenceHarmonicAmplitudes: [Double] = Array(repeating: 0.5, count: 10)
+    @Published var referenceHarmonicAmplitudes: [Double]
     
     // Subscribed from child ViewModels
     @Published var settings: Setting = Setting.default
@@ -58,10 +59,13 @@ class AudioViewModel: ObservableObject{
         self.outputLimiter = PeakLimiter(silentMixer)
         self.engine.output = outputLimiter
         
+        self.referenceHarmonicAmplitudes = Array(repeating: 0.5, count: Audio.default.totalHarmonics)
+        
         self.setupAudioEngine()
         self.addSubscribers()
         
         self.updateReferenceTimbre()
+        
     }
     
     private func setupAudioEngine() {
@@ -172,7 +176,7 @@ class AudioViewModel: ObservableObject{
             
             // TODO: maybe only compute these values when current view is timbre view
             // update harmonicAmplitudes
-            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: 10) //TODO: adjustable n
+            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
                 if(harmonicIndex > 255){
@@ -258,7 +262,7 @@ class AudioViewModel: ObservableObject{
 //                soundSampleFFTData[i] = (soundSampleFFTData[i] + 50) / 29.80
             }
 
-            let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: 10) //TODO: adjustable n
+            let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
                 if(harmonicIndex > 255){
