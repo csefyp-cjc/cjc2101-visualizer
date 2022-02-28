@@ -13,32 +13,44 @@ struct Harmonics: View {
     var isReference: Bool
     
     var body: some View {
-        VStack{
-            HStack{
-                ForEach((1...harmonics.count), id: \.self){i in
-                    FixedSpacer()
-                    VStack{
-                        VBar(val: harmonics[i-1]*7.0,
-                             width: 18,
-                             color: isReference ? Color.accent.highlight.opacity(0.4) : Color(red: 0.9607843137, green: 0.2039215686, blue: 0.2039215686, opacity: 1),
-                             showValue: false
-                        )
+        GeometryReader { geometry in
+            VStack{
+                HStack{
+                    ForEach((1...harmonics.count), id: \.self){i in
+                        Spacer()
+                        
+                        VStack{
+                            VBar(val: harmonics[i-1]*7.0,
+                                 width: Int(geometry.size.width) / (harmonics.count + harmonics.count / 2),
+                                 color: isReference ? Color.accent.highlight.opacity(0.4) : Color(red: 0.9607843137, green: 0.2039215686, blue: 0.2039215686, opacity: 1),
+                                 showValue: false
+                            )
+                        }
+                        if (i == harmonics.count) {
+                            Spacer()
+                        }
                     }
-                    FixedSpacer()
+                }
+                
+                Rectangle()
+                    .fill(Color.neutral.axis)
+                    .frame(width: .infinity, height: 2)
+                
+                HStack{
+                    ForEach((1...harmonics.count), id: \.self){i in
+                        Spacer()
+                        VStack{
+                            Text("\(i)")
+                                .frame(width: 18)
+                                .foregroundColor(.neutral.onAxis)
+                        }
+                        Spacer()
+                    }
                 }
             }
-            Rectangle()
-                .fill(Color.neutral.axis)
-                .frame(width:.infinity, height: 2)
-            HStack{
-                ForEach((1...harmonics.count), id: \.self){i in
-                    FixedSpacer()
-                    VStack{
-                        Text("\(i)").frame(width:18).foregroundColor(.neutral.onAxis)
-                    }
-                    FixedSpacer()
-                }
-            }
+            .frame(width: geometry.size.width,
+                   height: geometry.size.height,
+                   alignment: .bottom)
         }
     }
 }
