@@ -65,7 +65,8 @@ struct PitchView: View {
             
             ZStack {
                 if (showTutorial) {
-                    InteractiveTutorialView(showTutorial: $showTutorial)
+                    InteractiveTutorialView(showTutorial: $showTutorial,
+                                            page: InteractiveTutorial.Page.pitch)
                         .animation(.default)
                 }
             }

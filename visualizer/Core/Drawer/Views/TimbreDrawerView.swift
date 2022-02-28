@@ -24,22 +24,30 @@ struct TimbreDrawerView: View {
                 
                 VStack(alignment: .leading){
                     HStack {
-                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.piano, selected: vm.isSelected(TimbreDrawer.InstrumentTypes.piano))
+                        InstrumentButton(action: choose,
+                                         type: TimbreDrawer.InstrumentTypes.piano,
+                                         selected: vm.isSelected(TimbreDrawer.InstrumentTypes.piano))
                         
                         Spacer()
                         
-                        InstrumentButton(action: self.choose, type:TimbreDrawer.InstrumentTypes.violin,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.violin))
+                        InstrumentButton(action: choose,
+                                         type:TimbreDrawer.InstrumentTypes.violin,
+                                         selected: vm.isSelected(TimbreDrawer.InstrumentTypes.violin))
                         
                         Spacer()
                         
-                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.cello,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.cello))
+                        InstrumentButton(action: choose,
+                                         type: TimbreDrawer.InstrumentTypes.cello,
+                                         selected: vm.isSelected(TimbreDrawer.InstrumentTypes.cello))
                     }
                     
                     Spacer()
                         .frame(height: 24)
                     
                     HStack {
-                        InstrumentButton(action: self.choose, type: TimbreDrawer.InstrumentTypes.flute,selected: vm.isSelected(TimbreDrawer.InstrumentTypes.flute))
+                        InstrumentButton(action: choose,
+                                         type: TimbreDrawer.InstrumentTypes.flute,
+                                         selected: vm.isSelected(TimbreDrawer.InstrumentTypes.flute))
                     }
                 }
                 .padding()

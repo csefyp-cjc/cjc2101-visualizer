@@ -22,8 +22,19 @@ struct Highlight: Shape {
 }
 
 struct InteractiveTutorialView: View {
-    @StateObject private var vm: InteractiveTutorialViewModel = InteractiveTutorialViewModel()
-    @Binding var showTutorial: Bool;
+    @StateObject private var vm: InteractiveTutorialViewModel
+    @Binding var showTutorial: Bool
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var page: InteractiveTutorial.Page
+    
+    var isCompact: Bool { horizontalSizeClass == .compact}
+    
+    init(showTutorial: Binding<Bool>, page: InteractiveTutorial.Page) {
+        self._vm = StateObject(wrappedValue: InteractiveTutorialViewModel(page: page))
+        self._showTutorial = showTutorial
+        self.page = page
+    }
     
     var body: some View {
         ZStack {
@@ -32,7 +43,7 @@ struct InteractiveTutorialView: View {
                     Highlight(
                         size: vm.tutorials[vm.currentPage].size,
                         offsetX: vm.tutorials[vm.currentPage].offset.width,
-                        offsetY: vm.tutorials[vm.currentPage].offset.height
+                        offsetY: isCompact ? vm.tutorials[vm.currentPage].offset.height : vm.tutorials[vm.currentPage].offset.height + 64
                     )
                         .fill(style: FillStyle(eoFill: true))
                 )
@@ -50,7 +61,7 @@ struct InteractiveTutorialView: View {
                     .font(.text.paragraph)
                     .cornerRadius(14)
                     .position(x: vm.tutorials[vm.currentPage].textPosition.width,
-                              y: vm.tutorials[vm.currentPage].textPosition.height)
+                              y: isCompact ? vm.tutorials[vm.currentPage].textPosition.height : vm.tutorials[vm.currentPage].textPosition.height + 64)
                     .accessibilityIdentifier("Tutorial Hints Text")
                 
             }
@@ -66,12 +77,12 @@ struct InteractiveTutorial_Previews: PreviewProvider {
     @State static private var showTutorial = true
     
     static var previews: some View {
-        InteractiveTutorialView(showTutorial: $showTutorial)
-            .environmentObject(InteractiveTutorialViewModel())
+        InteractiveTutorialView(showTutorial: $showTutorial, page: InteractiveTutorial.Page.pitch)
+            .environmentObject(InteractiveTutorialViewModel(page: InteractiveTutorial.Page.pitch))
             .previewDevice(PreviewDevice(rawValue: "iPhone-XR"))
         
-        InteractiveTutorialView(showTutorial: $showTutorial)
-            .environmentObject(InteractiveTutorialViewModel())
+        InteractiveTutorialView(showTutorial: $showTutorial, page: InteractiveTutorial.Page.pitch)
+            .environmentObject(InteractiveTutorialViewModel(page: InteractiveTutorial.Page.pitch))
             .previewDevice(PreviewDevice(rawValue: "iPhone-13-Pro"))
     }
 }

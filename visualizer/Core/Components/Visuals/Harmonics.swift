@@ -12,6 +12,11 @@ struct Harmonics: View {
     var harmonics: [Double]
     var isReference: Bool
     
+    func getWidth(_ width: CGFloat) -> CGFloat {
+        let divider = harmonics.count + harmonics.count / 2
+        return width / CGFloat(divider)
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             VStack{
@@ -21,7 +26,7 @@ struct Harmonics: View {
                         
                         VStack{
                             VBar(val: harmonics[i-1]*7.0,
-                                 width: Int(geometry.size.width) / (harmonics.count + harmonics.count / 2),
+                                 width: Int(getWidth(geometry.size.width)),
                                  color: isReference ? Color.accent.highlight.opacity(0.4) : Color(red: 0.9607843137, green: 0.2039215686, blue: 0.2039215686, opacity: 1),
                                  showValue: false
                             )
@@ -41,10 +46,12 @@ struct Harmonics: View {
                         Spacer()
                         VStack{
                             Text("\(i)")
-                                .frame(width: 18)
+                                .frame(width: getWidth(geometry.size.width))
                                 .foregroundColor(.neutral.onAxis)
                         }
-                        Spacer()
+                        if (i == harmonics.count) {
+                            Spacer()
+                        }
                     }
                 }
             }

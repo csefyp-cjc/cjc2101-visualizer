@@ -11,7 +11,7 @@ struct TimbreDrawer: Codable {
     var selected: InstrumentTypes
     
     static let `default` = TimbreDrawer(
-        selected: .piano
+        selected: .violin
     )
     
     enum InstrumentTypes: String, Identifiable, Codable {
@@ -34,9 +34,9 @@ struct TimbreDrawer: Codable {
         var icon: String {
             switch self {
             case .piano: return "pianokeys"
-            case .violin: return "violin"
-            case .cello: return "cello"
-            case .flute: return "flute"
+            case .violin: return "music.quarternote.3"
+            case .cello: return "music.quarternote.3"
+            case .flute: return "music.quarternote.3"
             }
         }
     }

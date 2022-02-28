@@ -75,6 +75,16 @@ struct TimbreView: View {
                 }
             }
             
+            ZStack {
+                if (showTutorial) {
+                    InteractiveTutorialView(showTutorial: $showTutorial,
+                                            page: InteractiveTutorial.Page.timbre)
+                        .animation(.default)
+                }
+            }
+            .transition(.opacity.animation(.easeIn(duration: 0.3)))
+            .animation(.default)
+            
             ZStack{
                 TimbreDrawerView(isShowing: $showDrawer,
                                  isShowingModal: $isShowingModal
