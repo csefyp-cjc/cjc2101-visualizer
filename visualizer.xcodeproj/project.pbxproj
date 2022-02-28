@@ -18,6 +18,7 @@
 		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
 		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
+		499098BC27CD499D00C2A832 /* Violin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499098BB27CD499C00C2A832 /* Violin.swift */; };
 		49A8571727B429A200355ADB /* visualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571627B429A200355ADB /* visualizerTests.swift */; };
 		49A8571E27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */; };
 		49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */; };
@@ -155,6 +156,7 @@
 		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		499098BB27CD499C00C2A832 /* Violin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violin.swift; sourceTree = "<group>"; };
 		49A8571427B429A200355ADB /* visualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = visualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A8571627B429A200355ADB /* visualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerTests.swift; sourceTree = "<group>"; };
 		49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialViewModelTests.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				492D8BFE27C51B8E006964D7 /* Cello.swift */,
 				49558BB027C5484500F8CEB9 /* Flute.swift */,
+				499098BB27CD499C00C2A832 /* Violin.swift */,
 			);
 			path = AudioData;
 			sourceTree = "<group>";
@@ -939,6 +942,7 @@
 				8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */,
 				8E09212327BA981900F540B6 /* TimbreDrawerView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
+				499098BC27CD499D00C2A832 /* Violin.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
 				49558BB127C5484500F8CEB9 /* Flute.swift in Sources */,

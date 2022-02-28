@@ -240,17 +240,21 @@ class AudioViewModel: ObservableObject{
         }
     }
     
-    func updateReferenceTimbre() {
-        var soundSampleFFTData: [Double]
-        
+    private func getSoundSample() -> [Double]{
         switch self.timbreDrawer.selected {
         case .cello:
-            soundSampleFFTData = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            return cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         case .flute:
-            soundSampleFFTData = flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            return flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        case .violin:
+            return violin[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         default:
-            soundSampleFFTData = cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+            return cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
         }
+    }
+    
+    func updateReferenceTimbre() {
+        var soundSampleFFTData: [Double] = getSoundSample()
                 
         if (!soundSampleFFTData.isEmpty) {
 //            Normalize by dividing the max so that it will cap to 1
