@@ -257,13 +257,14 @@ class AudioViewModel: ObservableObject{
         var soundSampleFFTData: [Double] = getSoundSample()
                 
         if (!soundSampleFFTData.isEmpty) {
-//            Normalize by dividing the max so that it will cap to 1
+                                    
+//          Normalize by dividing the max so that it will cap to 1
+//          Re-scaling by multiplying constant
             let maxAmplitude: Double = soundSampleFFTData.max()!
             for (i, amplitude) in soundSampleFFTData.enumerated() {
-                soundSampleFFTData[i] = amplitude / maxAmplitude
-//                soundSampleFFTData[i] = amplitude/10e1
-//                soundSampleFFTData[i] = Double(20.0 * log10(soundSampleFFTData[i]))
-//                soundSampleFFTData[i] = (soundSampleFFTData[i] + 50) / 29.80
+                let normalizedAmplitude = amplitude / maxAmplitude
+                let amplitudeIndB = Double(20.0 * log10(normalizedAmplitude))
+                soundSampleFFTData[i] = (amplitudeIndB * 4 + 250) / 229.80
             }
 
             let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: self.audio.totalHarmonics) //TODO: adjustable n
@@ -301,7 +302,6 @@ class AudioViewModel: ObservableObject{
         for i in (1...n){
             harmonics[i-1] = fundamental * Float(i)
         }
-        print(harmonics)
         return harmonics
     }
     
