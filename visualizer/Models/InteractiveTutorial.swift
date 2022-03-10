@@ -14,4 +14,11 @@ struct InteractiveTutorial {
     
     var size: CGSize
     var offset: CGSize
+    
+    enum Page: String {
+        case pitch
+        case timbre
+    }
 }
+
+

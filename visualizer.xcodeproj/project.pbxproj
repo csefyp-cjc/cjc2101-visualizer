@@ -12,10 +12,13 @@
 		490E8B632739176B0047DE64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E8B622739176A0047DE64 /* Color.swift */; };
 		4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */; };
 		491041D127ADB32100196A2D /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491041D027ADB32100196A2D /* Audio.swift */; };
+		492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492D8BFE27C51B8E006964D7 /* Cello.swift */; };
+		49558BB127C5484500F8CEB9 /* Flute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49558BB027C5484500F8CEB9 /* Flute.swift */; };
 		498F0BED274F808B00A46486 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEC274F808B00A46486 /* MoreButton.swift */; };
 		498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BEE274F8FC500A46486 /* SettingView.swift */; };
 		498F0BF1274F909600A46486 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF0274F909600A46486 /* DismissButton.swift */; };
 		498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F0BF2274FC11700A46486 /* SettingButton.swift */; };
+		499098BC27CD499D00C2A832 /* Violin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499098BB27CD499C00C2A832 /* Violin.swift */; };
 		49A8571727B429A200355ADB /* visualizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571627B429A200355ADB /* visualizerTests.swift */; };
 		49A8571E27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */; };
 		49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B3882795B74500D4A63C /* InteractiveTutorialView.swift */; };
@@ -147,10 +150,13 @@
 		490E8B622739176A0047DE64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialViewModel.swift; sourceTree = "<group>"; };
 		491041D027ADB32100196A2D /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		492D8BFE27C51B8E006964D7 /* Cello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cello.swift; sourceTree = "<group>"; };
+		49558BB027C5484500F8CEB9 /* Flute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flute.swift; sourceTree = "<group>"; };
 		498F0BEC274F808B00A46486 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		498F0BEE274F8FC500A46486 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		498F0BF0274F909600A46486 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		498F0BF2274FC11700A46486 /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		499098BB27CD499C00C2A832 /* Violin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Violin.swift; sourceTree = "<group>"; };
 		49A8571427B429A200355ADB /* visualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = visualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A8571627B429A200355ADB /* visualizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = visualizerTests.swift; sourceTree = "<group>"; };
 		49A8571D27B42F1300355ADB /* InteractiveTutorialViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTutorialViewModelTests.swift; sourceTree = "<group>"; };
@@ -327,6 +333,16 @@
 				4910419227AC37FA00196A2D /* InteractiveTutorialViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		492D8BFD27C51B79006964D7 /* AudioData */ = {
+			isa = PBXGroup;
+			children = (
+				492D8BFE27C51B8E006964D7 /* Cello.swift */,
+				49558BB027C5484500F8CEB9 /* Flute.swift */,
+				499098BB27CD499C00C2A832 /* Violin.swift */,
+			);
+			path = AudioData;
 			sourceTree = "<group>";
 		};
 		4941432A27551C75009667A6 /* Models */ = {
@@ -561,6 +577,7 @@
 		8EEFAF8B27130F7E00E3651D /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
+				492D8BFD27C51B79006964D7 /* AudioData */,
 				4910418127AC355C00196A2D /* Extensions */,
 				49D6F7EF274939A200CDCCE4 /* Helpers */,
 				4910418027AC34D800196A2D /* Core */,
@@ -912,6 +929,7 @@
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */,
 				4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */,
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
 				498F0BF1274F909600A46486 /* DismissButton.swift in Sources */,
@@ -924,8 +942,10 @@
 				8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */,
 				8E09212327BA981900F540B6 /* TimbreDrawerView.swift in Sources */,
 				8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */,
+				499098BC27CD499D00C2A832 /* Violin.swift in Sources */,
 				490E8B632739176B0047DE64 /* Color.swift in Sources */,
 				8E8DB87C273805830010FE7E /* SoundView.swift in Sources */,
+				49558BB127C5484500F8CEB9 /* Flute.swift in Sources */,
 				4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */,
 				8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */,
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
@@ -1053,14 +1073,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer2;
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2.watchkitapp;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
 				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1078,14 +1098,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = visualizer_watch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer2;
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2.watchkitapp;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cjc2101.visualizer;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp;
 				PRODUCT_NAME = SoundsGood;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1101,9 +1121,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "visualizer-watch WatchKit Extension/Info.plist";
@@ -1116,8 +1136,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2.watchkitapp.watchkitextension;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1133,9 +1153,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer-watch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "visualizer-watch WatchKit Extension/Info.plist";
@@ -1148,8 +1168,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2.watchkitapp.watchkitextension;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1167,10 +1187,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer2.visualizer-watchTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1188,10 +1208,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer2.visualizer-watchTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1207,10 +1227,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer2.visualizer-watchUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1226,10 +1246,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer2.visualizer-watchUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cjc2101.visualizer.visualizer-watchUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1362,9 +1382,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
@@ -1380,8 +1400,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1395,9 +1415,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"visualizer/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4FFSUTM3T;
+				DEVELOPMENT_TEAM = QQS593TJVN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = visualizer/Info.plist;
@@ -1413,8 +1433,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer2;
+				MARKETING_VERSION = 0.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjc2101.visualizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

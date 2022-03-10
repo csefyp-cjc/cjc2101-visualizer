@@ -17,7 +17,9 @@ enum UpdateMode{
 }
 
 class AudioViewModel: ObservableObject{
+    
     @Published var audio: Audio = Audio.default
+    @Published var referenceHarmonicAmplitudes: [Double]
     
     // Subscribed from child ViewModels
     @Published var settings: Setting = Setting.default
@@ -57,8 +59,13 @@ class AudioViewModel: ObservableObject{
         self.outputLimiter = PeakLimiter(silentMixer)
         self.engine.output = outputLimiter
         
+        self.referenceHarmonicAmplitudes = Array(repeating: 0.5, count: Audio.default.totalHarmonics)
+        
         self.setupAudioEngine()
         self.addSubscribers()
+        
+        self.updateReferenceTimbre()
+        
     }
     
     private func setupAudioEngine() {
@@ -81,6 +88,11 @@ class AudioViewModel: ObservableObject{
     private func addSubscribers() {
         settingVM.$settings.sink { [weak self] (returnedSettings) in
             self?.settings = returnedSettings
+        }
+        .store(in: &cancellables)
+        
+        timbreDrawerVM.$timbreDrawer.sink { [weak self] (returnedTimbreDrawer) in
+            self?.timbreDrawer = returnedTimbreDrawer
         }
         .store(in: &cancellables)
     }
@@ -164,7 +176,7 @@ class AudioViewModel: ObservableObject{
             
             // TODO: maybe only compute these values when current view is timbre view
             // update harmonicAmplitudes
-            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: 10) //TODO: adjustable n
+            let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
                 if(harmonicIndex > 255){
@@ -173,8 +185,9 @@ class AudioViewModel: ObservableObject{
                     self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
                 }
             }
+            
         }
-        
+        self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
     }
     
@@ -227,6 +240,48 @@ class AudioViewModel: ObservableObject{
         }
     }
     
+    private func getSoundSample() -> [Double]{
+        switch self.timbreDrawer.selected {
+        case .cello:
+            return cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        case .flute:
+            return flute[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        case .violin:
+            return violin[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        default:
+            return cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
+        }
+    }
+    
+    func updateReferenceTimbre() {
+        var soundSampleFFTData: [Double] = getSoundSample()
+                
+        if (!soundSampleFFTData.isEmpty) {
+                                    
+//          Normalize by dividing the max so that it will cap to 1
+//          Re-scaling by multiplying constant
+            let maxAmplitude: Double = soundSampleFFTData.max()!
+            for (i, amplitude) in soundSampleFFTData.enumerated() {
+                let normalizedAmplitude = amplitude / maxAmplitude
+                let amplitudeIndB = Double(20.0 * log10(normalizedAmplitude))
+                soundSampleFFTData[i] = (amplitudeIndB * 4 + 250) / 229.80
+            }
+
+            let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: self.audio.totalHarmonics) //TODO: adjustable n
+            for (index, harmonic) in hamonics.enumerated() {
+                let harmonicIndex = Int(harmonic*2048/44100)
+                if(harmonicIndex > 255){
+                    self.referenceHarmonicAmplitudes[index] = 0
+                }else{
+                    self.referenceHarmonicAmplitudes[index] = soundSampleFFTData[Int(harmonic*2048/44100)]
+
+                }
+            }
+            print("Ref\(self.referenceHarmonicAmplitudes)")
+            print("User\(self.audio.harmonicAmplitudes)")
+        }
+    }
+    
     // TODO: modify this mapping for our visualization
     private func map(n: Double, start1: Double, stop1: Double, start2: Double, stop2: Double) -> Double {
         return ((n-start1)/(stop1-start1)) * (stop2-start2) + start2
@@ -244,8 +299,8 @@ class AudioViewModel: ObservableObject{
     
     private func getHarmonics(fundamental: Float, n: Int) -> [Float]{
         var harmonics:[Float] = Array(repeating: 0.0, count:n)
-        for i in (0...n-1){
-            harmonics[i] = fundamental * Float(i)
+        for i in (1...n){
+            harmonics[i-1] = fundamental * Float(i)
         }
         return harmonics
     }
