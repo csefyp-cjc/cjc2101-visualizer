@@ -19,7 +19,7 @@ struct PitchView: View {
                                 changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
                     )
                     
-                    if(!touching){
+                    if (!touching) {
                         PitchIndicator(pitchDetune: vm.audio.pitchDetune,
                                        position: vm.getPitchIndicatorPosition(),
                                        isPitchAccurate: vm.audio.isPitchAccurate
@@ -45,7 +45,7 @@ struct PitchView: View {
                         .environmentObject(vm.settingVM)
                 })
                 
-                HStack(alignment: .top){
+                HStack(alignment: .top) {
                     MoreButton(action: {showSheet.toggle()})
                         .padding(15)
                     

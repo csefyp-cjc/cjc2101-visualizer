@@ -35,7 +35,7 @@ struct LiveDropdown: View {
         curTime = 0
     }
     
-    private func stopTimer(){
+    private func stopTimer() {
         print("stop timer")
         timerIsPaused = true
         timer?.invalidate()
@@ -45,7 +45,7 @@ struct LiveDropdown: View {
         isLive = false
     }
     
-    private func stopAfter(seconds: Int){
+    private func stopAfter(seconds: Int) {
         self.timerIsPaused = false
         self.start()
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ tmpTimer in
@@ -54,7 +54,7 @@ struct LiveDropdown: View {
                 print("not accurate")
                 self.resetTimer()
             }
-            if(self.curTime >= Double(seconds)){
+            if (self.curTime >= Double(seconds)) {
                 self.stopTimer()
             }
         }
@@ -62,7 +62,7 @@ struct LiveDropdown: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if (timerIsPaused){
+            if (timerIsPaused) {
                 VStack(spacing: 0) {
                     Button {
                         isLive ? stop() : start()
@@ -84,9 +84,9 @@ struct LiveDropdown: View {
                             stopTimer()
                         }
                     }
-                                        
+                    
                     if show {
-                        ForEach(options, id: \.self){option in
+                        ForEach(options, id: \.self){ option in
                             Button(action: {
                                 value = option
                                 stopAfter(seconds: option)
@@ -99,7 +99,7 @@ struct LiveDropdown: View {
                             .foregroundColor(.neutral.onSurface)
                         }
                     }
-                                        
+                    
                     Button {
                         show.toggle()
                     } label: {
@@ -112,16 +112,16 @@ struct LiveDropdown: View {
                             .animation(.spring(), value: show)
                     }
                 }
-            }else{
+            } else {
                 Button(action: {
                     stopTimer()
                     show.toggle()
                 }){
                     Text("\(String(value - Int(floor(curTime))))")
                 }
-                    .frame(width: 48, height: 48)
-                    .font(.label.large)
-                    .background(Color.neutral.surface)
+                .frame(width: 48, height: 48)
+                .font(.label.large)
+                .background(Color.neutral.surface)
                 .foregroundColor(.neutral.onSurface)
             }
         }

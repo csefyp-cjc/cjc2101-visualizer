@@ -11,12 +11,12 @@ import Combine
 import AudioKit
 import SoundpipeAudioKit
 
-enum UpdateMode{
+enum UpdateMode {
     case scroll
     case average
 }
 
-class AudioViewModel: ObservableObject{
+class AudioViewModel: ObservableObject {
     
     @Published var audio: Audio = Audio.default
     @Published var referenceHarmonicAmplitudes: [Double]
@@ -25,14 +25,14 @@ class AudioViewModel: ObservableObject{
     @Published var settings: Setting = Setting.default
     
     @Published var timbreDrawer: TimbreDrawer = TimbreDrawer.default
-        
+    
     // Child ViewModels
     private var cancellables = Set<AnyCancellable>()
     @Published var settingVM = SettingViewModel()
     
     @Published var timbreDrawerVM = TimbreDrawerViewModel()
-        
-        
+    
+    
     // AudioKit
     private var isStarted: Bool = false
     private let engine = AudioEngine()
@@ -46,7 +46,7 @@ class AudioViewModel: ObservableObject{
     private let outputLimiter: PeakLimiter
     
     
-    init(){
+    init() {
         // TODO: test no microphone priviledge
         guard let input = engine.input else{
             fatalError()
@@ -69,13 +69,13 @@ class AudioViewModel: ObservableObject{
     }
     
     private func setupAudioEngine() {
-        taps.append(FFTTap(fftMixer){ fftData in
-            DispatchQueue.main.async{
+        taps.append(FFTTap(fftMixer) { fftData in
+            DispatchQueue.main.async {
                 self.updateAmplitudes(fftData, mode: .scroll)
             }
         })
-        taps.append(PitchTap(pitchMixer){ pitchFrequency, amplitude in
-            DispatchQueue.main.async{
+        taps.append(PitchTap(pitchMixer) { pitchFrequency, amplitude in
+            DispatchQueue.main.async {
                 self.updatePitch(pitchFrequency: pitchFrequency, amplitude: amplitude)
             }
         })
@@ -98,30 +98,30 @@ class AudioViewModel: ObservableObject{
     }
     
     // Audio Engine functions
-    func start(){
-        do{
+    func start() {
+        do {
             try engine.start()
-            taps.forEach{ tap in
+            taps.forEach { tap in
                 tap.start()
             }
-        }catch{
+        } catch {
             assert(false, error.localizedDescription)
         }
         self.isStarted = true
     }
     
-    func stop(){
+    func stop() {
         engine.stop()
-        taps.forEach{ tap in
+        taps.forEach { tap in
             tap.stop()
         }
         self.isStarted = false
     }
     
     func toggle() {
-        if(self.isStarted){
+        if (self.isStarted) {
             self.stop()
-        }else{
+        } else {
             self.start()
         }
     }
@@ -149,7 +149,7 @@ class AudioViewModel: ObservableObject{
                 return [3, 4, 5]
             }
         }
-                
+        
         audio.isPitchAccurate = accuracyPoint.contains(position)
     }
     
@@ -172,14 +172,14 @@ class AudioViewModel: ObservableObject{
             self.audio.pitchNotation = pitchFromFrequency(pitchFrequency[0], self.settings.noteRepresentation)
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
             self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
-//            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
+            //            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
             
             // TODO: maybe only compute these values when current view is timbre view
             // update harmonicAmplitudes
             let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
-                if(harmonicIndex > 255){
+                if (harmonicIndex > 255) {
                     self.audio.harmonicAmplitudes[index] = 0
                 }else{
                     self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
@@ -192,7 +192,7 @@ class AudioViewModel: ObservableObject{
     }
     
     // FTTTap functions
-    private func updateAmplitudes(_ fftData: [Float], mode: UpdateMode){
+    private func updateAmplitudes(_ fftData: [Float], mode: UpdateMode) {
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.audio.amplitudes.count) // stores amplitude sum
         var noiseThreshold: Double = 0.05
@@ -206,7 +206,7 @@ class AudioViewModel: ObservableObject{
             noiseThreshold = 0.5
         }
         
-        for i in stride(from : 0, to: self.FFT_SIZE - 1, by: 2){
+        for i in stride (from : 0, to: self.FFT_SIZE - 1, by: 2) {
             let real = fftData[i]
             let imaginary = fftData[i+1]
             
@@ -214,23 +214,23 @@ class AudioViewModel: ObservableObject{
             let amplitude = Double(20.0 * log10(normalizedMagnitude))
             let scaledAmplitude = (amplitude + 250) / 229.80
             
-            if(mode == .average){
+            if (mode == .average) {
                 // simple explaination
                 // bin[0] = sum(fftData[0:n-1])/n
-                if(i/binSize < self.audio.amplitudes.count){
+                if (i/binSize < self.audio.amplitudes.count) {
                     bin[i/binSize] = bin[i/binSize] + restrict(value: scaledAmplitude)
                 }
                 
                 DispatchQueue.main.async {
-                    if(i%binSize == 0 && i/binSize < self.audio.amplitudes.count){
+                    if (i%binSize == 0 && i/binSize < self.audio.amplitudes.count) {
                         self.audio.amplitudes[i/binSize] = bin[i/binSize] / Double(binSize)
                     }
                 }
-            }else{
+            } else {
                 DispatchQueue.main.async {
-                    if(i/2 < self.audio.amplitudes.count){
+                    if (i/2 < self.audio.amplitudes.count) {
                         var mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
-                        if(mappedAmplitude < noiseThreshold){
+                        if (mappedAmplitude < noiseThreshold) {
                             mappedAmplitude = 0
                         }
                         self.audio.amplitudes[i/2] = self.restrict(value: mappedAmplitude)
@@ -240,7 +240,7 @@ class AudioViewModel: ObservableObject{
         }
     }
     
-    private func getSoundSample() -> [Double]{
+    private func getSoundSample() -> [Double] {
         switch self.timbreDrawer.selected {
         case .cello:
             return cello[pitchFromFrequency(self.audio.pitchFrequency, Setting.NoteRepresentation.sharp)] ?? []
@@ -255,18 +255,18 @@ class AudioViewModel: ObservableObject{
     
     func updateReferenceTimbre() {
         var soundSampleFFTData: [Double] = getSoundSample()
-                
+        
         if (!soundSampleFFTData.isEmpty) {
-                                    
-//          Normalize by dividing the max so that it will cap to 1
-//          Re-scaling by multiplying constant
+            
+            //          Normalize by dividing the max so that it will cap to 1
+            //          Re-scaling by multiplying constant
             let maxAmplitude: Double = soundSampleFFTData.max()!
             for (i, amplitude) in soundSampleFFTData.enumerated() {
                 let normalizedAmplitude = amplitude / maxAmplitude
                 let amplitudeIndB = Double(20.0 * log10(normalizedAmplitude))
                 soundSampleFFTData[i] = (amplitudeIndB * 4 + 250) / 229.80
             }
-
+            
             let hamonics = getHarmonics(fundamental: mapNearestFrequency(self.audio.pitchFrequency), n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
                 let harmonicIndex = Int(harmonic*2048/44100)
@@ -274,7 +274,7 @@ class AudioViewModel: ObservableObject{
                     self.referenceHarmonicAmplitudes[index] = 0
                 }else{
                     self.referenceHarmonicAmplitudes[index] = soundSampleFFTData[Int(harmonic*2048/44100)]
-
+                    
                 }
             }
             print("Ref\(self.referenceHarmonicAmplitudes)")
@@ -288,22 +288,22 @@ class AudioViewModel: ObservableObject{
     }
     
     private func restrict(value: Double) -> Double {
-        if(value < 0.0) {
+        if (value < 0.0) {
             return 0
         }
-        if(value > 1.0){
+        if (value > 1.0) {
             return 1.0
         }
         return value
     }
     
-    private func getHarmonics(fundamental: Float, n: Int) -> [Float]{
-        var harmonics:[Float] = Array(repeating: 0.0, count:n)
-        for i in (1...n){
+    private func getHarmonics(fundamental: Float, n: Int) -> [Float] {
+        var harmonics: [Float] = Array(repeating: 0.0, count:n)
+        for i in (1...n) {
             harmonics[i-1] = fundamental * Float(i)
         }
         return harmonics
     }
     
-
+    
 }

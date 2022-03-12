@@ -14,7 +14,7 @@ let C0: Float = A4 * pow(2, -4.75)
 let notationSharp = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
 let notationFlat = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
-func pitchFromFrequency(_ frequency: Float, _ noteRepresentation: Setting.NoteRepresentation) -> String{
+func pitchFromFrequency(_ frequency: Float, _ noteRepresentation: Setting.NoteRepresentation) -> String {
     if (frequency > C0) {
         let steps: Int = Int(round(12 * log2(frequency / C0)))   // Number of semitone from C0 to frequency
         let octave = steps / 12
@@ -26,7 +26,7 @@ func pitchFromFrequency(_ frequency: Float, _ noteRepresentation: Setting.NoteRe
     }
 }
 
-func mapNearestFrequency(_ frequency: Float) -> Float{
+func mapNearestFrequency(_ frequency: Float) -> Float {
     if (frequency > C0) {
         let steps: Int = Int(round(12 * log2(frequency / C0)))   // Number of semitone from C0 to frequency
         let nearestNoteFrequency =  pow(2, Float(steps) / 12) * C0
@@ -63,7 +63,7 @@ func pitchDetuneFromFrequency(_ frequency: Float) -> Float {
     
 }
 
-func changePitchNotation(_ pitchLetter: String) -> String{
+func changePitchNotation(_ pitchLetter: String) -> String {
     let letter = String(pitchLetter.dropLast())
     let octave = String(pitchLetter.suffix(1))
     if (notationFlat.contains(letter)) {
@@ -81,9 +81,9 @@ func changePitchNotation(_ pitchLetter: String) -> String{
     }
 }
 
-func getLabeling(_ interval: Int)->[Int]{
+func getLabeling(_ interval: Int)->[Int] {
     var l:[Int] = []
-    for i in 0..<25{
+    for i in 0..<25 {
         l.append(i*interval)
     }
     return l

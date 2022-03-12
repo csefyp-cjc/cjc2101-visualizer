@@ -12,11 +12,11 @@ struct InstrumentButton: View {
     let type: TimbreDrawer.InstrumentTypes
     var selected: Bool
     
-    var body: some View{
-        VStack{
-            Button{
+    var body: some View {
+        VStack {
+            Button {
                 self.action(type)
-            }label:{
+            } label: {
                 Image(systemName: type.icon)
                     .font(.system(size: 24))
                     .frame(width: 64, height: 64)
@@ -27,8 +27,8 @@ struct InstrumentButton: View {
                         RoundedRectangle(cornerRadius: 14)
                             .stroke(Color.neutral.surface, lineWidth: 3)
                     )
-                    .if(selected){
-                        $0.overlay(
+                    .if (selected) {
+                        $0.overlay (
                             RoundedRectangle(cornerRadius: 14)
                                 .stroke(Color.foundation.primary, lineWidth: 3)
                         )

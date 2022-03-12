@@ -23,7 +23,7 @@ struct VBar: View {
     }
     
     var body: some View {
-        VStack{
+        VStack {
             Rectangle()
                 .fill(color)
                 .frame(width: CGFloat(width), height: CGFloat(50 * val))

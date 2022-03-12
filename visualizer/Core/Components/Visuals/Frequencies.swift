@@ -18,18 +18,18 @@ struct Frequencies: View {
     let labels = getLabeling(10)
     
     var body: some View {
-        ScrollView(.horizontal){
-            ScrollViewReader{ proxy in
-                HStack(spacing: 5){
-                    ForEach(0...amplitudes.count-1, id: \.self){ i in
-                        VStack{
+        ScrollView(.horizontal) {
+            ScrollViewReader { proxy in
+                HStack(spacing: 5) {
+                    ForEach(0...amplitudes.count-1, id: \.self) { i in
+                        VStack {
                             if (i == peakBarIndex) {
                                 VBar(val: amplitudes[i]*7.0, width: 4, color: .accent.highlight, showValue: true, peakFrequency: peakFrequency)
                                 
                             } else {
-                                if(isPitchAccurate){
+                                if (isPitchAccurate) {
                                     VBar(val: amplitudes[i]*7.0, width: 4, color: .accent.successVariant, showValue: false)
-                                }else{
+                                } else {
                                     VBar(val: amplitudes[i]*7.0, width: 4, color: .foundation.secondary, showValue: false)
                                 }
                             }
@@ -40,13 +40,13 @@ struct Frequencies: View {
                                     .font(.label.small)
                                     .frame(width: 40)
                                     .offset(x:0, y:24)
-                                    .if(!labels.contains(i)){ $0.hidden() }, alignment: .bottom)
+                                    .if (!labels.contains(i)) { $0.hidden() }, alignment: .bottom)
                         
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
-                .onChange(of: peakBarIndex){ value in
-                    withAnimation{
+                .onChange(of: peakBarIndex) { value in
+                    withAnimation {
                         proxy.scrollTo(value, anchor: .center)
                     }
                 }

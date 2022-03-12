@@ -25,6 +25,6 @@ extension Font {
     
     struct Text {
         let paragraph = Font.system(size: 14).weight(.medium)
-      
+        
     }
 }

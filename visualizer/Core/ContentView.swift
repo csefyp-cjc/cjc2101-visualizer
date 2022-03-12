@@ -50,10 +50,10 @@ struct ContentView: View {
     var body: some View {
         if isCompact {
             ZStack {
-                TabView(selection: $selection){
+                TabView(selection: $selection) {
                     ForEach(Tab.allCases) { item in
                     views(item)
-                            .tabItem{
+                            .tabItem {
                                 Label(item.title, systemImage: item.systemImage)
                             }
                             .tag(item)

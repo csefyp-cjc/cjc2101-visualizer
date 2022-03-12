@@ -19,12 +19,12 @@ struct Harmonics: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack{
-                HStack{
-                    ForEach((1...harmonics.count), id: \.self){i in
+            VStack {
+                HStack {
+                    ForEach((1...harmonics.count), id: \.self) { i in
                         Spacer()
                         
-                        VStack{
+                        VStack {
                             VBar(val: harmonics[i-1]*7.0,
                                  width: Int(getWidth(geometry.size.width)),
                                  color: isReference ? Color.accent.highlight.opacity(0.4) : Color(red: 0.9607843137, green: 0.2039215686, blue: 0.2039215686, opacity: 1),
@@ -41,10 +41,10 @@ struct Harmonics: View {
                     .fill(Color.neutral.axis)
                     .frame(width: .infinity, height: 2)
                 
-                HStack{
-                    ForEach((1...harmonics.count), id: \.self){i in
+                HStack {
+                    ForEach((1...harmonics.count), id: \.self) { i in
                         Spacer()
-                        VStack{
+                        VStack {
                             Text("\(i)")
                                 .frame(width: getWidth(geometry.size.width))
                                 .foregroundColor(.neutral.onAxis)
@@ -73,7 +73,7 @@ struct FixedSpacer: View {
 struct Harmonics_Previews: PreviewProvider {
     static var previews: some View {
         Harmonics(harmonics: Array(repeating: 0.5, count: 12),
-            isReference: false
+                  isReference: false
         )
     }
 }

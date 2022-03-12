@@ -22,7 +22,7 @@ struct TimbreDrawerView: View {
                 Text("Instruments")
                     .font(.heading.small)
                 
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     HStack {
                         InstrumentButton(action: choose,
                                          type: TimbreDrawer.InstrumentTypes.piano,
@@ -61,7 +61,7 @@ struct TimbreDrawerView: View {
         }
     }
     
-  
+    
 }
 
 struct TimbreDrawerView_Previews: PreviewProvider {

@@ -19,8 +19,8 @@ struct DrawerView<Content: View>: View {
     let maxHeight: CGFloat = 700
     
     var body: some View {
-        ZStack(alignment:.bottom){
-            if(isShowing){
+        ZStack(alignment:.bottom) {
+            if (isShowing) {
                 Color.neutral.overlay
                     .ignoresSafeArea(.all)
                     .onTapGesture {
@@ -29,7 +29,7 @@ struct DrawerView<Content: View>: View {
                     }
                     .animation(.default)
                 
-                HStack(alignment: .top){                    
+                HStack(alignment: .top) {
                     content
                         .gesture(dragGesture)
                 }
@@ -37,7 +37,7 @@ struct DrawerView<Content: View>: View {
                 .frame(height: curHeight, alignment: .top)
                 .frame(maxWidth: .infinity)
                 .background(
-                    ZStack{
+                    ZStack {
                         RoundedRectangle(cornerRadius: 25)
                         Rectangle()
                             .frame(height: curHeight/2)

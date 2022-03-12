@@ -14,7 +14,7 @@ struct PitchLetter: View {
     var changeNoteRepresentationSetting: (Setting.NoteRepresentation) -> Void
     
     var body: some View {
-        VStack{
+        VStack {
             Button {
                 changeNoteRepresentationSetting(noteRepresentation.next())
                 pitchNotation = changePitchNotation(pitchNotation)

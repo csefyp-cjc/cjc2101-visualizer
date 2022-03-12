@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TimbreDrawerViewModel: ObservableObject{
+class TimbreDrawerViewModel: ObservableObject {
     @Published var timbreDrawer: TimbreDrawer
     
     init() {

@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct LiveButton: View {
-    let action: ()->Void
+    let action: () -> Void
     
-    var body: some View{
-        Button{
+    var body: some View {
+        Button {
             self.action()
-        }label:{
+        } label: {
             Image(systemName: "waveform").frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)
                 .background(Color.neutral.surface)

@@ -3,10 +3,10 @@ import SwiftUI
 struct DrawerButton: View {
     let action: () -> Void
     
-    var body: some View{
-        Button{
+    var body: some View {
+        Button {
             self.action()
-        }label:{
+        } label: {
             Image(systemName: "tray.fill")
                 .frame(width: 48, height: 48)
                 .foregroundColor(.neutral.onSurface)

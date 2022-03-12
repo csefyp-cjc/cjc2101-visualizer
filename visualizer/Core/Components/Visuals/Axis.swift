@@ -5,9 +5,9 @@ struct Axis: View {
     @State private var xValues = ["25", "100", "400", "1000", "2000", "4000"]
     
     var body: some View {
-        VStack{
-            ForEach(yValues, id: \.self){ value in
-                HStack{
+        VStack {
+            ForEach(yValues, id: \.self) { value in
+                HStack {
                     //TODO: align text above line
                     Rectangle()
                         .fill(Color.neutral.axis)
@@ -17,8 +17,8 @@ struct Axis: View {
                         .font(.label.xsmall)
                 }.padding(18)
             }
-            HStack{
-                ForEach(xValues, id: \.self){value in
+            HStack {
+                ForEach(xValues, id: \.self) { value in
                     Text(value)
                         .foregroundColor(.neutral.onAxis)
                         .font(.label.xsmall)

@@ -15,14 +15,14 @@ struct TimbreView: View {
     @State private var showDrawer: Bool = false
     
     @Binding var isShowingModal: Bool
-
+    
     var body: some View {
         ZStack {
             Color.neutral.background
                 .ignoresSafeArea(.all)
             
             ZStack(alignment: .top) {
-                VStack{
+                VStack {
                     PitchLetter(pitchNotation: $vm.audio.pitchNotation,
                                 noteRepresentation: vm.settingVM.settings.noteRepresentation,
                                 changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
@@ -30,8 +30,9 @@ struct TimbreView: View {
                 }
                 .padding(.top, 72)
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
+                
                 VStack {
-                    HStack(alignment: .top){
+                    HStack(alignment: .top) {
                         MoreButton(action: {showSheet.toggle()})
                             .padding(15)
                         
@@ -61,16 +62,16 @@ struct TimbreView: View {
                         .environmentObject(vm.settingVM)
                 })
                 
-                VStack{
+                VStack {
                     Spacer()
                     ZStack {
                         Harmonics(harmonics: vm.audio.harmonicAmplitudes,
                                   isReference: false
                         )
-
+                        
                         Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
                                   isReference: true
-                        )                        
+                        )
                     }
                 }
             }
@@ -85,7 +86,7 @@ struct TimbreView: View {
             .transition(.opacity.animation(.easeIn(duration: 0.3)))
             .animation(.default)
             
-            ZStack{
+            ZStack {
                 TimbreDrawerView(isShowing: $showDrawer,
                                  isShowingModal: $isShowingModal
                 ).environmentObject(vm.timbreDrawerVM)
