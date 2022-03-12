@@ -17,8 +17,8 @@ struct ScaleButtonStyle: ButtonStyle {
 struct LiveDropdown: View {
     @Binding var isPitchAccurate: Bool
     @Binding var isWatchLive: Bool
-    let start: () -> Void
-    let stop: () -> Void
+    let start: () -> Void   // From AudioViewModel, start the engine
+    let stop: () -> Void    // From AudioViewModel, stop the engine
     let options: [Int]
     var toggleWatchLive: () -> Void
     
@@ -36,13 +36,13 @@ struct LiveDropdown: View {
     }
     
     private func stopTimer() {
-        print("stop timer")
         timerIsPaused = true
         timer?.invalidate()
         timer = nil
         curTime = 0
         stop()
         isLive = false
+        toggleWatchLive()
     }
     
     private func stopAfter(seconds: Int) {
@@ -51,7 +51,6 @@ struct LiveDropdown: View {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ tmpTimer in
             self.curTime = self.curTime + 0.1
             if (!isPitchAccurate) {
-                print("not accurate")
                 self.resetTimer()
             }
             if (self.curTime >= Double(seconds)) {
@@ -67,7 +66,6 @@ struct LiveDropdown: View {
                     Button {
                         isLive ? stop() : start()
                         isLive.toggle()
-                        toggleWatchLive()                        
                     } label: {
                         Image(systemName: isLive ? "waveform.circle.fill" : "waveform")
                             .font(.system(size: isLive ? 28 : 22))
@@ -81,6 +79,7 @@ struct LiveDropdown: View {
                             start()
                             isLive = true
                         } else {
+                            isLive = false
                             stopTimer()
                         }
                     }
