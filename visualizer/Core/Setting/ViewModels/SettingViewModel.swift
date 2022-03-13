@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SettingViewModel: ObservableObject{
     @Published var settings: Setting
+    var systemColorScheme: ColorScheme = .light
     
     init() {
         guard let data = UserDefaults.standard.data(forKey: "settings"),
@@ -36,6 +38,22 @@ class SettingViewModel: ObservableObject{
         self.storeSettings()
     }
     
+    func changeAppearanceSetting(_ value: Setting.Appearance) {
+        self.settings.appearance = value
+        self.storeSettings()
+    }
+    
+    func getScheme () -> ColorScheme? {
+        switch self.settings.appearance {
+        case .system:
+            return self.systemColorScheme
+        case .dark:
+            return .dark
+        case .light:
+            return .light
+        }
+    }
+    
     func isSelected(label: String, type: String) -> Bool {
         switch type {
         case "noteRepresentation":
@@ -44,11 +62,14 @@ class SettingViewModel: ObservableObject{
             return label == self.settings.noiseLevel.rawValue
         case "accuracyLevel":
             return label == self.settings.accuracyLevel.rawValue
+        case "appearance":
+            return label == self.settings.appearance.rawValue
         default:
             print("Error: Invaild function for SettingButton")
             return false
         }
     }
+    
         
     private func storeSettings() {
         if let encodedSettings = try? JSONEncoder().encode(settings) {

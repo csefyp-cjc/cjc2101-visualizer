@@ -6,16 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Setting: Codable {
     var noteRepresentation: NoteRepresentation
     var noiseLevel: NoiseLevel
     var accuracyLevel: AccuracyLevel
+    var appearance: Appearance
     
     static let `default` = Setting(
         noteRepresentation: NoteRepresentation.sharp,
         noiseLevel: NoiseLevel.low,
-        accuracyLevel: AccuracyLevel.tuning
+        accuracyLevel: AccuracyLevel.tuning,
+        appearance: Appearance.system
     )
     
     enum NoteRepresentation: String, CaseIterable, Identifiable, Codable {
@@ -56,6 +59,25 @@ struct Setting: Codable {
                 return "Precise tuning for setting up"
             case .practice:
                 return "Show the detune of note played"
+            }
+        }
+    }
+    
+    enum Appearance: String, CaseIterable, Identifiable, Codable {
+        case system = "System"
+        case dark = "Dark"
+        case light = "Light"
+        
+        var id: String { rawValue }
+        
+        func getDescription () -> String {
+            switch self {
+            case .system:
+                return "Use system setting"
+            case .dark:
+                return "Use dark appearance"
+            case .light:
+                return "Use light appearance"
             }
         }
     }

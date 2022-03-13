@@ -277,8 +277,8 @@ class AudioViewModel: ObservableObject {
                     
                 }
             }
-            print("Ref\(self.referenceHarmonicAmplitudes)")
-            print("User\(self.audio.harmonicAmplitudes)")
+//            print("Ref\(self.referenceHarmonicAmplitudes)")
+//            print("User\(self.audio.harmonicAmplitudes)")
         }
     }
     
