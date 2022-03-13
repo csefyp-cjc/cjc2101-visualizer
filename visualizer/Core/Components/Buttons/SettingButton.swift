@@ -7,58 +7,43 @@
 
 import SwiftUI
 
-struct SettingButton: View {
+struct SettingButton<T: RawRepresentable & CaseIterable>: View {
     var label: String
-    var type: String
+    var type: T.Type
     var selected: Bool
-    var changeNoteRepresentationSetting: (Setting.NoteRepresentation) -> Void
-    var changeNoiseLevelSetting: (Setting.NoiseLevel) -> Void
-    var changeAccuracyLevelSetting: (Setting.AccuracyLevel) -> Void
-            
+    var action: (T) -> Void
+    
     var body: some View {
         Button {
-            switch self.type {
-            case "noteRepresentation":
-                self.changeNoteRepresentationSetting(Setting.NoteRepresentation(rawValue: self.label) ?? Setting.NoteRepresentation.sharp)
-            case "noiseLevel":
-                self.changeNoiseLevelSetting(Setting.NoiseLevel(rawValue: self.label) ?? Setting.NoiseLevel.low)
-            case "accuracyLevel":
-                self.changeAccuracyLevelSetting(Setting.AccuracyLevel(rawValue: self.label) ?? Setting.AccuracyLevel.tuning)
-            default:
-                print("Error: Invaild function for SettingButton")
-            }
+            self.action(T(rawValue: self.label as! T.RawValue) ?? T.allCases.first!)
         } label: {
             Text(self.label)
-                .font(self.type == "noteRepresentation" ? .label.medium : .label.xsmall)
+                .font(self.type == Setting.NoteRepresentation.self ? .label.medium : .label.xsmall)
                 .foregroundColor(selected ? .foundation.onPrimary : .neutral.onSurface)
-                .padding(self.type == "noteRepresentation" ?
+                .padding(self.type == Setting.NoteRepresentation.self ?
                          EdgeInsets(top: 8, leading: 36, bottom: 8, trailing: 36) :
                             EdgeInsets(top: 12, leading: 28, bottom: 12, trailing: 28)
                 )
                 .background(selected ? Color.foundation.primary : Color.neutral.surface)
                 .cornerRadius(8)
         }
-
+        
     }
 }
 
 struct SettingButton_swift_Previews: PreviewProvider {
     static var previews: some View {
         SettingButton(label: Setting.NoteRepresentation.sharp.rawValue,
-                      type: "noteRepresentation",
+                      type: Setting.NoteRepresentation.self,
                       selected: true,
-                      changeNoteRepresentationSetting: AudioViewModel().settingVM.changeNoteRepresentationSetting,
-                      changeNoiseLevelSetting: AudioViewModel().settingVM.changeNoiseLevelSetting,
-                      changeAccuracyLevelSetting: AudioViewModel().settingVM.changeAccuracyLevelSetting
+                      action: AudioViewModel().settingVM.changeNoteRepresentationSetting
         )
-                
-        SettingButton(label: Setting.NoiseLevel.medium.rawValue,
-                      type: "noiseLevel",
-                      selected: false,
-                      changeNoteRepresentationSetting: AudioViewModel().settingVM.changeNoteRepresentationSetting,
-                      changeNoiseLevelSetting: AudioViewModel().settingVM.changeNoiseLevelSetting,
-                      changeAccuracyLevelSetting: AudioViewModel().settingVM.changeAccuracyLevelSetting)
-            
-    }
         
+        SettingButton(label: Setting.NoiseLevel.medium.rawValue,
+                      type: Setting.NoiseLevel.self,
+                      selected: false,
+                      action: AudioViewModel().settingVM.changeNoiseLevelSetting
+        )
+    }
+    
 }

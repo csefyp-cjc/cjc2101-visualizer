@@ -168,6 +168,7 @@ class AudioViewModel: ObservableObject {
         
         // TODO: May consider for headphone input (L/R channel)
         if (amplitude[0] > noiseThreshold) {
+            // amplitude is larger than threshold, update pitch
             self.audio.pitchFrequency = pitchFrequency[0]
             self.audio.pitchNotation = pitchFromFrequency(pitchFrequency[0], self.settings.noteRepresentation)
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
@@ -186,6 +187,8 @@ class AudioViewModel: ObservableObject {
                 }
             }
             
+            // update amplitudesToDisplay
+            self.audio.amplitudesToDisplay = self.audio.amplitudes
         }
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
@@ -229,10 +232,7 @@ class AudioViewModel: ObservableObject {
             } else {
                 DispatchQueue.main.async {
                     if (i/2 < self.audio.amplitudes.count) {
-                        var mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
-                        if (mappedAmplitude < noiseThreshold) {
-                            mappedAmplitude = 0
-                        }
+                        let mappedAmplitude = self.map(n: scaledAmplitude, start1: 0.3, stop1: 0.9, start2: 0.0, stop2: 1.0)
                         self.audio.amplitudes[i/2] = self.restrict(value: mappedAmplitude)
                     }
                 }

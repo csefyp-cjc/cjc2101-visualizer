@@ -46,19 +46,15 @@ struct SettingView: View {
                     
                     HStack(spacing: 12){
                         SettingButton(label: "♭",
-                                      type: "noteRepresentation",
+                                      type: Setting.NoteRepresentation.self,
                                       selected: vm.isSelected(label: "♭", type: "noteRepresentation"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting
+                                      action: vm.changeNoteRepresentationSetting
                         )
                         
                         SettingButton(label: "♯",
-                                      type: "noteRepresentation",
+                                      type: Setting.NoteRepresentation.self,
                                       selected: vm.isSelected(label: "♯", type: "noteRepresentation"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting
+                                      action: vm.changeNoteRepresentationSetting
                         )
                     }
                     
@@ -72,26 +68,22 @@ struct SettingView: View {
                     
                     HStack(spacing: 12){
                         SettingButton(label: "Low",
-                                      type: "noiseLevel",
+                                      type: Setting.NoiseLevel.self,
                                       selected: vm.isSelected(label: "Low", type: "noiseLevel"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting
+                                      action: vm.changeNoiseLevelSetting
                         )
                         
                         SettingButton(label: "Medium",
-                                      type: "noiseLevel",
+                                      type: Setting.NoiseLevel.self,
                                       selected: vm.isSelected(label: "Medium", type: "noiseLevel"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting)
+                                      action: vm.changeNoiseLevelSetting
+                        )
                         
                         SettingButton(label: "High",
-                                      type: "noiseLevel",
+                                      type: Setting.NoiseLevel.self,
                                       selected: vm.isSelected(label: "High", type: "noiseLevel"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting)
+                                      action: vm.changeNoiseLevelSetting
+                        )
                     }
                     
                     Text(vm.settings.noiseLevel.getDescription())
@@ -108,18 +100,14 @@ struct SettingView: View {
                     
                     HStack(spacing: 12){
                         SettingButton(label: "Tuning",
-                                      type: "accuracyLevel",
+                                      type: Setting.AccuracyLevel.self,
                                       selected: vm.isSelected(label: "Tuning", type: "accuracyLevel"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting)
+                                      action: vm.changeAccuracyLevelSetting)
                         
                         SettingButton(label: "Practice",
-                                      type: "accuracyLevel",
+                                      type: Setting.AccuracyLevel.self,
                                       selected: vm.isSelected(label: "Practice", type: "accuracyLevel"),
-                                      changeNoteRepresentationSetting: vm.changeNoteRepresentationSetting,
-                                      changeNoiseLevelSetting: vm.changeNoiseLevelSetting,
-                                      changeAccuracyLevelSetting: vm.changeAccuracyLevelSetting)
+                                      action: vm.changeAccuracyLevelSetting)
                     }
                     
                     Text(vm.settings.accuracyLevel.getDescription())
