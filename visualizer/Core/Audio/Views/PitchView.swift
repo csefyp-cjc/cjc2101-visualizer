@@ -29,7 +29,7 @@ struct PitchView: View {
                     
                     Spacer()
                     
-                    Frequencies(amplitudes: vm.audio.amplitudes,
+                    Frequencies(amplitudes: vm.audio.amplitudesToDisplay,
                                 noteRepresentation: vm.settings.noteRepresentation,
                                 peakBarIndex: vm.audio.peakBarIndex,
                                 isPitchAccurate: vm.audio.isPitchAccurate,
