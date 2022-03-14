@@ -16,7 +16,6 @@ struct visualizerApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(audioViewModel)
-                
         }
     }
 }

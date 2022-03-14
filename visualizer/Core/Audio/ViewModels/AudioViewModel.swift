@@ -198,16 +198,6 @@ class AudioViewModel: ObservableObject {
     private func updateAmplitudes(_ fftData: [Float], mode: UpdateMode) {
         let binSize = 30
         var bin = Array(repeating: 0.0, count: self.audio.amplitudes.count) // stores amplitude sum
-        var noiseThreshold: Double = 0.05
-        
-        switch self.settings.noiseLevel {
-        case .low:
-            noiseThreshold = 0.05
-        case .medium:
-            noiseThreshold = 0.1
-        case .high:
-            noiseThreshold = 0.5
-        }
         
         for i in stride (from : 0, to: self.FFT_SIZE - 1, by: 2) {
             let real = fftData[i]
@@ -277,8 +267,8 @@ class AudioViewModel: ObservableObject {
                     
                 }
             }
-            print("Ref\(self.referenceHarmonicAmplitudes)")
-            print("User\(self.audio.harmonicAmplitudes)")
+//            print("Ref\(self.referenceHarmonicAmplitudes)")
+//            print("User\(self.audio.harmonicAmplitudes)")
         }
     }
     

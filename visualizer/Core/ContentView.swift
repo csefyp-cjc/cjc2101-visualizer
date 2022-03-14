@@ -4,6 +4,7 @@ struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
     @StateObject var watchConnectivityViewModel = WatchConnectivityViewModel()
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.colorScheme) var systemColorScheme
     
     @State private var selection: Tab = .pitch
     @State private var selectionSidebar: Tab? = .pitch
@@ -57,6 +58,7 @@ struct ContentView: View {
                                 Label(item.title, systemImage: item.systemImage)
                             }
                             .tag(item)
+                            .preferredColorScheme(audioViewModel.settingVM.getScheme())
                             
                     }
                 }
@@ -78,12 +80,16 @@ struct ContentView: View {
                     
                     
                
+            }.onAppear{
+                audioViewModel.settingVM.systemColorScheme = systemColorScheme
             }
         } else {
             NavigationView {
                 List(Tab.allCases, selection: $selectionSidebar) { item in
                     NavigationLink(destination: views(item)
-                                    .navigationBarTitle("", displayMode: .inline),
+                                    .navigationBarTitle("", displayMode: .inline)
+                                    .preferredColorScheme(audioViewModel.settingVM.getScheme())
+                                   ,
                                    tag: item,
                                    selection: $selectionSidebar
                     ) {
@@ -95,6 +101,9 @@ struct ContentView: View {
                 .navigationBarTitle(Text("Screens"))
             }
             .accentColor(.foundation.primary)
+            .onAppear{
+                audioViewModel.settingVM.systemColorScheme = systemColorScheme
+            }
         }
     }
     
@@ -113,7 +122,6 @@ struct ContentView: View {
                 .environmentObject(audioViewModel)
                 .environmentObject(watchConnectivityViewModel)
         }
-        
     }
 }
 

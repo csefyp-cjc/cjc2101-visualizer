@@ -120,6 +120,36 @@ struct SettingView: View {
                 }
                 
                 Group {
+                    Text("Appearance")
+                        .font(.label.medium)
+                    
+                    HStack(spacing: 12){
+                        SettingButton(label: "System",
+                                      type: Setting.Appearance.self,
+                                      selected: vm.isSelected(label: "System", type: "appearance"),
+                                      action: vm.changeAppearanceSetting)
+                        
+                        SettingButton(label: "Dark",
+                                      type: Setting.Appearance.self,
+                                      selected: vm.isSelected(label: "Dark", type: "appearance"),
+                                      action: vm.changeAppearanceSetting)
+                        
+                        SettingButton(label: "Light",
+                                      type: Setting.Appearance.self,
+                                      selected: vm.isSelected(label: "Light", type: "appearance"),
+                                      action: vm.changeAppearanceSetting)
+                    }
+                    
+                    Text(vm.settings.appearance.getDescription())
+                        .font(.label.xsmall)
+                        .foregroundColor(.neutral.onBackgroundVariant)
+                    
+                    Spacer()
+                        .frame(height: 24)
+                    
+                }
+                
+                Group {
                     Text("Tips")
                         .font(.label.medium)
                     
@@ -149,6 +179,7 @@ struct SettingView: View {
             .padding(EdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24))
             .foregroundColor(.neutral.onBackground)
         }
+        .preferredColorScheme(vm.getScheme())
     }
 }
 
