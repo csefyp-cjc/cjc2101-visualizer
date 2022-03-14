@@ -10,6 +10,9 @@ import SwiftUI
 struct TimbreView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
+    
+    @AppStorage(InteractiveTutorial.Page.timbre.rawValue) var firstLaunch: Bool?
+    
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
@@ -85,6 +88,13 @@ struct TimbreView: View {
             }
             .transition(.opacity.animation(.easeIn(duration: 0.3)))
             .animation(.default)
+            .onAppear {
+                guard let _ = firstLaunch else {
+                    showTutorial.toggle()
+                    firstLaunch = false
+                    return
+                }
+            }
             
             ZStack {
                 TimbreDrawerView(isShowing: $showDrawer,

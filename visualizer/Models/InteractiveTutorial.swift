@@ -16,8 +16,8 @@ struct InteractiveTutorial {
     var offset: CGSize
     
     enum Page: String {
-        case pitch
-        case timbre
+        case pitch = "pitch"
+        case timbre = "timbre"
     }
 }
 

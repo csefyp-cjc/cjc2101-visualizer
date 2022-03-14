@@ -72,7 +72,7 @@ class SettingViewModel: ObservableObject{
     
         
     private func storeSettings() {
-        if let encodedSettings = try? JSONEncoder().encode(settings) {
+        if let encodedSettings = try? JSONEncoder().encode(self.settings) {
             UserDefaults.standard.set(encodedSettings, forKey: "settings")
         }
     }

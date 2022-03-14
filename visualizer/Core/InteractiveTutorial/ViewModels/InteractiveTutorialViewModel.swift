@@ -51,7 +51,6 @@ class InteractiveTutorialViewModel: ObservableObject {
                                     size: CGSize(width: UIScreen.main.bounds.width, height: 340),
                                     offset: CGSize(width: 0, height: 176))]
         }
-        
     }
     
     // Return true to dismiss tutorial
@@ -62,6 +61,11 @@ class InteractiveTutorialViewModel: ObservableObject {
         
         self.currentPage += 1
         return false
+    }
+    
+    // Store first launch status on UserDefault
+    private func storeFirstLaunchStatus() {
+        UserDefaults.standard.set(false, forKey: "\(self.page.rawValue)")
     }
     
 }
