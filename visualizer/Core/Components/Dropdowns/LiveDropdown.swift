@@ -20,7 +20,7 @@ struct LiveDropdown: View {
     let start: () -> Void   // From AudioViewModel, start the engine
     let stop: () -> Void    // From AudioViewModel, stop the engine
     let options: [Int]
-    var toggleWatchLive: () -> Void
+    var sendIsLive: (_ isLive: Bool) -> Void
     
     @State private var show = false
     @State private var value = 3
@@ -42,7 +42,7 @@ struct LiveDropdown: View {
         curTime = 0
         stop()
         isLive = false
-        toggleWatchLive()
+        sendIsLive(false)
     }
     
     private func stopAfter(seconds: Int) {
@@ -66,6 +66,7 @@ struct LiveDropdown: View {
                     Button {
                         isLive ? stop() : start()
                         isLive.toggle()
+                        sendIsLive(isLive)
                     } label: {
                         Image(systemName: isLive ? "waveform.circle.fill" : "waveform")
                             .font(.system(size: isLive ? 28 : 22))
@@ -134,7 +135,7 @@ struct LiveDropdown: View {
 struct LiveDropdown_Previews: PreviewProvider {
     @State static var isPitchAccurate: Bool = AudioViewModel().audio.isPitchAccurate
     
-    @State static var isWatchLive: Bool = WatchConnectivityViewModel().isWatchLive
+    @State static var isWatchLive: Bool = WatchConnectivityViewModel().isLive
     
     static var previews: some View {
         LiveDropdown(isPitchAccurate: $isPitchAccurate,
@@ -142,7 +143,7 @@ struct LiveDropdown_Previews: PreviewProvider {
                      start: AudioViewModel().start,
                      stop: AudioViewModel().stop,
                      options: [3, 5, 10],
-                     toggleWatchLive: WatchConnectivityViewModel().toggleWatchLive
+                     sendIsLive: WatchConnectivityViewModel().sendIsLive
         )
             .previewLayout(.sizeThatFits)
     }
