@@ -16,8 +16,28 @@ struct TimbreView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
+    @State private var displayMode: DisplayMode = .yours
     
     @Binding var isShowingModal: Bool
+    
+    enum DisplayMode: CaseIterable, Identifiable {
+        case yours
+        case suggested
+        case mixed
+        
+        var id: String { title }
+        
+        var title: String {
+            switch self {
+            case .yours:
+                return "Yours"
+            case .suggested:
+                return "Suggested"
+            case .mixed:
+                return "Mixed"
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -30,6 +50,20 @@ struct TimbreView: View {
                                 noteRepresentation: vm.settingVM.settings.noteRepresentation,
                                 changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
                     )
+                    
+                    Spacer()
+                        .frame(height: 60)
+                    
+                    Picker("Display Mode", selection: $displayMode) {
+                        Text(DisplayMode.yours.title)
+                            .tag(DisplayMode.yours)
+                        Text(DisplayMode.suggested.title)
+                            .tag(DisplayMode.suggested)
+                        Text(DisplayMode.mixed.title)
+                            .tag(DisplayMode.mixed)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(20)
                 }
                 .padding(.top, 72)
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
@@ -67,14 +101,30 @@ struct TimbreView: View {
                 
                 VStack {
                     Spacer()
+                    
                     ZStack {
-                        Harmonics(harmonics: vm.audio.harmonicAmplitudes,
-                                  isReference: false
-                        )
-                        
-                        Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
-                                  isReference: true
-                        )
+                        switch displayMode {
+                        case .yours:
+                            Harmonics(harmonics: vm.audio.harmonicAmplitudes,
+                                      isReference: false,
+                                      isMixed: false
+                            )
+                        case .suggested:
+                            Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
+                                      isReference: true,
+                                      isMixed: false
+                            )
+                        case .mixed:
+                            Harmonics(harmonics: vm.audio.harmonicAmplitudes,
+                                      isReference: false,
+                                      isMixed: false
+                            )
+                            
+                            Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
+                                      isReference: true,
+                                      isMixed: true
+                            )
+                        }
                     }
                 }
             }

@@ -24,6 +24,7 @@ extension Color {
         let successVariant: Color = Color("successVariant")
         let successContainer = Color("successContainer")
         let highlight: Color = Color("highlight")
+        let highlightVariant: Color = Color("highlightVariant")
         let disabled: Color = Color("disabled")
     }
     

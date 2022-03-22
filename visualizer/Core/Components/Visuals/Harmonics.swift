@@ -11,6 +11,7 @@ struct Harmonics: View {
     
     var harmonics: [Double]
     var isReference: Bool
+    var isMixed: Bool
     
     func getWidth(_ width: CGFloat) -> CGFloat {
         let divider = harmonics.count + harmonics.count / 2
@@ -24,20 +25,20 @@ struct Harmonics: View {
                     ForEach((1...harmonics.count), id: \.self) { i in
                         Spacer()
                         
-                        if (!isReference) {
+                        if (!isMixed) {
                             VStack {
                                 VBar(val: harmonics[i-1]*7.0,
                                      width: Int(getWidth(geometry.size.width)),
-                                     color: Color.accent.highlight,
+                                     color: isReference ? Color.accent.highlightVariant : Color.accent.highlight,
                                      showValue: false
                                 )
                             }
                         } else {
                             VStack {
                                 ReferenceBar(val: harmonics[i-1]*7.0,
-                                     width: Int(getWidth(geometry.size.width)),
-                                     color: Color(red: 0, green: 1, blue: 0.4784313725, opacity: 1),
-                                     showValue: false
+                                             width: Int(getWidth(geometry.size.width)),
+                                             color: Color.accent.highlightVariant,
+                                             showValue: false
                                 )
                             }
                         }
@@ -84,7 +85,8 @@ struct FixedSpacer: View {
 struct Harmonics_Previews: PreviewProvider {
     static var previews: some View {
         Harmonics(harmonics: Array(repeating: 0.5, count: 12),
-                  isReference: false
+                  isReference: false,
+                  isMixed: false
         )
     }
 }
