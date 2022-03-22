@@ -21,6 +21,9 @@ struct visualizerApp: App {
                 .onChange(of: audioViewModel.audio.pitchNotation) { value in
                     watchConnectivityViewModel.sendPitchNotation(pitchNotation: value)
                 }
+                .onAppear{
+                    watchConnectivityViewModel.sendIsLive(isLive: true)
+                }
         }
     }
 }

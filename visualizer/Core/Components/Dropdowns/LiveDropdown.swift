@@ -75,15 +75,6 @@ struct LiveDropdown: View {
                     .foregroundColor(.neutral.onSurface)
                     .clipShape(Circle())
                     .buttonStyle(ScaleButtonStyle())
-                    .onChange(of: isWatchLive) { value in
-                        if value {
-                            start()
-                            isLive = true
-                        } else {
-                            isLive = false
-                            stopTimer()
-                        }
-                    }
                     
                     if show {
                         ForEach(options, id: \.self){ option in
@@ -129,6 +120,19 @@ struct LiveDropdown: View {
         .background(Color.neutral.surface)
         .cornerRadius(45)
         .animation(.spring(), value: show)
+        .onChange(of: isWatchLive) { value in
+            if value {
+                start()
+                isLive = true
+            } else {
+                isLive = false
+                timerIsPaused = true
+                timer?.invalidate()
+                timer = nil
+                curTime = 0
+                stop()
+            }
+        }
     }
 }
 

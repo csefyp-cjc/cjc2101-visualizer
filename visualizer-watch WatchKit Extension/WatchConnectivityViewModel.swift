@@ -37,12 +37,11 @@ class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject 
                 self.pitchNotation = message["value"] as? String ?? "-"
             }
         default:
-            print("watch received some message")
+            break
         }
     }
     
     func toggleLive() {
-        print("watch sending a message: TOGGLE_LIVE")
         self.session.sendMessage(["message" : "TOGGLE_LIVE", "value": String(!self.isLive)], replyHandler: nil) { (error) in
             // print(error.localizedDescription)
         }

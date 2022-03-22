@@ -34,20 +34,18 @@ class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject 
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print("phone received a message")
-        print(message)
         switch message["message"] as? String {
         case "TOGGLE_LIVE":
             DispatchQueue.main.async {
                 self.isLive = Bool(message["value"] as? String ?? "Unknown")!
             }
         default:
-            print("phone received some message")
+            break
         }
     }
     
     func sendIsLive(isLive: Bool){
-        print("phone sending a message: TOGGLE_LIVE \(isLive)")
+        print("sending to watch \(isLive)")
         self.session.sendMessage(["message" : "TOGGLE_LIVE", "value": String(isLive)], replyHandler: nil) { (error) in
             // print(error.localizedDescription)
         }
