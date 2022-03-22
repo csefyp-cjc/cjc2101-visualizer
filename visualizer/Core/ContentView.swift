@@ -45,7 +45,8 @@ struct ContentView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color.neutral.background)
-      }
+        UISegmentedControl.appearance().setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .normal)
+    }
     
     //TODO: tab view animation
     var body: some View {

@@ -20,7 +20,7 @@ struct PitchLetter: View {
                 pitchNotation = changePitchNotation(pitchNotation)
             } label: {
                 Text(pitchNotation)
-                    .font(.system(size: 64, weight:.heavy))
+                    .font(.system(size: 64, weight: .heavy))
                     .foregroundColor(.foundation.primary)
             }        
         }
