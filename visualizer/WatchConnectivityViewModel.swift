@@ -45,7 +45,6 @@ class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject 
     }
     
     func sendIsLive(isLive: Bool){
-        print("sending to watch \(isLive)")
         self.session.sendMessage(["message" : "TOGGLE_LIVE", "value": String(isLive)], replyHandler: nil) { (error) in
             // print(error.localizedDescription)
         }

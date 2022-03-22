@@ -25,8 +25,6 @@ class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject 
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print("watch received a message")
-        print(message)
         switch message["message"] as? String {
         case "TOGGLE_LIVE":
             DispatchQueue.main.async {
