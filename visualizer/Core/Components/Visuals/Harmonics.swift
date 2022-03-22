@@ -24,13 +24,24 @@ struct Harmonics: View {
                     ForEach((1...harmonics.count), id: \.self) { i in
                         Spacer()
                         
-                        VStack {
-                            VBar(val: harmonics[i-1]*7.0,
-                                 width: Int(getWidth(geometry.size.width)),
-                                 color: isReference ? Color.accent.highlight.opacity(0.4) : Color(red: 0.9607843137, green: 0.2039215686, blue: 0.2039215686, opacity: 1),
-                                 showValue: false
-                            )
+                        if (!isReference) {
+                            VStack {
+                                VBar(val: harmonics[i-1]*7.0,
+                                     width: Int(getWidth(geometry.size.width)),
+                                     color: Color.accent.highlight,
+                                     showValue: false
+                                )
+                            }
+                        } else {
+                            VStack {
+                                ReferenceBar(val: harmonics[i-1]*7.0,
+                                     width: Int(getWidth(geometry.size.width)),
+                                     color: Color(red: 0, green: 1, blue: 0.4784313725, opacity: 1),
+                                     showValue: false
+                                )
+                            }
                         }
+                        
                         if (i == harmonics.count) {
                             Spacer()
                         }
