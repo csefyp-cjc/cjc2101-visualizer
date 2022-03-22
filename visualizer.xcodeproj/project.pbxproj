@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903949627EA2B55000B3AC0 /* TimbreTag.swift */; };
 		4906C6AB27537571001C52BC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AA27537570001C52BC /* SettingViewModel.swift */; };
 		4906C6AD2753760D001C52BC /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906C6AC2753760D001C52BC /* Setting.swift */; };
 		490E8B632739176B0047DE64 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E8B622739176A0047DE64 /* Color.swift */; };
@@ -146,6 +147,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4903949627EA2B55000B3AC0 /* TimbreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreTag.swift; sourceTree = "<group>"; };
 		4906C6AA27537570001C52BC /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		4906C6AC2753760D001C52BC /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Setting.swift; path = visualizer/Models/Setting.swift; sourceTree = SOURCE_ROOT; };
 		490E8B622739176A0047DE64 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				8E8DB87F27380AD30010FE7E /* PitchIndicator.swift */,
+				4903949627EA2B55000B3AC0 /* TimbreTag.swift */,
 			);
 			path = Indicators;
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 			files = (
 				8E09212527BA994900F540B6 /* InstrumentButton.swift in Sources */,
 				49EFBED027E9E99F000925E5 /* ReferenceBar.swift in Sources */,
+				4903949727EA2B55000B3AC0 /* TimbreTag.swift in Sources */,
 				8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */,
 				49D6F7F1274939D000CDCCE4 /* PitchNotation.swift in Sources */,
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,

@@ -11,6 +11,8 @@ struct TimbreView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     @AppStorage(InteractiveTutorial.Page.timbre.rawValue) var firstLaunch: Bool?
     
     @State private var showSheet: Bool = false
@@ -19,6 +21,8 @@ struct TimbreView: View {
     @State private var displayMode: DisplayMode = .yours
     
     @Binding var isShowingModal: Bool
+    
+    private var isCompact: Bool { horizontalSizeClass == .compact}
     
     enum DisplayMode: CaseIterable, Identifiable {
         case yours
@@ -52,7 +56,18 @@ struct TimbreView: View {
                     )
                     
                     Spacer()
-                        .frame(height: 60)
+                        .frame(height: isCompact ? 52 : 0)
+                    
+                    HStack(alignment: .center, spacing: 4) {
+                        TimbreTag(text: "Bright")
+                        
+                        TimbreTag(text: "Inharmonic")
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                        .frame(height: 12)
                     
                     Picker("Display Mode", selection: $displayMode) {
                         Text(DisplayMode.yours.title)
@@ -63,8 +78,8 @@ struct TimbreView: View {
                             .tag(DisplayMode.mixed)
                     }
                     .pickerStyle(.segmented)
-                    .padding(20)
                 }
+                .padding(.horizontal, 20)
                 .padding(.top, 72)
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
                 
