@@ -10,11 +10,38 @@ import SwiftUI
 struct TimbreView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    @AppStorage(InteractiveTutorial.Page.timbre.rawValue) var firstLaunch: Bool?
+    
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
+    @State private var displayMode: DisplayMode = .yours
     
     @Binding var isShowingModal: Bool
+    
+    private var isCompact: Bool { horizontalSizeClass == .compact}
+    
+    enum DisplayMode: CaseIterable, Identifiable {
+        case yours
+        case suggested
+        case mixed
+        
+        var id: String { title }
+        
+        var title: String {
+            switch self {
+            case .yours:
+                return "Yours"
+            case .suggested:
+                return "Suggested"
+            case .mixed:
+                return "Mixed"
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -27,7 +54,32 @@ struct TimbreView: View {
                                 noteRepresentation: vm.settingVM.settings.noteRepresentation,
                                 changeNoteRepresentationSetting: vm.settingVM.changeNoteRepresentationSetting
                     )
+                    
+                    Spacer()
+                        .frame(height: isCompact ? 52 : 0)
+                    
+                    HStack(alignment: .center, spacing: 4) {
+                        TimbreTag(text: "Bright")
+                        
+                        TimbreTag(text: "Inharmonic")
+                        
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                        .frame(height: 12)
+                    
+                    Picker("Display Mode", selection: $displayMode) {
+                        Text(DisplayMode.yours.title)
+                            .tag(DisplayMode.yours)
+                        Text(DisplayMode.suggested.title)
+                            .tag(DisplayMode.suggested)
+                        Text(DisplayMode.mixed.title)
+                            .tag(DisplayMode.mixed)
+                    }
+                    .pickerStyle(.segmented)
                 }
+                .padding(.horizontal, 20)
                 .padding(.top, 72)
                 .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
                 
@@ -45,11 +97,11 @@ struct TimbreView: View {
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
                         LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
-                                     isWatchLive: $watchConnectVM.isWatchLive,
+                                     isWatchLive: $watchConnectVM.isLive,
                                      start: vm.start,
                                      stop: vm.stop,
                                      options: [3,5,10],
-                                     toggleWatchLive: watchConnectVM.toggleWatchLive
+                                     sendIsLive: watchConnectVM.sendIsLive
                         )
                             .padding(15)
                     }
@@ -64,14 +116,30 @@ struct TimbreView: View {
                 
                 VStack {
                     Spacer()
+                    
                     ZStack {
-                        Harmonics(harmonics: vm.audio.harmonicAmplitudes,
-                                  isReference: false
-                        )
-                        
-                        Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
-                                  isReference: true
-                        )
+                        switch displayMode {
+                        case .yours:
+                            Harmonics(harmonics: vm.audio.harmonicAmplitudes,
+                                      isReference: false,
+                                      isMixed: false
+                            )
+                        case .suggested:
+                            Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
+                                      isReference: true,
+                                      isMixed: false
+                            )
+                        case .mixed:
+                            Harmonics(harmonics: vm.audio.harmonicAmplitudes,
+                                      isReference: false,
+                                      isMixed: false
+                            )
+                            
+                            Harmonics(harmonics: vm.referenceHarmonicAmplitudes,
+                                      isReference: true,
+                                      isMixed: true
+                            )
+                        }
                     }
                 }
             }
@@ -85,6 +153,13 @@ struct TimbreView: View {
             }
             .transition(.opacity.animation(.easeIn(duration: 0.3)))
             .animation(.default)
+            .onAppear {
+                guard let _ = firstLaunch else {
+                    showTutorial.toggle()
+                    firstLaunch = false
+                    return
+                }
+            }
             
             ZStack {
                 TimbreDrawerView(isShowing: $showDrawer,

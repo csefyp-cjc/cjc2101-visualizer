@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
-    @StateObject var watchConnectivityViewModel = WatchConnectivityViewModel()
+    @EnvironmentObject var watchConnectivityViewModel: WatchConnectivityViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.colorScheme) var systemColorScheme
     
@@ -45,7 +45,8 @@ struct ContentView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color.neutral.background)
-      }
+        UISegmentedControl.appearance().setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14, weight: .semibold)], for: .normal)
+    }
     
     //TODO: tab view animation
     var body: some View {
