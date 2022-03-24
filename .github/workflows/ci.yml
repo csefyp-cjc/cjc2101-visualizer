@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -12,16 +12,25 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        destination: ['platform=iOS Simulator,OS=15.2,name=iPhone 13 Pro']
+        destination: ["platform=iOS Simulator,OS=15.2,name=iPhone 13 Pro"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: |
-        xcodebuild clean build -project visualizer.xcodeproj -scheme visualizer -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-      env: 
-        destination: ${{ matrix.destination }}
-    - name: Run tests
-      run: |
-        xcodebuild clean test -project visualizer.xcodeproj -scheme visualizer -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-      env: 
-        destination: ${{ matrix.destination }}
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          xcodebuild clean build -project visualizer.xcodeproj -scheme visualizer -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+        env:
+          destination: ${{ matrix.destination }}
+      - name: Run tests
+        run: |
+          xcodebuild clean test -project visualizer.xcodeproj -scheme visualizer \
+            -destination "${destination}" \
+            -resultBundlePath TestResults.xcresult \
+            -enableCodeCoverage YES \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+        env:
+          destination: ${{ matrix.destination }}
+
+      - uses: kishikawakatsumi/xcresulttool@v1.3.1
+        with:
+          path: TestResults.xcresult
+        if: success() || failure()
