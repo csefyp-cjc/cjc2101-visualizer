@@ -26,6 +26,25 @@ class InteractiveTutorialViewTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func test_InteractiveTutorialView_firstLaunch_shouldPopupTutorialOverlay() throws {
+        // Given
+        
+        // When
+                
+        // Then
+        XCTAssertTrue(app.staticTexts["Tutorial Hints Text"].waitForExistence(timeout: 5))
+        
+        let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let coordinate = normalized.withOffset(CGVector(dx: 100, dy: 100))
+        
+        while(app.staticTexts["Tutorial Hints Text"].exists) {
+            XCTAssertTrue(app.staticTexts["Tutorial Hints Text"].exists)
+            coordinate.tap()
+        }
+        
+        XCTAssertFalse(app.staticTexts["Tutorial Hints Text"].exists)
+    }
+    
     func test_InteractiveTutorialView_moreButton_shouldPopupTutorialOverlay() throws {
         // Given
         

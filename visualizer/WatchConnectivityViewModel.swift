@@ -9,8 +9,10 @@ import Foundation
 import WatchConnectivity
 
 class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject {
+    
     var session: WCSession
-    @Published var isWatchLive: Bool = true
+    @Published var isLive: Bool = true
+    @Published var pitchNotation: String = "-"
     
     init(session: WCSession = .default) {
         self.session = session
@@ -32,15 +34,27 @@ class WatchConnectivityViewModel: NSObject, WCSessionDelegate, ObservableObject 
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        DispatchQueue.main.async {
-            self.isWatchLive = Bool(message["message"] as? String ?? "Unknown")!
+        switch message["message"] as? String {
+        case "TOGGLE_LIVE":
+            DispatchQueue.main.async {
+                self.isLive = Bool(message["value"] as? String ?? "Unknown")!
+            }
+        default:
+            break
         }
     }
     
-    func toggleWatchLive() {
-        self.session.sendMessage(["message" : String(!self.isWatchLive)], replyHandler: nil) { (error) in
+    func sendIsLive(isLive: Bool){
+        self.session.sendMessage(["message" : "TOGGLE_LIVE", "value": String(isLive)], replyHandler: nil) { (error) in
+            // print(error.localizedDescription)
+        }
+        self.isLive = isLive
+    }
+    
+    func sendPitchNotation(pitchNotation: String){
+        self.session.sendMessage(["message" : "PITCH_NOTATION", "value": pitchNotation], replyHandler: nil) { (error) in
 //                    print(error.localizedDescription)
         }
-        self.isWatchLive = self.isWatchLive ? false : true
+        self.pitchNotation = pitchNotation
     }
 }

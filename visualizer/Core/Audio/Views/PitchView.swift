@@ -3,9 +3,12 @@ import SwiftUI
 struct PitchView: View {
     @EnvironmentObject var vm: AudioViewModel
     @EnvironmentObject var watchConnectVM: WatchConnectivityViewModel
+    
+    @AppStorage(InteractiveTutorial.Page.pitch.rawValue) var firstLaunch: Bool?
+    
     @State private var touching: Bool = false
     @State private var showSheet: Bool = false
-    @State private var showTutorial: Bool = false            
+    @State private var showTutorial: Bool = false
     
     var body: some View {
         ZStack {
@@ -52,11 +55,11 @@ struct PitchView: View {
                     Spacer()
                     
                     LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
-                                 isWatchLive: $watchConnectVM.isWatchLive,
+                                 isWatchLive: $watchConnectVM.isLive,
                                  start: vm.start,
                                  stop: vm.stop,
                                  options: [3,5,10],
-                                 toggleWatchLive: watchConnectVM.toggleWatchLive
+                                 sendIsLive: watchConnectVM.sendIsLive
                     )
                         .padding(15)
                 }
@@ -72,6 +75,13 @@ struct PitchView: View {
             }
             .transition(.opacity.animation(.easeIn(duration: 0.3)))
             .animation(.default)
+            .onAppear {
+                guard let _ = firstLaunch else {
+                    showTutorial.toggle()
+                    firstLaunch = false
+                    return
+                }
+            }
         }
     }
 }

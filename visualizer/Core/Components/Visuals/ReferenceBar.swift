@@ -1,13 +1,13 @@
 //
-//  VBar.swift
+//  ReferenceBar.swift
 //  visualizer
 //
-//  Created by Mark Cheng on 7/11/2021.
+//  Created by Andrew Li on 22/3/2022.
 //
 
 import SwiftUI
 
-struct VBar: View {
+struct ReferenceBar: View {
     let val: Double // val that it represents ( for height calculation )
     let width: Int
     let color: Color
@@ -22,14 +22,23 @@ struct VBar: View {
         }
     }
     
+    private func barHeight(_ val: Double) -> CGFloat {
+       return CGFloat(val * 50 >= 16 ? 16 : val * 50)
+    }
+    
     var body: some View {
         VStack {
-            Rectangle()
-                .fill(color)
-                .frame(width: CGFloat(width), height: CGFloat(50 * val))
-                .cornerRadius(4)
-                .frame(maxHeight: 450, alignment: .bottom)
-                .animation(.easeOut(duration: 0.15))
+            VStack {
+                if (val > 0) {
+                    Rectangle()
+                        .fill(color)
+                        .frame(width: CGFloat(width), height: barHeight(val))
+                        .cornerRadius(4)
+                        .animation(.easeOut(duration: 0.15))
+                }
+            }
+            .frame(width: CGFloat(width), height: CGFloat(50 * val), alignment: .top)
+            .frame(maxHeight: 450, alignment: .bottom)
         }
         .overlay(
             Text(format(peakFrequency))
@@ -44,8 +53,9 @@ struct VBar: View {
     }
 }
 
-struct VBar_Previews: PreviewProvider {
+struct ReferenceBar_Previews: PreviewProvider {
     static var previews: some View {
-        VBar(val: 20, width: 4, color: .accent.success, showValue: true).previewLayout(.sizeThatFits)
+        ReferenceBar(val: 20, width: 4, color: .accent.success, showValue: true)
+            .previewLayout(.sizeThatFits)
     }
 }
