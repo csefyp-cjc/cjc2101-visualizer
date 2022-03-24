@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var audioViewModel: AudioViewModel
-    @StateObject var watchConnectivityViewModel = WatchConnectivityViewModel()
+    @EnvironmentObject var watchConnectivityViewModel: WatchConnectivityViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.colorScheme) var systemColorScheme
     

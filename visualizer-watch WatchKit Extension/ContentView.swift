@@ -12,6 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text(vm.pitchNotation)
+                .font(.system(size: 64, weight:.heavy))
+            
             Button(action: {
                 vm.toggleLive()                
             }) {

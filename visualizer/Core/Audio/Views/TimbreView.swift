@@ -97,11 +97,11 @@ struct TimbreView: View {
                             .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
                         LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
-                                     isWatchLive: $watchConnectVM.isWatchLive,
+                                     isWatchLive: $watchConnectVM.isLive,
                                      start: vm.start,
                                      stop: vm.stop,
                                      options: [3,5,10],
-                                     toggleWatchLive: watchConnectVM.toggleWatchLive
+                                     sendIsLive: watchConnectVM.sendIsLive
                         )
                             .padding(15)
                     }

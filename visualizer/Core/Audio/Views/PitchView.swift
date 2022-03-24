@@ -55,11 +55,11 @@ struct PitchView: View {
                     Spacer()
                     
                     LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
-                                 isWatchLive: $watchConnectVM.isWatchLive,
+                                 isWatchLive: $watchConnectVM.isLive,
                                  start: vm.start,
                                  stop: vm.stop,
                                  options: [3,5,10],
-                                 toggleWatchLive: watchConnectVM.toggleWatchLive
+                                 sendIsLive: watchConnectVM.sendIsLive
                     )
                         .padding(15)
                 }
