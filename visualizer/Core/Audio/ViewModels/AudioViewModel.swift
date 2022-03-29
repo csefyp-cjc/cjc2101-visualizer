@@ -42,7 +42,7 @@ class AudioViewModel: ObservableObject {
     private let silentMixer: Mixer
     private var taps: [BaseTap] = []
     private let FFT_SIZE = 2048
-    private let sampleRate: double_t = 44100
+    private let SAMPLE_RATE: double_t = 44100
     private let outputLimiter: PeakLimiter
     
     
@@ -172,23 +172,27 @@ class AudioViewModel: ObservableObject {
             self.audio.pitchFrequency = pitchFrequency[0]
             self.audio.pitchNotation = pitchFromFrequency(pitchFrequency[0], self.settings.noteRepresentation)
             self.audio.pitchDetune = pitchDetuneFromFrequency(pitchFrequency[0])
-            self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.sampleRate))
+            self.audio.peakBarIndex = Int(pitchFrequency[0] * Float(self.FFT_SIZE) / Float(self.SAMPLE_RATE))
             //            print("🔖 Pitch Detune (Cent)   \(audio.pitchDetune)")
             
             // TODO: maybe only compute these values when current view is timbre view
             // update harmonicAmplitudes
             let hamonics = getHarmonics(fundamental: pitchFrequency[0], n: self.audio.totalHarmonics) //TODO: adjustable n
             for (index, harmonic) in hamonics.enumerated() {
-                let harmonicIndex = Int(harmonic*2048/44100)
+                let harmonicIndex = Int(harmonic * Float(self.FFT_SIZE) / Float(self.SAMPLE_RATE))
                 if (harmonicIndex > 255) {
                     self.audio.harmonicAmplitudes[index] = 0
                 }else{
-                    self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic*2048/44100)]
+                    self.audio.harmonicAmplitudes[index] = self.audio.amplitudes[Int(harmonic * Float(self.FFT_SIZE) / Float(self.SAMPLE_RATE))]
                 }
             }
             
             // update amplitudesToDisplay
             self.audio.amplitudesToDisplay = self.audio.amplitudes
+            
+            // Update audio features
+            self.updateSpectralCentroid()
+            self.updateInharmonicity()
         }
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
@@ -295,5 +299,32 @@ class AudioViewModel: ObservableObject {
         return harmonics
     }
     
+    //
+    // Audio Features
+    //
     
+    private func updateSpectralCentroid() {
+        let weightedFrequenciesSum: Double = self.audio.amplitudes.enumerated().reduce(0, { acc, cur in
+            return acc + Double(cur.0) * self.SAMPLE_RATE / Double(self.FFT_SIZE) * cur.1  // cur.0: index, cur.1: amplitude
+        })
+        
+        let amplitudeSum: Double = self.audio.amplitudes.reduce(0, { acc, cur in
+            return acc + cur
+        })
+        
+        let spectralCentroid = weightedFrequenciesSum / amplitudeSum
+        
+        // Lavengood considers spectral centroids above 1100Hz bright and anything below dark.
+        // Map to [0, 1] according to this standard
+        
+        let threshold: Double = 1100
+        
+        let result = spectralCentroid / threshold * 0.5
+        self.audio.audioFeatures.spectralCentroid = result > 1 ? 1 : result
+        self.audio.audioFeatures.spectralCentroid = result < 0 ? 0 : self.audio.audioFeatures.spectralCentroid
+    }
+    
+    private func updateInharmonicity() {
+        // TODO
+    }
 }

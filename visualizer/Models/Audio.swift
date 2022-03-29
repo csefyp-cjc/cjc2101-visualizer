@@ -17,7 +17,7 @@ struct Audio {
     var isPitchAccurate: Bool
     let totalHarmonics: Int
     var harmonicAmplitudes: [Double]
-    
+    var audioFeatures: AudioFeatures
     
     
     
@@ -30,6 +30,12 @@ struct Audio {
         pitchDetune: 0.0,
         isPitchAccurate: false,
         totalHarmonics: 12,
-        harmonicAmplitudes: Array(repeating: 0.5, count: 12)
+        harmonicAmplitudes: Array(repeating: 0.5, count: 12),
+        audioFeatures: AudioFeatures(spectralCentroid: 0)
     )
+}
+
+struct AudioFeatures {
+    var spectralCentroid: Double
+    var inharmonicity: Double
 }

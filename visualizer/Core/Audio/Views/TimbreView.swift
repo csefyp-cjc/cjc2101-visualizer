@@ -59,9 +59,9 @@ struct TimbreView: View {
                         .frame(height: isCompact ? 52 : 0)
                     
                     HStack(alignment: .center, spacing: 4) {
-                        TimbreTag(text: "Bright")
+                        TimbreTag(text: "Brightness", value: vm.audio.audioFeatures.spectralCentroid)
                         
-                        TimbreTag(text: "Inharmonic")
+                        TimbreTag(text: "Inharmonic", value: 1.0)
                         
                         Spacer()
                     }
