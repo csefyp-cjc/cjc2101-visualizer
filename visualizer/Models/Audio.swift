@@ -31,11 +31,36 @@ struct Audio {
         isPitchAccurate: false,
         totalHarmonics: 12,
         harmonicAmplitudes: Array(repeating: 0.5, count: 12),
-        audioFeatures: AudioFeatures(spectralCentroid: 0)
+        audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0)
     )
 }
 
 struct AudioFeatures {
     var spectralCentroid: Double
     var inharmonicity: Double
+}
+
+enum AudioFeature: String, CaseIterable, Identifiable, Codable {
+   case spectralCentroid = "Brightness"
+   case inharmonicity = "Inharmonicity"
+    
+    var id: String { rawValue }
+    
+    func getDescription () -> String {
+        switch self {
+        case .spectralCentroid:
+            return "Brightness describes your tone color"
+        case .inharmonicity:
+            return "Inharmonic describes how the overtones is out of tune"
+        }
+    }
+    
+    func getLabels () -> (String, String) {
+        switch self {
+        case .spectralCentroid:
+            return ("Dark/warm", "Bright")
+        case .inharmonicity:
+            return ("Inharmonic", "Harmonic")
+        }
+    }
 }
