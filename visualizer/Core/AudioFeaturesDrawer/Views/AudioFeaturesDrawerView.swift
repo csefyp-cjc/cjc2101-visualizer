@@ -43,6 +43,12 @@ struct AudioFeaturesDrawerView: View {
                         .frame(width: 7)
                         .offset(x: CGFloat(UIScreen.main.bounds.width - 32 - 32) * value - (7 / 2))
                         .animation(.spring(), value: value)
+                    
+                    Text(String(format: "%.2f", value))
+                        .font(.label.xsmall)
+                        .offset(x: CGFloat(UIScreen.main.bounds.width - 32 - 32) * value - (24 / 2),
+                                y: CGFloat(-19))
+                        .animation(.spring(), value: value)
                 }
                 .frame(width: .infinity, height: 12)
                 

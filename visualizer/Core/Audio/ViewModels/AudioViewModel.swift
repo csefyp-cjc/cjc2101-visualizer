@@ -193,6 +193,7 @@ class AudioViewModel: ObservableObject {
             // Update audio features
             self.updateSpectralCentroid()
             self.updateInharmonicity()
+            self.updateQuality()
         }
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
@@ -325,6 +326,32 @@ class AudioViewModel: ObservableObject {
     }
     
     private func updateInharmonicity() {
-        // TODO
+        // TODO: Find the actual harmonic, and calculate the deviation
+    }
+    
+    private func updateQuality() {
+        // TODO: Enhance the calculation
+        
+        var rank: Double = 1
+        
+        let fundFreq = self.audio.harmonicAmplitudes[0]
+            
+        var count: Int = 1
+        
+        // Consider as hollow if other partials is louder than fundamental frequency
+        for freq in self.audio.harmonicAmplitudes.dropFirst() {
+            print("DEBUG: count \(count)")
+            
+            if (freq > fundFreq) {
+               rank *= fundFreq / freq
+            }
+            
+            print("DEBUG: rank \(rank)")
+            
+            count += 1
+        }
+        
+        self.audio.audioFeatures.quality = rank
+        
     }
 }

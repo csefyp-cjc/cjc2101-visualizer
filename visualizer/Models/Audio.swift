@@ -31,18 +31,20 @@ struct Audio {
         isPitchAccurate: false,
         totalHarmonics: 12,
         harmonicAmplitudes: Array(repeating: 0.5, count: 12),
-        audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0)
+        audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0, quality: 0)
     )
 }
 
 struct AudioFeatures {
     var spectralCentroid: Double
     var inharmonicity: Double
+    var quality: Double
 }
 
 enum AudioFeature: String, CaseIterable, Identifiable, Codable {
-   case spectralCentroid = "Brightness"
-   case inharmonicity = "Inharmonicity"
+    case spectralCentroid = "Brightness"
+    case inharmonicity = "Inharmonicity"
+    case quality = "Quality"
     
     var id: String { rawValue }
     
@@ -52,6 +54,8 @@ enum AudioFeature: String, CaseIterable, Identifiable, Codable {
             return "Brightness describes your tone color"
         case .inharmonicity:
             return "Inharmonic describes how the overtones is out of tune"
+        case .quality:
+            return "Quality describes whether your sound is full or hollow"
         }
     }
     
@@ -61,6 +65,9 @@ enum AudioFeature: String, CaseIterable, Identifiable, Codable {
             return ("Dark/warm", "Bright")
         case .inharmonicity:
             return ("Inharmonic", "Harmonic")
+        case .quality:
+            return ("Hollow", "Full")
         }
+        
     }
 }
