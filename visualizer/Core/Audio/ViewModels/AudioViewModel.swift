@@ -295,5 +295,13 @@ class AudioViewModel: ObservableObject {
         return harmonics
     }
     
-    
+    func switchCaptureTime(){
+        let options:Array<Int> = [2, 4, 8]
+        let i = options.firstIndex(of:self.audio.captureTime)!
+        if(i == options.count-1){
+            self.audio.captureTime = options[0]
+        }else{
+            self.audio.captureTime = options[i+1]
+        }
+    }
 }

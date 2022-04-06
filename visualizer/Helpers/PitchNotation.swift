@@ -63,9 +63,9 @@ func pitchDetuneFromFrequency(_ frequency: Float) -> Float {
     
 }
 
-func changePitchNotation(_ pitchLetter: String) -> String {
-    let letter = String(pitchLetter.dropLast())
-    let octave = String(pitchLetter.suffix(1))
+func changePitchNotation(_ pitchNotation: String) -> String {
+    let letter = String(pitchNotation.dropLast())
+    let octave = String(pitchNotation.suffix(1))
     if (notationFlat.contains(letter)) {
         if let index = notationFlat.firstIndex(where: {$0 == letter}) {
             return notationSharp[index] + octave
@@ -87,4 +87,17 @@ func getLabeling(_ interval: Int)->[Int] {
         l.append(i*interval)
     }
     return l
+}
+
+// return [next, cur, prev]
+func getSurroundingLetters(_ pitchNotation: String) -> Array<String> {
+    let pitchLetter = String(pitchNotation.dropLast())
+    if let i = notationSharp.firstIndex(of: pitchLetter) {
+        return [notationSharp[circular: i+1], pitchLetter, notationSharp[circular: i-1]]
+    }else if let i = notationFlat.firstIndex(of: pitchLetter){
+        return [notationFlat[circular: i+1], pitchLetter, notationFlat[circular: i-1]]
+    }else {
+        return ["-", "-", "-"]
+    }
+    
 }

@@ -53,6 +53,10 @@
 		8E09212527BA994900F540B6 /* InstrumentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09212427BA994900F540B6 /* InstrumentButton.swift */; };
 		8E09213627BB7F4900F540B6 /* TimbreDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09213527BB7F4900F540B6 /* TimbreDrawerViewModel.swift */; };
 		8E09213827BB803A00F540B6 /* TimbreDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09213727BB803A00F540B6 /* TimbreDrawer.swift */; };
+		8E1A93EE27FC801F0056D895 /* CaptureTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A93ED27FC801F0056D895 /* CaptureTimeButton.swift */; };
+		8E1A93F227FCF8E30056D895 /* VPitchIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A93F127FCF8E30056D895 /* VPitchIndicator.swift */; };
+		8E1A93F427FCFF3E0056D895 /* TypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A93F327FCFF3E0056D895 /* TypeExtension.swift */; };
+		8E1A93F627FD16390056D895 /* Amplitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A93F527FD16390056D895 /* Amplitudes.swift */; };
 		8E5F446E27BBDF8100DF21D8 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */; };
 		8E63BE2527B29DB6007735DF /* Harmonics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E63BE2427B29DB6007735DF /* Harmonics.swift */; };
 		8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */; };
@@ -195,6 +199,10 @@
 		8E09212427BA994900F540B6 /* InstrumentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentButton.swift; sourceTree = "<group>"; };
 		8E09213527BB7F4900F540B6 /* TimbreDrawerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreDrawerViewModel.swift; sourceTree = "<group>"; };
 		8E09213727BB803A00F540B6 /* TimbreDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreDrawer.swift; sourceTree = "<group>"; };
+		8E1A93ED27FC801F0056D895 /* CaptureTimeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureTimeButton.swift; sourceTree = "<group>"; };
+		8E1A93F127FCF8E30056D895 /* VPitchIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPitchIndicator.swift; sourceTree = "<group>"; };
+		8E1A93F327FCFF3E0056D895 /* TypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtension.swift; sourceTree = "<group>"; };
+		8E1A93F527FD16390056D895 /* Amplitudes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitudes.swift; sourceTree = "<group>"; };
 		8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		8E63BE2427B29DB6007735DF /* Harmonics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harmonics.swift; sourceTree = "<group>"; };
 		8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
@@ -480,6 +488,7 @@
 				498F0BF0274F909600A46486 /* DismissButton.swift */,
 				498F0BF2274FC11700A46486 /* SettingButton.swift */,
 				8E09212427BA994900F540B6 /* InstrumentButton.swift */,
+				8E1A93ED27FC801F0056D895 /* CaptureTimeButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -489,6 +498,7 @@
 			children = (
 				8E8DB87F27380AD30010FE7E /* PitchIndicator.swift */,
 				4903949627EA2B55000B3AC0 /* TimbreTag.swift */,
+				8E1A93F127FCF8E30056D895 /* VPitchIndicator.swift */,
 			);
 			path = Indicators;
 			sourceTree = "<group>";
@@ -501,6 +511,7 @@
 				8EECA39227384BC30083FD02 /* Axis.swift */,
 				8E63BE2427B29DB6007735DF /* Harmonics.swift */,
 				49EFBECF27E9E99E000925E5 /* ReferenceBar.swift */,
+				8E1A93F527FD16390056D895 /* Amplitudes.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -595,6 +606,7 @@
 				8EEFAF9227130F8000E3651D /* Preview Content */,
 				8E8DB883273811120010FE7E /* TouchEventModifier.swift */,
 				8EECA394273852030083FD02 /* ViewExtension.swift */,
+				8E1A93F327FCFF3E0056D895 /* TypeExtension.swift */,
 			);
 			path = visualizer;
 			sourceTree = "<group>";
@@ -928,6 +940,7 @@
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
 				498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */,
 				4906C6AD2753760D001C52BC /* Setting.swift in Sources */,
+				8E1A93F627FD16390056D895 /* Amplitudes.swift in Sources */,
 				49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
 				8E09213827BB803A00F540B6 /* TimbreDrawer.swift in Sources */,
@@ -937,6 +950,7 @@
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
+				8E1A93EE27FC801F0056D895 /* CaptureTimeButton.swift in Sources */,
 				492D8BFF27C51B8E006964D7 /* Cello.swift in Sources */,
 				4910419327AC37FA00196A2D /* InteractiveTutorialViewModel.swift in Sources */,
 				498F0BED274F808B00A46486 /* MoreButton.swift in Sources */,
@@ -959,6 +973,8 @@
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
 				49EA05B727B168DA0036EED4 /* WatchConnectivityViewModel.swift in Sources */,
 				498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */,
+				8E1A93F227FCF8E30056D895 /* VPitchIndicator.swift in Sources */,
+				8E1A93F427FCFF3E0056D895 /* TypeExtension.swift in Sources */,
 				49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,
 			);

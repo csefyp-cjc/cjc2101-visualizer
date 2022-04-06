@@ -17,6 +17,7 @@ struct Audio {
     var isPitchAccurate: Bool
     let totalHarmonics: Int
     var harmonicAmplitudes: [Double]
+    var captureTime: Int
     
     
     
@@ -30,6 +31,7 @@ struct Audio {
         pitchDetune: 0.0,
         isPitchAccurate: false,
         totalHarmonics: 12,
-        harmonicAmplitudes: Array(repeating: 0.5, count: 12)
+        harmonicAmplitudes: Array(repeating: 0.5, count: 12),
+        captureTime: 2
     )
 }
