@@ -17,7 +17,7 @@ struct Audio {
     var isPitchAccurate: Bool
     let totalHarmonics: Int
     var harmonicAmplitudes: [Double]
-    
+    var audioFeatures: AudioFeatures
     
     
     
@@ -30,6 +30,39 @@ struct Audio {
         pitchDetune: 0.0,
         isPitchAccurate: false,
         totalHarmonics: 12,
-        harmonicAmplitudes: Array(repeating: 0.5, count: 12)
+        harmonicAmplitudes: Array(repeating: 0.5, count: 12),
+        audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0, quality: 0)
     )
+}
+
+struct AudioFeatures {
+    var spectralCentroid: Double
+    var inharmonicity: Double
+    var quality: Double
+}
+
+enum AudioFeature: String, CaseIterable, Identifiable, Codable {
+    case spectralCentroid = "Brightness"
+    case quality = "Quality"
+    
+    var id: String { rawValue }
+    
+    func getDescription () -> String {
+        switch self {
+        case .spectralCentroid:
+            return "Brightness describes how bright or warm you sounds"
+        case .quality:
+            return "Quality describes how full or hollow you sounds"
+        }
+    }
+    
+    func getLabels () -> (String, String) {
+        switch self {
+        case .spectralCentroid:
+            return ("Dark/warm", "Bright")
+        case .quality:
+            return ("Hollow", "Full")
+        }
+        
+    }
 }

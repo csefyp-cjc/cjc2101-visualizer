@@ -18,7 +18,11 @@ struct TimbreView: View {
     @State private var showSheet: Bool = false
     @State private var showTutorial: Bool = false
     @State private var showDrawer: Bool = false
+    @State private var showAudioFeaturesDrawer: Bool = false
     @State private var displayMode: DisplayMode = .yours
+    
+    @State private var selectedFeature: AudioFeature = .spectralCentroid
+    @State private var selectedFeatureValue: Binding<Double> = .constant(0.0)
     
     @Binding var isShowingModal: Bool
     
@@ -43,6 +47,13 @@ struct TimbreView: View {
         }
     }
     
+    func toggleAudioFeaturesDrawer(_ audioFeature: AudioFeature, _ value: Binding<Double>) {
+        showAudioFeaturesDrawer.toggle()
+        isShowingModal.toggle()
+        selectedFeature = audioFeature
+        selectedFeatureValue = value
+    }
+    
     var body: some View {
         ZStack {
             Color.neutral.background
@@ -58,11 +69,14 @@ struct TimbreView: View {
                     Spacer()
                         .frame(height: isCompact ? 52 : 0)
                     
-                    HStack(alignment: .center, spacing: 4) {
-                        TimbreTag(text: "Bright")
+                    HStack(alignment: .center, spacing: 8) {
+                        TimbreTag(audioFeature: AudioFeature.spectralCentroid,
+                                  value: $vm.audio.audioFeatures.spectralCentroid,
+                                  toggleAudioFeaturesDrawer: toggleAudioFeaturesDrawer)
                         
-                        TimbreTag(text: "Inharmonic")
-                        
+                        TimbreTag(audioFeature: AudioFeature.quality,
+                                  value: $vm.audio.audioFeatures.quality,
+                                  toggleAudioFeaturesDrawer: toggleAudioFeaturesDrawer)
                         Spacer()
                     }
                     
@@ -165,6 +179,12 @@ struct TimbreView: View {
                 TimbreDrawerView(isShowing: $showDrawer,
                                  isShowingModal: $isShowingModal
                 ).environmentObject(vm.timbreDrawerVM)
+                
+                AudioFeaturesDrawerView(isShowing: $showAudioFeaturesDrawer,
+                                        isShowingModal: $isShowingModal,
+                                        selectedFeature: $selectedFeature,
+                                        value: selectedFeatureValue
+                ).environmentObject(vm.timbreDrawerVM)
             }
         }
     }
@@ -178,3 +198,4 @@ struct TimbreView_Previews: PreviewProvider {
             .environmentObject(WatchConnectivityViewModel())
     }
 }
+
