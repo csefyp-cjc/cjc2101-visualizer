@@ -37,7 +37,8 @@ struct TimbreTag: View {
                         .offset(x: CGFloat(width - 16 - 16) * value - (5 / 2))
                         .animation(.spring(), value: value)
                 }
-                .frame(width: .infinity, height: 8)
+                .frame(maxWidth: .infinity)
+                .frame(height: 8)
             }
             .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
             .background(Color.neutral.surface)

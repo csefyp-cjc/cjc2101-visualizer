@@ -190,10 +190,17 @@ class AudioViewModel: ObservableObject {
             // update amplitudesToDisplay
             self.audio.amplitudesToDisplay = self.audio.amplitudes
             
+            // Get the amplitude of fundamental frequency (1st harmonic)
+            let fundFreqAmp = self.audio.harmonicAmplitudes[0]
+            
+            // Keep only the Significant Harmonics
+            let significantHarmonics = self.audio.harmonicAmplitudes.filter { freq in
+                return freq > Double(noiseThreshold)
+            }
+            
             // Update audio features
             self.updateSpectralCentroid()
-            self.updateInharmonicity()
-            self.updateQuality()
+            self.updateQuality(fundFreq: fundFreqAmp, significantHarmonics: significantHarmonics)
         }
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
@@ -316,7 +323,8 @@ class AudioViewModel: ObservableObject {
         let spectralCentroid = weightedFrequenciesSum / amplitudeSum
         
         // Lavengood considers spectral centroids above 1100Hz bright and anything below dark.
-        // Map to [0, 1] according to this standard
+        // Some studies shows that we can calculate the unitless Adjusted Centroid as measurement, regarless of pitch
+        // Map to [0, 1]
         
         let threshold: Double = 1100
         
@@ -325,33 +333,17 @@ class AudioViewModel: ObservableObject {
         self.audio.audioFeatures.spectralCentroid = result < 0 ? 0 : self.audio.audioFeatures.spectralCentroid
     }
     
-    private func updateInharmonicity() {
-        // TODO: Find the actual harmonic, and calculate the deviation
-    }
-    
-    private func updateQuality() {
-        // TODO: Enhance the calculation
+    private func updateQuality(fundFreq: Double, significantHarmonics: [Double]) {
+        let totalNum = significantHarmonics.dropFirst().count
         
-        var rank: Double = 1
-        
-        let fundFreq = self.audio.harmonicAmplitudes[0]
-            
-        var count: Int = 1
-        
+        // Count the number of harmonics which amplitude is larger than the fundamental one
         // Consider as hollow if other partials is louder than fundamental frequency
-        for freq in self.audio.harmonicAmplitudes.dropFirst() {
-            print("DEBUG: count \(count)")
-            
-            if (freq > fundFreq) {
-               rank *= fundFreq / freq
-            }
-            
-            print("DEBUG: rank \(rank)")
-            
-            count += 1
-        }
+        let louderNum = significantHarmonics.dropFirst().reduce(0, { acc, cur in
+            return cur > fundFreq ? acc + 1 : acc
+        })
         
-        self.audio.audioFeatures.quality = rank
         
+        // Calculate the quality by mapping it to [0, 1]
+        self.audio.audioFeatures.quality = Double(totalNum - louderNum) / Double(totalNum)
     }
 }

@@ -43,7 +43,6 @@ struct AudioFeatures {
 
 enum AudioFeature: String, CaseIterable, Identifiable, Codable {
     case spectralCentroid = "Brightness"
-    case inharmonicity = "Inharmonicity"
     case quality = "Quality"
     
     var id: String { rawValue }
@@ -51,11 +50,9 @@ enum AudioFeature: String, CaseIterable, Identifiable, Codable {
     func getDescription () -> String {
         switch self {
         case .spectralCentroid:
-            return "Brightness describes your tone color"
-        case .inharmonicity:
-            return "Inharmonic describes how the overtones is out of tune"
+            return "Brightness describes how bright or warm you sounds"
         case .quality:
-            return "Quality describes whether your sound is full or hollow"
+            return "Quality describes how full or hollow you sounds"
         }
     }
     
@@ -63,8 +60,6 @@ enum AudioFeature: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .spectralCentroid:
             return ("Dark/warm", "Bright")
-        case .inharmonicity:
-            return ("Inharmonic", "Harmonic")
         case .quality:
             return ("Hollow", "Full")
         }

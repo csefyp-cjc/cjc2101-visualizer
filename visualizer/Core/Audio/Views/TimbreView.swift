@@ -74,10 +74,6 @@ struct TimbreView: View {
                                   value: $vm.audio.audioFeatures.spectralCentroid,
                                   toggleAudioFeaturesDrawer: toggleAudioFeaturesDrawer)
                         
-//                        TimbreTag(audioFeature: AudioFeature.inharmonicity,
-//                                  value: $vm.audio.audioFeatures.inharmonicity,
-//                                  toggleAudioFeaturesDrawer: toggleAudioFeaturesDrawer)
-                        
                         TimbreTag(audioFeature: AudioFeature.quality,
                                   value: $vm.audio.audioFeatures.quality,
                                   toggleAudioFeaturesDrawer: toggleAudioFeaturesDrawer)
