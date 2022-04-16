@@ -198,6 +198,9 @@ class AudioViewModel: ObservableObject {
                 return freq > Double(noiseThreshold)
             }
             
+            // update the last captured amplitude
+            self.audio.lastAmplitude = Double(amplitude[0])
+            
             // Update audio features
             self.updateSpectralCentroid()
             self.updateQuality(fundFreq: fundFreqAmp, significantHarmonics: significantHarmonics)

@@ -59,6 +59,8 @@
 		8E63BE2527B29DB6007735DF /* Harmonics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E63BE2427B29DB6007735DF /* Harmonics.swift */; };
 		8E68DC2F2747EE2600F418E6 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */; };
 		8E68DC322747EE8800F418E6 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68DC312747EE8800F418E6 /* AudioKit */; };
+		8E69A985280A5B7700BD9376 /* AmplitudeBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69A984280A5B7700BD9376 /* AmplitudeBuffer.swift */; };
+		8E69A987280AC87000BD9376 /* Amplitudes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69A986280AC87000BD9376 /* Amplitudes.swift */; };
 		8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB879273802FF0010FE7E /* PitchView.swift */; };
 		8E8DB87C273805830010FE7E /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87B273805830010FE7E /* SoundView.swift */; };
 		8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB87D273807490010FE7E /* TimbreView.swift */; };
@@ -202,6 +204,8 @@
 		8E5F446D27BBDF8100DF21D8 /* DrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		8E63BE2427B29DB6007735DF /* Harmonics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harmonics.swift; sourceTree = "<group>"; };
 		8E68DC2E2747EE2600F418E6 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		8E69A984280A5B7700BD9376 /* AmplitudeBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeBuffer.swift; sourceTree = "<group>"; };
+		8E69A986280AC87000BD9376 /* Amplitudes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amplitudes.swift; sourceTree = "<group>"; };
 		8E8DB879273802FF0010FE7E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
 		8E8DB87B273805830010FE7E /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		8E8DB87D273807490010FE7E /* TimbreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreView.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				49D6F7F0274939D000CDCCE4 /* PitchNotation.swift */,
+				8E69A984280A5B7700BD9376 /* AmplitudeBuffer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -531,6 +536,7 @@
 				8EECA39227384BC30083FD02 /* Axis.swift */,
 				8E63BE2427B29DB6007735DF /* Harmonics.swift */,
 				49EFBECF27E9E99E000925E5 /* ReferenceBar.swift */,
+				8E69A986280AC87000BD9376 /* Amplitudes.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -958,6 +964,7 @@
 				8EECA39327384BC30083FD02 /* Axis.swift in Sources */,
 				498F0BEF274F8FC600A46486 /* SettingView.swift in Sources */,
 				4906C6AD2753760D001C52BC /* Setting.swift in Sources */,
+				8E69A987280AC87000BD9376 /* Amplitudes.swift in Sources */,
 				49C5B3892795B74500D4A63C /* InteractiveTutorialView.swift in Sources */,
 				8E8DB87E273807490010FE7E /* TimbreView.swift in Sources */,
 				8E09213827BB803A00F540B6 /* TimbreDrawer.swift in Sources */,
@@ -965,6 +972,7 @@
 				8EECA39127382E8E0083FD02 /* VBar.swift in Sources */,
 				499451FA27F471D200CB9BD0 /* AudioFeaturesDrawerViewModel.swift in Sources */,
 				8E09213627BB7F4900F540B6 /* TimbreDrawerViewModel.swift in Sources */,
+				8E69A985280A5B7700BD9376 /* AmplitudeBuffer.swift in Sources */,
 				8EECA395273852030083FD02 /* ViewExtension.swift in Sources */,
 				8E8DB88027380AD30010FE7E /* PitchIndicator.swift in Sources */,
 				8EECA397273856200083FD02 /* DrawerButton.swift in Sources */,
