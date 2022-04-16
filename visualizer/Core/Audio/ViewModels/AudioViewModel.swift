@@ -32,9 +32,9 @@ class AudioViewModel: ObservableObject {
     
     @Published var timbreDrawerVM = TimbreDrawerViewModel()
     
+    @Published var isStarted: Bool = false
     
     // AudioKit
-    private var isStarted: Bool = false
     private let engine = AudioEngine()
     private var mic: AudioEngine.InputNode
     private let fftMixer: Mixer
@@ -197,14 +197,14 @@ class AudioViewModel: ObservableObject {
             let significantHarmonics = self.audio.harmonicAmplitudes.filter { freq in
                 return freq > Double(noiseThreshold)
             }
-            
-            // update the last captured amplitude
-            self.audio.lastAmplitude = Double(amplitude[0])
-            
+        
             // Update audio features
             self.updateSpectralCentroid()
             self.updateQuality(fundFreq: fundFreqAmp, significantHarmonics: significantHarmonics)
         }
+        // update the last captured amplitude
+        self.audio.lastAmplitude = Double(amplitude[0])
+        
         self.updateReferenceTimbre()
         self.updateIsPitchAccurate()
     }
@@ -348,5 +348,15 @@ class AudioViewModel: ObservableObject {
         
         // Calculate the quality by mapping it to [0, 1]
         self.audio.audioFeatures.quality = Double(totalNum - louderNum) / Double(totalNum)
+    }
+    
+    func switchCaptureTime(){
+        let options:Array<Int> = [2, 4, 8]
+        let i = options.firstIndex(of:self.audio.captureTime)!
+        if(i == options.count-1){
+            self.audio.captureTime = options[0]
+        }else{
+            self.audio.captureTime = options[i+1]
+        }
     }
 }

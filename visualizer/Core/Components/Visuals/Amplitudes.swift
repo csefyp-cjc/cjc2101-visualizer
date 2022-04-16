@@ -10,26 +10,65 @@ import SwiftUI
 import UIKit
 
 struct Amplitudes: View {
-    var timer = Timer.publish(
-        every: 0.05,
-        on: .main,
-        in: .common
-    ).autoconnect()
     
+    @State private var timer: Timer? = nil
     @EnvironmentObject var vm: AudioViewModel
-    @State private var value: Double = 0.0
-    @State private var buffer = AmplitudeBuffer<CGFloat>.init(count: 80)
+    @State private var value: (Double, Int) = (0.0, 0)
+    @State private var buffer = AmplitudeBuffer<CGFloat>.init(count: Int(UIScreen.screenWidth / 8 * 2))
+    // force update to make animation smoother
+    @State private var counter = 0
+    
+    private let anchorId = 999999
     
     var body: some View {
-        VStack{
-            GraphView(value: $value, points: $buffer)
-                .onReceive(timer){ _ in
-                    value = vm.audio.lastAmplitude * 10
-                    buffer.write(value)
+        ScrollView(.horizontal){
+            ScrollViewReader{proxy in
+                ZStack{
+                    GraphView(value: $value, points: $buffer, captureTime: vm.audio.captureTime)
+                        .onChange(of: vm.isStarted){ _ in
+                            if(!vm.isStarted){
+                                self.timer?.invalidate()
+                            }else{
+                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
+                                    value = (vm.audio.lastAmplitude * 10, counter)
+                                    if(counter == 10){
+                                        counter = 0
+                                    }else{
+                                        counter += 1
+                                    }
+                                }
+                            }
+                        }
+                        .onChange(of: vm.audio.captureTime){ _ in
+                            proxy.scrollTo(anchorId)
+                        }
+                        .onAppear{
+                            if(vm.isStarted){
+                                buffer.forceToValue(0.0)
+                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
+                                    value = (vm.audio.lastAmplitude * 10, counter)
+                                    if(counter == 10){
+                                        counter = 0
+                                    }else{
+                                        counter += 1
+                                    }
+                                }
+                            }
+                        }
+                    // anchor
+                    Rectangle()
+                        .fill(Color.red)
+                        .frame(width: 3, height: 15)
+                        .position(x: UIScreen.screenWidth * (log2(CGFloat(vm.audio.captureTime))+1), y: UIScreen.screenHeight / 2)
+                        .id(anchorId)
                 }
+                .frame(width: UIScreen.screenWidth * CGFloat(vm.audio.captureTime), alignment: .trailing)
                 .onAppear{
-                    buffer.forceToValue(0.0)
+                    withAnimation{
+                        proxy.scrollTo(anchorId, anchor: .trailing)
+                    }
                 }
+            }
         }
     }
 }
@@ -41,22 +80,22 @@ struct Amplitudes_Previews: PreviewProvider {
     }
 }
 
+// use UIKit to draw bar graph
 struct GraphView: UIViewRepresentable {
-    @Binding var value: Double
+    @Binding var value: (Double, Int)
     @Binding var points: AmplitudeBuffer<CGFloat>
-    @State private var isSet: Bool = false
+    var captureTime: Int
     
     func makeUIView(context: Context) -> BarGraphView {
         let view = BarGraphView()
+        view.points = points
         return view
     }
     
     func updateUIView(_ uiView: BarGraphView, context: Context) {
-        if(!isSet){
-            uiView.points = points
-            isSet = true
-        }
-        uiView.animateNewValue(value)
+        let (amp, _) = value
+        uiView.animateNewValue(amp)
+        uiView.captureTime = captureTime
     }
 }
 
@@ -64,6 +103,9 @@ class BarGraphView: UIView {
 
     public var maxValue: CGFloat = 50
     public var minValue: CGFloat = -50
+    
+    public var captureTime: Int = 2
+    private var curCaptureTime: Int = 2
 
     public var points: AmplitudeBuffer<CGFloat>? {
         didSet {
@@ -90,9 +132,9 @@ class BarGraphView: UIView {
 
     func doInitSetup() {
         guard let layer = self.layer as? CAShapeLayer else { return }
-        layer.strokeColor = UIColor(red: 0, green: 0, blue: 0.5, alpha: 1).cgColor
+        layer.strokeColor = UIColor(Color.foundation.secondary).cgColor
         layer.fillColor = UIColor.clear.cgColor
-        layer.lineWidth = 2
+        layer.lineWidth = 3
         layer.lineCap = .round
     }
 
@@ -119,12 +161,18 @@ class BarGraphView: UIView {
     }
 
     private func buildPath(plusValue: CGFloat? = nil) -> (path: CGPath, stepWidth: CGFloat) {
+        if(curCaptureTime != captureTime){
+            self.points?.resize(Int(UIScreen.screenWidth) / 8 * captureTime)
+            curCaptureTime = captureTime
+        }
         guard let points = points else {
             (layer as? CAShapeLayer)?.path = nil
             return (CGMutablePath(), 0)
         }
         let graphBounds = bounds.insetBy(dx: 0, dy: 6)
-        let stepWidth = graphBounds.width / (CGFloat(points.count) - 1)
+//        let stepWidth = graphBounds.width / (CGFloat(points.count) - 1)
+        let stepWidth = (UIScreen.screenWidth * CGFloat(captureTime)) / (CGFloat(points.count) - 1)
+        
         let range = minValue - maxValue
         let stepHeight = graphBounds.height  / range
 
@@ -148,3 +196,4 @@ class BarGraphView: UIView {
         return (path, stepWidth)
     }
 }
+

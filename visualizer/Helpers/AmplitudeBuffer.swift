@@ -8,7 +8,7 @@
 import Foundation
 
 public struct AmplitudeBuffer<T> {
-    private var array: [T?]
+    private var array: [Double]
     private var index = 0
 
     var count: Int {
@@ -16,25 +16,29 @@ public struct AmplitudeBuffer<T> {
     }
     
     public init(count: Int) {
-        array = [T?](repeating: nil, count: count)
+        array = [Double](repeating: 0.0, count: count)
     }
 
+    public mutating func resize(_ count: Int){
+        array = [Double](repeating: 0.0, count: count)
+    }
+    
     public mutating func clear() {
-        forceToValue(nil)
+        forceToValue(0.0)
     }
 
-    public mutating func forceToValue(_ value: T?) {
+    public mutating func forceToValue(_ value: Double) {
         let count = array.count
-        array = [T?](repeating: value, count: count)
+        array = [Double](repeating: value, count: count)
     }
 
-    public mutating func write(_ element: T) {
+    public mutating func write(_ element: Double) {
         array[index % array.count] = element
         index += 1
     }
     
-    public func values() -> [T] {
-        var result = [T?]()
+    public func values() -> [Double] {
+        var result = [Double]()
         for loop in 0..<array.count {
             result.append(array[(loop+index) % array.count])
         }

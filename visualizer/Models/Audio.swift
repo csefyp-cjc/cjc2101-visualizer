@@ -19,6 +19,7 @@ struct Audio {
     var harmonicAmplitudes: [Double]
     var audioFeatures: AudioFeatures
     var lastAmplitude: Double
+    var captureTime: Int
     
     
     
@@ -33,7 +34,8 @@ struct Audio {
         totalHarmonics: 12,
         harmonicAmplitudes: Array(repeating: 0.5, count: 12),
         audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0, quality: 0),
-        lastAmplitude: 0
+        lastAmplitude: 0,
+        captureTime: 2
     )
 }
 
