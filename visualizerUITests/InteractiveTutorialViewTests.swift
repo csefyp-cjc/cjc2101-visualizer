@@ -32,7 +32,7 @@ class InteractiveTutorialViewTests: XCTestCase {
         // When
                 
         // Then
-        XCTAssertTrue(app.staticTexts["Tutorial Hints Text"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Tutorial Hints Text"].waitForExistence(timeout: 20))
         
         let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
         let coordinate = normalized.withOffset(CGVector(dx: 100, dy: 100))
