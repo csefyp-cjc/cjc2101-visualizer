@@ -30,7 +30,7 @@ struct Amplitudes: View {
                                 self.timer?.invalidate()
                             }else{
                                 self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
-                                    value = (vm.audio.lastAmplitude * 10, counter)
+                                    value = (vm.audio.lastAmplitude * 30, counter)
                                     if(counter == 10){
                                         counter = 0
                                     }else{
@@ -46,7 +46,7 @@ struct Amplitudes: View {
                             if(vm.isStarted){
                                 buffer.forceToValue(0.0)
                                 self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
-                                    value = (vm.audio.lastAmplitude * 10, counter)
+                                    value = (vm.audio.lastAmplitude * 30, counter)
                                     if(counter == 10){
                                         counter = 0
                                     }else{
@@ -101,8 +101,8 @@ struct GraphView: UIViewRepresentable {
 
 class BarGraphView: UIView {
 
-    public var maxValue: CGFloat = 50
-    public var minValue: CGFloat = -50
+    public var maxValue: CGFloat = 100
+    public var minValue: CGFloat = -100
     
     public var captureTime: Int = 2
     private var curCaptureTime: Int = 2
