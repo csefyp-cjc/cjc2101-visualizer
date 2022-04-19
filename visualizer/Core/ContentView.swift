@@ -114,6 +114,7 @@ struct ContentView: View {
         case .sound:
             SoundView()
                 .environmentObject(audioViewModel)
+                .environmentObject(watchConnectivityViewModel)
         case .pitch:
             PitchView()
                 .environmentObject(audioViewModel)

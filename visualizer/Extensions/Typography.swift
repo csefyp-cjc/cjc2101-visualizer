@@ -14,6 +14,8 @@ extension Font {
     
     struct Heading {
         let small = Font.system(size: 18).weight(.semibold)
+        let medium = Font.system(size: 22).weight(.semibold)
+        let large = Font.system(size: 26).weight(.bold)
     }
     
     struct Label {
