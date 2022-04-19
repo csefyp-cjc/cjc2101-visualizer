@@ -35,7 +35,7 @@ struct Audio {
         harmonicAmplitudes: Array(repeating: 0.5, count: 12),
         audioFeatures: AudioFeatures(spectralCentroid: 0, inharmonicity: 0, quality: 0),
         lastAmplitude: 0,
-        captureTime: 2
+        captureTime: 1
     )
 }
 

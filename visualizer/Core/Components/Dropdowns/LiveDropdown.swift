@@ -15,7 +15,6 @@ struct ScaleButtonStyle: ButtonStyle {
 }
 
 struct LiveDropdown: View {
-    @Binding var isPitchAccurate: Bool
     @Binding var isWatchLive: Bool
     let start: () -> Void   // From AudioViewModel, start the engine
     let stop: () -> Void    // From AudioViewModel, stop the engine
@@ -50,9 +49,6 @@ struct LiveDropdown: View {
         self.start()
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ tmpTimer in
             self.curTime = self.curTime + 0.1
-            if (!isPitchAccurate) {
-                self.resetTimer()
-            }
             if (self.curTime >= Double(seconds)) {
                 self.stopTimer()
             }
@@ -137,13 +133,10 @@ struct LiveDropdown: View {
 }
 
 struct LiveDropdown_Previews: PreviewProvider {
-    @State static var isPitchAccurate: Bool = AudioViewModel().audio.isPitchAccurate
-    
     @State static var isWatchLive: Bool = WatchConnectivityViewModel().isLive
     
     static var previews: some View {
-        LiveDropdown(isPitchAccurate: $isPitchAccurate,
-                     isWatchLive: $isWatchLive,
+        LiveDropdown(isWatchLive: $isWatchLive,
                      start: AudioViewModel().start,
                      stop: AudioViewModel().stop,
                      options: [3, 5, 10],

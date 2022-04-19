@@ -351,7 +351,7 @@ class AudioViewModel: ObservableObject {
     }
     
     func switchCaptureTime(){
-        let options:Array<Int> = [2, 4, 8]
+        let options:Array<Int> = [1, 3, 5, 10]
         let i = options.firstIndex(of:self.audio.captureTime)!
         if(i == options.count-1){
             self.audio.captureTime = options[0]

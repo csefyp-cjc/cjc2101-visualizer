@@ -56,11 +56,10 @@ struct SoundView: View {
                     
                     Spacer()
                     
-                    LiveDropdown(isPitchAccurate: $vm.audio.isPitchAccurate,
-                                 isWatchLive: $watchConnectVM.isLive,
+                    LiveDropdown(isWatchLive: $watchConnectVM.isLive,
                                  start: vm.start,
                                  stop: vm.stop,
-                                 options: [3,5,10],
+                                 options: [1,3,5],
                                  sendIsLive: watchConnectVM.sendIsLive
                     )
                         .padding(15)
