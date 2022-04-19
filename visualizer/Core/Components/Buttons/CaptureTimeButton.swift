@@ -17,9 +17,9 @@ struct CaptureTimeButton: View {
         } label: {
             Text("\(captureTime) s")
                 .font(.label.medium)
-                .foregroundColor(.foundation.onPrimary)
+                .foregroundColor(.neutral.onSurface)
                 .padding(EdgeInsets(top: 8, leading: 36, bottom: 8, trailing: 36))
-                .background(Color.foundation.primary)
+                .background(Color.neutral.surface)
                 .cornerRadius(16)
         }
     }

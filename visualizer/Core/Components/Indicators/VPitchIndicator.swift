@@ -13,8 +13,8 @@ struct VPitchIndicator: View {
 
     var body: some View {
         Rectangle()
-            .fill(Color.foundation.primary)
-            .opacity(0.85)
+            .fill(Color.neutral.surface)
+            .opacity(0.95)
             .frame(maxWidth: 51, maxHeight: 442)
             .cornerRadius(15)
             .overlay(
@@ -26,7 +26,7 @@ struct VPitchIndicator: View {
                     Dot(isLarge: position == 2 || position == 3)
                     Text(getSurroundingLetters(pitchLetter)[1])
                         .font(.heading.large)
-                        .foregroundColor(.foundation.onPrimary)
+                        .foregroundColor(.neutral.onSurface)
                     Dot(isLarge: position == 5 || position == 6)
                     Dot(isLarge: position == 7 || position == 8)
                     Text(getSurroundingLetters(pitchLetter)[2])
