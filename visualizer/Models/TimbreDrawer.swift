@@ -33,10 +33,10 @@ struct TimbreDrawer: Codable {
         
         var icon: String {
             switch self {
-            case .piano: return "pianokeys"
-            case .violin: return "music.quarternote.3"
-            case .cello: return "music.quarternote.3"
-            case .flute: return "music.quarternote.3"
+            case .piano: return "piano"
+            case .violin: return "violin"
+            case .cello: return "cello"
+            case .flute: return "flute"
             }
         }
     }

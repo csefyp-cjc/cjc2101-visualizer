@@ -107,8 +107,9 @@ struct TimbreView: View {
                         DrawerButton(action: {
                             showDrawer.toggle()
                             isShowingModal.toggle()
-                        })
-                            .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
+                        },
+                                     selectedInstrument: vm.timbreDrawer.selected)
+                        .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))
                         
                         LiveDropdown(isWatchLive: $watchConnectVM.isLive,
                                      start: vm.start,

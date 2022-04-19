@@ -17,24 +17,25 @@ struct InstrumentButton: View {
             Button {
                 self.action(type)
             } label: {
-                Image(systemName: type.icon)
-                    .font(.system(size: 24))
-                    .frame(width: 64, height: 64)
+                Image(uiImage: UIImage(named: type.icon)!)
+                    .renderingMode(.template)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30)
                     .foregroundColor(.neutral.onSurface)
-                    .background(Color.neutral.surface)
-                    .cornerRadius(14)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(Color.neutral.surface, lineWidth: 3)
-                    )
-                    .if (selected) {
-                        $0.overlay (
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(Color.foundation.primary, lineWidth: 3)
-                        )
-                    }
-//                    .clipShape(Rectangle())
-//                    .cornerRadius(15)
+            }
+            .frame(width: 64, height: 64)
+            .background(Color.neutral.surface)
+            .cornerRadius(14)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color.neutral.surface, lineWidth: 3)
+            )
+            .if (selected) {
+                $0.overlay (
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color.foundation.primary, lineWidth: 3)
+                )
             }
             Text(type.label).font(.label.small)
         }
