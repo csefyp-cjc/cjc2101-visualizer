@@ -47,7 +47,7 @@ struct AudioFeatures {
 
 enum AudioFeature: String, CaseIterable, Identifiable, Codable {
     case spectralCentroid = "Brightness"
-    case quality = "Quality"
+    case quality = "Fullness"
     
     var id: String { rawValue }
     
@@ -56,7 +56,7 @@ enum AudioFeature: String, CaseIterable, Identifiable, Codable {
         case .spectralCentroid:
             return "Brightness describes how bright or warm you sounds"
         case .quality:
-            return "Quality describes how full or hollow you sounds"
+            return "Fullness describes how full or hollow you sounds"
         }
     }
     
