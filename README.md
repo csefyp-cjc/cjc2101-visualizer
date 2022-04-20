@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/62586450/164188949-be17cbd8-4097-4be5-b5a3-75b186ec4d86.png" width="82" height="82" style="border-radius: 18px">
+<img src="https://user-images.githubusercontent.com/62586450/164196616-a10a9117-e6f9-4774-8c78-5bb3ff70161f.png" width="82" height="82">
 
 # SoundsGood
 
