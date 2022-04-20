@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/62586450/164188949-be17cbd8-4097-4be5-b5a3-75b186ec4d86.png" width="82" height="82">
+<img src="https://user-images.githubusercontent.com/62586450/164188949-be17cbd8-4097-4be5-b5a3-75b186ec4d86.png" width="82" height="82" style="border-radius: 18px">
 
 # SoundsGood
 
@@ -44,6 +44,35 @@ SwiftUI with MVVM. With the property wrapper provided by SwiftUI and Combine, we
 We keep our logic in `ViewModel`, and UI related in `View`. The concepts of parent View Model and child View Model is also implemented.
 
 We keep a clean file structure by features. Core functions are in the `Core` folder.
+
+```
+.
+├── README.md
+├── visualizer
+│   ├── AudioData
+│   ├── Core
+│   │   ├── Audio
+│   │   │   ├── ViewModels
+│   │   │   │   └── AudioViewModel.swift
+│   │   │   └── Views
+│   │   │       ├── PitchView.swift
+│   │   │       ├── SoundView.swift
+│   │   │       └── TimbreView.swift
+│   │   ├── Components
+│   │   │   ├── Buttons
+│   │   │   │   └── SettingButton.swift
+│   │   │   └── Components here ...
+│   │   ├── ContentView.swift
+│   │   └── Features here with ViewModels and Views ...
+│   ├── Extensions
+│   ├── Helpers
+│   ├── Models
+│   │   ├── Audio.swift
+│   │   ├── Models here ...
+│   ├── WatchConnectivityViewModel.swift
+│   └── visualizerApp.swift
+
+```
 
 ## Contributing
 
