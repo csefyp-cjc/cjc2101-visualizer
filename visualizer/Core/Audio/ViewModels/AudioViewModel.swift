@@ -340,6 +340,11 @@ class AudioViewModel: ObservableObject {
         
         let threshold: Double = 1100
         
+        let scaling: Double = 100
+        let moderator: Double = 70
+        let denominator: Double = 115
+        
+        let result = ((spectralCentroid / threshold) * scaling - moderator) / denominator
         self.audio.audioFeatures.spectralCentroid = result > 1 ? 1 : result
         self.audio.audioFeatures.spectralCentroid = result < 0 ? 0 : self.audio.audioFeatures.spectralCentroid
     }
