@@ -61,6 +61,7 @@ struct Amplitudes: View {
                         .frame(width: 3, height: 15)
                         .position(x: UIScreen.screenWidth * (log2(CGFloat(vm.audio.captureTime))+1), y: UIScreen.screenHeight / 2)
                         .id(anchorId)
+                        .opacity(0)
                 }
                 .frame(width: UIScreen.screenWidth * CGFloat(vm.audio.captureTime), alignment: .trailing)
                 .onAppear{
