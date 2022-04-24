@@ -51,7 +51,7 @@ struct Harmonics: View {
                 
                 Rectangle()
                     .fill(Color.neutral.axis)
-                    .frame(width: .infinity, height: 2)
+                    .frame(width: geometry.size.width, height: 2)
                 
                 HStack {
                     ForEach((1...harmonics.count), id: \.self) { i in

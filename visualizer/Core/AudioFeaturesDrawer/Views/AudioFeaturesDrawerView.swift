@@ -50,7 +50,7 @@ struct AudioFeaturesDrawerView: View {
                                 y: CGFloat(-19))
                         .animation(.spring(), value: value)
                 }
-                .frame(width: .infinity, height: 12)
+                .frame(height: 12)
                 
                 HStack {
                     Text(selectedFeature.getLabels().0)

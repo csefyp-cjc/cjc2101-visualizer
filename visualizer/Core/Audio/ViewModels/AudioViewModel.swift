@@ -266,6 +266,11 @@ class AudioViewModel: ObservableObject {
             //          Normalize by dividing the max so that it will cap to 1
             //          Re-scaling by multiplying constant
             let maxAmplitude: Double = soundSampleFFTData.max()!
+            
+            guard maxAmplitude > 0 else {
+                return
+            }
+            
             for (i, amplitude) in soundSampleFFTData.enumerated() {
                 let normalizedAmplitude = amplitude / maxAmplitude
                 let amplitudeIndB = Double(20.0 * log10(normalizedAmplitude))
@@ -323,6 +328,10 @@ class AudioViewModel: ObservableObject {
             return acc + cur
         })
         
+        guard amplitudeSum > 0 else {
+            return
+        }
+        
         let spectralCentroid = weightedFrequenciesSum / amplitudeSum
         
         // Lavengood considers spectral centroids above 1100Hz bright and anything below dark.
@@ -331,7 +340,6 @@ class AudioViewModel: ObservableObject {
         
         let threshold: Double = 1100
         
-        let result = spectralCentroid / threshold * 0.5
         self.audio.audioFeatures.spectralCentroid = result > 1 ? 1 : result
         self.audio.audioFeatures.spectralCentroid = result < 0 ? 0 : self.audio.audioFeatures.spectralCentroid
     }
@@ -345,7 +353,9 @@ class AudioViewModel: ObservableObject {
             return cur > fundFreq ? acc + 1 : acc
         })
         
-        
+        guard totalNum > 0 else {
+            return
+        }
         // Calculate the quality by mapping it to [0, 1]
         self.audio.audioFeatures.quality = Double(totalNum - louderNum) / Double(totalNum)
     }
