@@ -14,7 +14,7 @@ struct Amplitudes: View {
     @State private var timer: Timer? = nil
     @EnvironmentObject var vm: AudioViewModel
     @State private var value: (Double, Int) = (0.0, 0)
-    @State private var buffer = AmplitudeBuffer<CGFloat>.init(count: Int(UIScreen.screenWidth / 8 * 2))
+    @State private var buffer = AmplitudeBuffer<CGFloat>.init(count: 10)
     // force update to make animation smoother
     @State private var counter = 0
     
@@ -24,48 +24,23 @@ struct Amplitudes: View {
         ScrollView(.horizontal){
             ScrollViewReader{proxy in
                 ZStack{
-                    GraphView(value: $value, points: $buffer, captureTime: vm.audio.captureTime)
-                        .onChange(of: vm.isStarted){ _ in
-                            if(!vm.isStarted){
-                                self.timer?.invalidate()
-                            }else{
-                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
-                                    value = (vm.audio.lastAmplitude * 30, counter)
-                                    if(counter == 10){
-                                        counter = 0
-                                    }else{
-                                        counter += 1
-                                    }
-                                }
-                            }
+                    HStack{
+                        ForEach(1..<10){ i in
+                            Spacer()
+                            Cbar(val: buffer.values()[i]*2, width: 14, color: Color.red)
+                            Spacer()
                         }
-                        .onChange(of: vm.audio.captureTime){ _ in
-                            proxy.scrollTo(anchorId)
-                        }
-                        .onAppear{
-                            if(vm.isStarted){
-                                buffer.forceToValue(0.0)
-                                self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
-                                    value = (vm.audio.lastAmplitude * 30, counter)
-                                    if(counter == 10){
-                                        counter = 0
-                                    }else{
-                                        counter += 1
-                                    }
-                                }
-                            }
-                        }
-                    // anchor
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: 3, height: 15)
-                        .position(x: UIScreen.screenWidth * (log2(CGFloat(vm.audio.captureTime))+1), y: UIScreen.screenHeight / 2)
-                        .id(anchorId)
+                    }
                 }
-                .frame(width: UIScreen.screenWidth * CGFloat(vm.audio.captureTime), alignment: .trailing)
+                .frame(width: UIScreen.screenWidth, alignment: .center)
                 .onAppear{
-                    withAnimation{
-                        proxy.scrollTo(anchorId, anchor: .trailing)
+                    if(!vm.isStarted){
+                        self.timer?.invalidate()
+                    }else{
+                        self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
+                            value = (vm.audio.lastAmplitude * 30, counter)
+                            buffer.write(value.0)
+                        }
                     }
                 }
             }

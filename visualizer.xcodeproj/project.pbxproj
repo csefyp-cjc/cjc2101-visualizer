@@ -71,6 +71,7 @@
 		8E8DB88227380B630010FE7E /* PitchLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB88127380B630010FE7E /* PitchLetter.swift */; };
 		8E8DB884273811120010FE7E /* TouchEventModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB883273811120010FE7E /* TouchEventModifier.swift */; };
 		8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DB8852738161A0010FE7E /* LiveButton.swift */; };
+		8EB166F828160B9B00266EF1 /* Cbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB166F728160B9B00266EF1 /* Cbar.swift */; };
 		8EC438BE279ED706009B24E1 /* LiveDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC438BD279ED706009B24E1 /* LiveDropdown.swift */; };
 		8EC8CD6927253D3700B6E8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8CD6827253D3700B6E8E7 /* ContentView.swift */; };
 		8EECA38F27382E800083FD02 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EECA38E27382E800083FD02 /* Frequencies.swift */; };
@@ -219,6 +220,7 @@
 		8E8DB88127380B630010FE7E /* PitchLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchLetter.swift; sourceTree = "<group>"; };
 		8E8DB883273811120010FE7E /* TouchEventModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEventModifier.swift; sourceTree = "<group>"; };
 		8E8DB8852738161A0010FE7E /* LiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveButton.swift; sourceTree = "<group>"; };
+		8EB166F728160B9B00266EF1 /* Cbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cbar.swift; sourceTree = "<group>"; };
 		8EC438BD279ED706009B24E1 /* LiveDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDropdown.swift; sourceTree = "<group>"; };
 		8EC8CD6827253D3700B6E8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8EECA38E27382E800083FD02 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 				8E63BE2427B29DB6007735DF /* Harmonics.swift */,
 				49EFBECF27E9E99E000925E5 /* ReferenceBar.swift */,
 				8E69A986280AC87000BD9376 /* Amplitudes.swift */,
+				8EB166F728160B9B00266EF1 /* Cbar.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				8E8DB87A273802FF0010FE7E /* PitchView.swift in Sources */,
 				49EA05B727B168DA0036EED4 /* WatchConnectivityViewModel.swift in Sources */,
 				498F0BF3274FC11700A46486 /* SettingButton.swift in Sources */,
+				8EB166F828160B9B00266EF1 /* Cbar.swift in Sources */,
 				8E2AD443280B1486003976DE /* TypeExtension.swift in Sources */,
 				49F9A502279BDF6600AC4A4A /* InteractiveTutorial.swift in Sources */,
 				8E8DB8862738161A0010FE7E /* LiveButton.swift in Sources */,
